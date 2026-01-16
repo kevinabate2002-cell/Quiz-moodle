@@ -3,198 +3,304 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Quiz esercitazione</title>
+  <title>Quiz – 116 domande</title>
+  <meta name="description" content="Quiz a scelta multipla con domande random, opzioni rimescolate, timer, segnalibri, review errori e salvataggio automatico." />
   <style>
     :root{
-      --bg:#ffffff; --fg:#111; --muted:#666; --card:#fff;
-      --border:#e8e8e8; --soft:#f6f6f6;
-      --ok-bg:#f2fbf4; --ok-bd:#bfe6c6;
-      --bad-bg:#fff3f3; --bad-bd:#f2b8b5;
+      --bg:#ffffff; --fg:#111; --muted:#6b7280;
+      --card:#ffffff; --soft:#f5f6f8; --border:#e6e8ee;
+      --shadow: 0 10px 30px rgba(0,0,0,.07);
+      --radius: 18px; --radius2: 14px;
       --accent:#111;
-      --shadow: 0 6px 18px rgba(0,0,0,.06);
-      --radius: 16px;
-      --radius2: 12px;
-      --maxw: 1100px;
+      --okbg:#f2fbf4; --okbd:#bfe6c6;
+      --badbg:#fff3f3; --badbd:#f2b8b5;
+      --warnbg:#fff8e6; --warnbd:#f4d483;
+      --maxw: 1180px;
     }
     [data-theme="dark"]{
-      --bg:#0c0d10; --fg:#f1f1f1; --muted:#a7a7a7; --card:#12131a;
-      --border:#222431; --soft:#161824;
-      --accent:#f1f1f1;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg:#0b0c10; --fg:#f3f4f6; --muted:#9aa3b2;
+      --card:#10131a; --soft:#141827; --border:#232a3a;
+      --shadow: 0 16px 42px rgba(0,0,0,.35);
+      --accent:#f3f4f6;
+      --okbg:#102317; --okbd:#2c7a47;
+      --badbg:#2a1414; --badbd:#a44646;
+      --warnbg:#2a2314; --warnbd:#9b8437;
     }
+
     *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
-      margin:0; padding:18px;
-      background:var(--bg); color:var(--fg);
+      margin:0; padding:16px;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      line-height:1.35;
+      background: var(--bg); color: var(--fg);
+      line-height: 1.35;
     }
-    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    a{ color: inherit; }
+    .wrap{ max-width: var(--maxw); margin: 0 auto; }
+
+    /* Top bar */
     .topbar{
-      position: sticky; top: 10px; z-index:10;
+      position: sticky; top: 10px; z-index: 50;
       background: color-mix(in srgb, var(--bg) 90%, transparent);
       backdrop-filter: blur(10px);
-      border:1px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 12px;
       box-shadow: var(--shadow);
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      padding: 12px;
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+      flex-wrap:wrap;
     }
-    .left, .right{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    button, select, input{
-      font: inherit;
+    .left, .right{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      padding: 8px 10px;
+      border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--card);
+    }
+    .dot{ width:10px; height:10px; border-radius:999px; background: var(--accent); opacity: .7; }
+    .brand b{ font-size: 14px; }
+    .brand span{ color: var(--muted); font-size: 13px; }
+
+    button, input, select{
+      font: inherit;
       color: var(--fg);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 999px;
       padding: 10px 12px;
     }
     button{ cursor:pointer; }
     button:hover{ background: var(--soft); }
+    button:disabled{ opacity: .55; cursor:not-allowed; }
     .pill{
       padding: 8px 10px;
-      border:1px solid var(--border);
       border-radius: 999px;
-      color: var(--muted);
+      border: 1px solid var(--border);
       background: var(--card);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
     }
     .progress{
-      height:10px; width:240px; max-width:55vw;
+      height: 10px;
+      width: 240px; max-width: 55vw;
+      border-radius: 999px;
+      border: 1px solid var(--border);
       background: var(--soft);
-      border:1px solid var(--border);
-      border-radius:999px;
-      overflow:hidden;
+      overflow: hidden;
     }
     .progress > div{
-      height:100%;
-      width:0%;
+      height: 100%;
+      width: 0%;
       background: var(--accent);
+      opacity: .85;
     }
+    .kbd{
+      font-size: 12px;
+      padding: 5px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+    }
+
+    /* Layout */
     .grid{
-      display:grid;
-      grid-template-columns: 1fr 320px;
-      gap: 14px;
       margin-top: 14px;
-      align-items:start;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 14px;
+      align-items: start;
     }
-    @media (max-width: 920px){
+    @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
       .side{ order: 2; }
     }
+
     .card{
-      border:1px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--card);
       box-shadow: var(--shadow);
       padding: 14px;
     }
-    .qtitle{
-      font-size: 18px;
-      margin: 0 0 10px;
-    }
-    .muted{ color: var(--muted); font-size: 13px; }
-    .opts{ margin-top: 10px; display:flex; flex-direction:column; gap:8px; }
+
+    /* Main question */
+    .subtitle{ color: var(--muted); font-size: 13px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .qtitle{ margin: 10px 0 10px; font-size: 18px; }
+    .opts{ display:flex; flex-direction:column; gap: 10px; margin-top: 8px; }
+
     .opt{
       display:flex; gap:10px; align-items:flex-start;
-      padding: 10px 12px;
-      border:1px solid var(--border);
+      padding: 12px 12px;
+      border: 1px solid var(--border);
       border-radius: var(--radius2);
       cursor:pointer;
       background: color-mix(in srgb, var(--card) 92%, transparent);
     }
+    .opt:hover{ background: var(--soft); }
     .opt input{ margin-top: 3px; }
-    .opt.correct{ border-color: var(--ok-bd); background: var(--ok-bg); }
-    .opt.wrong{ border-color: var(--bad-bd); background: var(--bad-bg); }
-    .navrow{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
-      margin-top: 12px;
-    }
-    .navrow .grp{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .flag{
-      border-radius: 999px;
+    .opt.correct{ border-color: var(--okbd); background: var(--okbg); }
+    .opt.wrong{ border-color: var(--badbd); background: var(--badbg); }
+    .opt.warn{ border-color: var(--warnbd); background: var(--warnbg); }
+
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .sep{ height:1px; background: var(--border); margin: 12px 0; }
+    .muted{ color: var(--muted); font-size: 13px; }
+
+    .toggle{
+      display:flex; gap:10px; align-items:center;
       padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
     }
-    .flag.on{
-      border-color: var(--accent);
+
+    /* Side panel */
+    .side .head{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .side .head strong{ font-size: 14px; }
+    .search{
+      width: 100%;
+      border-radius: 14px;
+      padding: 11px 12px;
       background: var(--soft);
-      color: var(--fg);
     }
+    .filters{
+      display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px;
+    }
+    .chip{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      cursor:pointer;
+      user-select:none;
+      font-size: 13px;
+    }
+    .chip.on{ background: var(--soft); color: var(--fg); border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
 
     .nums{
+      margin-top: 10px;
       display:grid;
       grid-template-columns: repeat(8, 1fr);
-      gap:8px;
-      margin-top: 10px;
+      gap: 8px;
     }
     .num{
-      padding: 9px 0;
-      text-align:center;
-      border:1px solid var(--border);
+      padding: 10px 0;
       border-radius: 12px;
-      cursor:pointer;
+      border: 1px solid var(--border);
       background: var(--card);
-      color: var(--fg);
+      text-align:center;
+      cursor:pointer;
       user-select:none;
+      font-size: 13px;
     }
     .num:hover{ background: var(--soft); }
-    .num.ans{ border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
     .num.cur{ outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent); }
-    .num.flagged{ background: color-mix(in srgb, var(--soft) 60%, transparent); }
+    .num.ans{ border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+    .num.flag{ background: color-mix(in srgb, var(--soft) 65%, transparent); }
+    .num.bad{ border-color: var(--badbd); }
+    .num.ok{ border-color: var(--okbd); }
 
-    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .sep{ height:1px; background: var(--border); margin: 12px 0; }
-
+    /* Dialog */
     dialog{
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 0;
-      width: min(720px, 92vw);
+      width: min(760px, 92vw);
       background: var(--card);
       color: var(--fg);
       box-shadow: var(--shadow);
     }
     dialog::backdrop{ background: rgba(0,0,0,.35); }
-    .dlgHead{ padding: 14px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); }
+    .dlgHead{ padding: 14px; border-bottom: 1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
     .dlgBody{ padding: 14px; }
-    .dlgFoot{ padding: 14px; border-top:1px solid var(--border); display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
-    label.small{ display:flex; gap:10px; align-items:center; margin:10px 0; }
+    .dlgFoot{ padding: 14px; border-top: 1px solid var(--border); display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap; }
+    .formRow{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin: 10px 0; }
+    .formRow label{ display:flex; gap:10px; align-items:center; }
     input[type="checkbox"]{ width:18px; height:18px; }
-    input[type="number"]{ width:120px; border-radius: 12px; }
-    .linkbtn{ border:none; background:transparent; color: var(--muted); cursor:pointer; padding:0; }
-    .linkbtn:hover{ color: var(--fg); text-decoration: underline; }
+    input[type="number"]{ width: 130px; border-radius: 12px; padding: 10px 12px; }
+    .hint{ margin-top: 10px; color: var(--muted); font-size: 13px; }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 10px 12px;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: .2s ease;
+      pointer-events:none;
+      z-index: 999;
+    }
+    .toast.show{ opacity: 1; transform: translateY(0); }
   </style>
 </head>
+
 <body>
 <div class="wrap">
+
   <div class="topbar">
     <div class="left">
-      <button id="newBtn">Nuovo quiz</button>
-      <button id="gradeBtn">Correggi</button>
-      <button id="settingsBtn">Impostazioni</button>
-      <span class="pill" id="status">Caricamento...</span>
+      <div class="brand" title="Quiz">
+        <div class="dot"></div>
+        <div>
+          <b>Quiz Tecniche Investigative</b><br/>
+          <span id="smallStatus">Caricamento...</span>
+        </div>
+      </div>
+
+      <button id="newBtn" title="Nuovo quiz (N)">Nuovo</button>
+      <button id="gradeBtn" title="Correggi (G)">Correggi</button>
+      <button id="reviewBtn" title="Rivedi errori" style="display:none;">Rivedi errori</button>
+      <button id="settingsBtn" title="Impostazioni (S)">Impostazioni</button>
+      <span class="pill" id="scorePill">—</span>
     </div>
+
     <div class="right">
       <div class="progress" aria-label="Progresso"><div id="bar"></div></div>
       <span class="pill" id="timerPill" style="display:none;">⏱️ <span id="timerTxt">00:00</span></span>
+      <span class="kbd" title="Scorciatoie: ← →, F, G, N, S">← → F G N S</span>
       <button id="themeBtn" title="Tema">🌙</button>
     </div>
   </div>
 
   <div class="grid">
-    <main class="card" id="mainCard" aria-live="polite">
-      <div class="muted" id="subtitle"></div>
+    <!-- MAIN -->
+    <main class="card" id="mainCard">
+      <div class="subtitle" id="subtitle"></div>
       <h2 class="qtitle" id="qtitle"></h2>
+
       <div class="opts" id="opts"></div>
 
-      <div class="navrow">
-        <div class="grp">
-          <button id="prevBtn">← Prev</button>
-          <button id="nextBtn">Next →</button>
-          <button id="flagBtn" class="flag">🚩 Segna</button>
+      <div class="sep"></div>
+
+      <div class="row">
+        <div class="actions">
+          <button id="prevBtn" title="Prev (←)">← Prev</button>
+          <button id="nextBtn" title="Next (→)">Next →</button>
+
+          <button id="flagBtn" title="Segna/Unsegna (F)">🚩 Segna</button>
+          <button id="jumpUnansweredBtn" title="Vai alla prima non risposta" style="display:none;">Vai a non risposte</button>
         </div>
-        <div class="grp">
-          <button id="jumpWrongBtn" style="display:none;">Vai al primo errore</button>
-          <button id="resetBtn" class="linkbtn" title="Cancella salvataggio">Reset salvataggio</button>
+
+        <div class="actions">
+          <div class="toggle" title="Feedback immediato (mostra subito giusta/sbagliata)">
+            <label style="display:flex;gap:10px;align-items:center;cursor:pointer;">
+              <input type="checkbox" id="instantChk" />
+              Feedback subito
+            </label>
+          </div>
+          <button id="resetBtn" title="Cancella salvataggio">Reset</button>
         </div>
       </div>
 
@@ -202,20 +308,29 @@
       <div class="muted" id="feedback"></div>
     </main>
 
+    <!-- SIDE -->
     <aside class="card side">
-      <div class="row" style="justify-content:space-between;">
+      <div class="head">
         <strong>Navigazione</strong>
-        <span class="muted" id="navInfo"></span>
+        <span class="pill" id="navPill">—</span>
       </div>
+
+      <div style="margin-top:10px;">
+        <input id="searchBox" class="search" type="search" placeholder="Cerca testo nella domanda..." />
+        <div class="filters">
+          <div class="chip on" id="chipAll">Tutte</div>
+          <div class="chip" id="chipUnanswered">Non risposte</div>
+          <div class="chip" id="chipFlagged">Segnate 🚩</div>
+          <div class="chip" id="chipWrong">Sbagliate</div>
+        </div>
+      </div>
+
       <div class="nums" id="nums"></div>
+
       <div class="sep"></div>
       <div class="muted">
-        Suggerimenti:
-        <ul style="margin:8px 0 0; padding-left: 18px;">
-          <li>Usa i numeri per saltare domanda.</li>
-          <li>🚩 per segnare “da rivedere”.</li>
-          <li>Le opzioni sono rimescolate (la corretta non resta sempre A).</li>
-        </ul>
+        <b>Tip:</b> “Nuovo” crea ordine random + opzioni rimescolate (se attivo).<br/>
+        Le risposte sono salvate sul dispositivo (si riprende da dove eri).
       </div>
     </aside>
   </div>
@@ -223,52 +338,80 @@
 
 <dialog id="dlg">
   <div class="dlgHead">
-    <strong>Impostazioni quiz</strong>
+    <strong>Impostazioni</strong>
     <button id="closeDlg">Chiudi</button>
   </div>
+
   <div class="dlgBody">
-    <label class="small"><input type="checkbox" id="shuffleQ" checked> Domande random</label>
-    <label class="small"><input type="checkbox" id="shuffleO" checked> Opzioni random</label>
-    <label class="small">
-      Numero domande:
-      <input type="number" id="limitN" min="1" step="1" placeholder="tutte">
-      <span class="muted">(vuoto = tutte)</span>
-    </label>
-    <label class="small"><input type="checkbox" id="useTimer"> Timer</label>
-    <label class="small">
-      Minuti timer:
-      <input type="number" id="timerMin" min="1" step="1" value="30">
-    </label>
-    <div class="muted">Le risposte vengono salvate automaticamente sul dispositivo (localStorage).</div>
+    <div class="formRow">
+      <label><input type="checkbox" id="shuffleQ" checked /> Domande random</label>
+      <label><input type="checkbox" id="shuffleO" checked /> Opzioni random</label>
+      <label><input type="checkbox" id="showExplain" /> Mostra riepilogo finale dettagliato</label>
+    </div>
+
+    <div class="formRow">
+      <label>Numero domande:
+        <input type="number" id="limitN" min="1" step="1" placeholder="tutte" />
+      </label>
+
+      <label><input type="checkbox" id="useTimer" /> Timer</label>
+
+      <label>Minuti:
+        <input type="number" id="timerMin" min="1" step="1" value="30" />
+      </label>
+    </div>
+
+    <div class="hint">
+      • Se lasci “Numero domande” vuoto: usa tutte le 116.<br/>
+      • Timer: allo scadere corregge automaticamente.
+    </div>
   </div>
+
   <div class="dlgFoot">
     <button id="applyBtn">Applica e ricomincia</button>
   </div>
 </dialog>
 
+<div class="toast" id="toast">Salvato</div>
+
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
 
-  const STORAGE_KEY = "quiz_state_v2";
-  let QUESTIONS = [];
+  const STORAGE_KEY = "quiz_state_v3_ti116";
+  let SOURCE = []; // loaded from questions.json
+
+  // App state
   let state = {
-    order: [],            // ids in order
-    map: {},              // id -> {question, options:[{label,text,isCorrect}], correctIndex}
-    answers: {},          // id -> chosenIndex
-    flagged: {},          // id -> true
-    idx: 0,
-    graded: false,
-    wrongIds: [],
     settings: {
       shuffleQ: true,
       shuffleO: true,
+      showExplain: false,
       limitN: null,
       useTimer: false,
       timerMin: 30
     },
+    // built quiz
+    order: [],       // question ids
+    map: {},         // id -> {question, options:[{label,text,isCorrect}], correctIndex}
+    answers: {},     // id -> chosenIndex
+    flagged: {},     // id -> bool
+    idx: 0,
+    graded: false,
+    wrongIds: [],
+    // ui
+    filter: "all",   // all | unanswered | flagged | wrong
+    search: "",
+    instant: false,
+    // timer
     timer: { startTs: null, running: false }
   };
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[m]));
+  }
 
   function shuffle(arr){
     for (let i = arr.length - 1; i > 0; i--){
@@ -277,11 +420,21 @@
     }
     return arr;
   }
-  function pad2(n){ return String(n).padStart(2,'0'); }
 
-  function save(){
-    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  function toast(msg){
+    const t = $("toast");
+    t.textContent = msg || "Salvato";
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 900);
   }
+
+  function save(silent=false){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      if(!silent) toast("Salvato");
+    }catch(e){}
+  }
+
   function loadSaved(){
     try{
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -290,38 +443,42 @@
       if(!s || !s.order || !s.map) return false;
       state = s;
       return true;
-    }catch(e){ return false; }
+    }catch(e){
+      return false;
+    }
   }
+
   function resetSaved(){
     localStorage.removeItem(STORAGE_KEY);
   }
 
-  async function loadQuestions(){
-    const res = await fetch("./questions.json", { cache: "no-store" });
-    QUESTIONS = await res.json();
-  }
+  function currentId(){ return state.order[state.idx]; }
 
-  function buildFromSource(){
-    // Apply limit
-    let src = [...QUESTIONS].sort((a,b)=>a.id-b.id);
+  function answeredCount(){ return Object.keys(state.answers || {}).length; }
+  function totalCount(){ return (state.order || []).length; }
+
+  function buildQuizFromSource(){
+    // prepare source (sorted by id)
+    let src = [...SOURCE].sort((a,b)=>a.id-b.id);
     const n = state.settings.limitN;
     if (Number.isFinite(n) && n > 0) src = src.slice(0, n);
 
-    // Determine order
+    // ids order
     let ids = src.map(q => q.id);
-    if(state.settings.shuffleQ) shuffle(ids);
+    if (state.settings.shuffleQ) shuffle(ids);
 
     const labels = ["A","B","C","D"];
     const map = {};
 
     for(const q of src){
+      // nel tuo file A era corretta; qui la teniamo come "isCorrect=true"
       let opts = [
-        { key:"A", text:q.options.A, isCorrect:true },
-        { key:"B", text:q.options.B, isCorrect:false },
-        { key:"C", text:q.options.C, isCorrect:false },
-        { key:"D", text:q.options.D, isCorrect:false },
+        { text: q.options.A, isCorrect: true },
+        { text: q.options.B, isCorrect: false },
+        { text: q.options.C, isCorrect: false },
+        { text: q.options.D, isCorrect: false },
       ];
-      if(state.settings.shuffleO) shuffle(opts);
+      if (state.settings.shuffleO) shuffle(opts);
 
       const mapped = opts.map((o,i) => ({ label: labels[i], text: o.text, isCorrect: o.isCorrect }));
       const correctIndex = mapped.findIndex(o => o.isCorrect);
@@ -340,69 +497,171 @@
     state.idx = 0;
     state.graded = false;
     state.wrongIds = [];
+    state.filter = "all";
+    state.search = "";
+    state.instant = false;
     state.timer = { startTs: null, running: false };
-    save();
+
+    save(true);
+    updateTimerUI();
+    startTimerIfNeeded(true);
+    renderAll();
   }
 
-  function currentId(){ return state.order[state.idx]; }
-  function answeredCount(){ return Object.keys(state.answers).length; }
+  // --- Timer
+  let timerHandle = null;
 
+  function pad2(n){ return String(n).padStart(2,'0'); }
+
+  function updateTimerUI(){
+    $("timerPill").style.display = state.settings.useTimer ? "" : "none";
+  }
+
+  function stopTimer(){
+    if(timerHandle) clearInterval(timerHandle);
+    timerHandle = null;
+  }
+
+  function startTimerIfNeeded(restart=false){
+    stopTimer();
+    if(!state.settings.useTimer){
+      state.timer = { startTs: null, running: false };
+      $("timerTxt").textContent = "00:00";
+      save(true);
+      return;
+    }
+
+    if(restart || !state.timer || !state.timer.running || !state.timer.startTs){
+      state.timer = { startTs: Date.now(), running: true };
+      save(true);
+    }
+    tickTimer();
+    timerHandle = setInterval(tickTimer, 1000);
+  }
+
+  function tickTimer(){
+    if(!state.settings.useTimer) return;
+    if(!state.timer || !state.timer.running || !state.timer.startTs) return;
+
+    const mins = Number(state.settings.timerMin || 30);
+    const limitMs = mins * 60 * 1000;
+    const elapsed = Date.now() - state.timer.startTs;
+    const left = Math.max(0, limitMs - elapsed);
+
+    const mm = Math.floor(left / 60000);
+    const ss = Math.floor((left % 60000) / 1000);
+    $("timerTxt").textContent = `${pad2(mm)}:${pad2(ss)}`;
+
+    if(left === 0){
+      state.timer.running = false;
+      save(true);
+      gradeAll(true);
+      stopTimer();
+      alert("Tempo scaduto: quiz corretto.");
+    }
+  }
+
+  // --- Grading
+  function gradeAll(silent=false){
+    const wrong = [];
+    for(const id of state.order){
+      const q = state.map[id];
+      const chosen = state.answers[id];
+      if(chosen === undefined || chosen !== q.correctIndex) wrong.push(id);
+    }
+    state.graded = true;
+    state.wrongIds = wrong;
+    save(silent);
+
+    $("reviewBtn").style.display = wrong.length ? "" : "none";
+    $("chipWrong").classList.toggle("on", state.filter === "wrong");
+    renderQuestion(); // re-mark current
+    renderSide();     // color palette
+    updateTop();
+    updateJumpButtons();
+    renderFeedbackSummary();
+  }
+
+  function renderFeedbackSummary(){
+    const total = totalCount();
+    const wrong = (state.wrongIds || []).length;
+    const correct = total - wrong;
+    const unanswered = state.order.filter(id => state.answers[id] === undefined).length;
+
+    let txt = `Risultato: ${correct}/${total}.`;
+    txt += ` Errori: ${wrong}.`;
+    txt += ` Non risposte: ${unanswered}.`;
+
+    if(state.settings.showExplain && state.graded){
+      txt += " Usa “Rivedi errori” per saltare alle sbagliate.";
+    }
+    $("feedback").textContent = txt;
+  }
+
+  // --- UI updates
   function updateTop(){
-    const total = state.order.length;
+    const total = totalCount();
     const ans = answeredCount();
-    $("status").textContent = state.graded
-      ? `Punteggio: ${total - state.wrongIds.length}/${total}`
-      : `Risposte: ${ans}/${total}`;
+    const wrong = (state.wrongIds || []).length;
+    const correct = total ? (total - wrong) : 0;
 
     const pct = total ? Math.round((ans/total)*100) : 0;
     $("bar").style.width = pct + "%";
-    $("navInfo").textContent = `${ans}/${total}`;
+
+    $("navPill").textContent = `${ans}/${total}`;
+    $("smallStatus").textContent = state.graded
+      ? `Punteggio: ${correct}/${total}`
+      : `Risposte: ${ans}/${total}`;
+
+    $("scorePill").textContent = state.graded
+      ? `✅ ${correct}/${total}`
+      : `⏳ ${ans}/${total}`;
   }
 
-  function renderNums(){
-    const nums = $("nums");
-    nums.innerHTML = "";
-    state.order.forEach((id, i) => {
-      const d = document.createElement("div");
-      d.className = "num";
-      if(state.answers[id] !== undefined) d.classList.add("ans");
-      if(state.flagged[id]) d.classList.add("flagged");
-      if(i === state.idx) d.classList.add("cur");
-      d.textContent = (i+1);
-      d.title = `Vai alla domanda ${i+1}`;
-      d.addEventListener("click", () => { state.idx = i; state.graded = false; save(); render(); });
-      nums.appendChild(d);
-    });
+  function updateJumpButtons(){
+    const unanswered = state.order.some(id => state.answers[id] === undefined);
+    $("jumpUnansweredBtn").style.display = unanswered ? "" : "none";
   }
 
-  function render(){
+  function renderQuestion(){
     const id = currentId();
     const q = state.map[id];
-    const total = state.order.length;
+    const total = totalCount();
 
-    $("subtitle").textContent = `Domanda ${state.idx+1} di ${total}`;
+    $("subtitle").innerHTML = `
+      <span class="pill">Domanda ${state.idx+1} / ${total}</span>
+      ${state.flagged[id] ? '<span class="pill">🚩 Segnata</span>' : ''}
+      ${state.answers[id] !== undefined ? '<span class="pill">Risposta data</span>' : '<span class="pill">Non risposta</span>'}
+    `;
+
     $("qtitle").textContent = q.question;
 
-    // options
-    const opts = $("opts");
-    opts.innerHTML = "";
     const chosen = state.answers[id];
+    const optsEl = $("opts");
+    optsEl.innerHTML = "";
 
     q.options.forEach((o, i) => {
       const lab = document.createElement("label");
       lab.className = "opt";
+
       const inp = document.createElement("input");
       inp.type = "radio";
       inp.name = "q_" + id;
       inp.value = String(i);
       inp.checked = (chosen === i);
+
       inp.addEventListener("change", () => {
         state.answers[id] = i;
-        state.graded = false;
-        save();
+        state.graded = false; // if user changes, remove grading status
+        state.wrongIds = [];
+        $("reviewBtn").style.display = "none";
+
+        save(true);
         updateTop();
-        renderNums();
-        $("feedback").textContent = "";
+        updateJumpButtons();
+        renderSide();
+        if(state.instant) markCurrentInstant();
+        else $("feedback").textContent = "";
       });
 
       const text = document.createElement("div");
@@ -410,121 +669,215 @@
 
       lab.appendChild(inp);
       lab.appendChild(text);
-      lab.addEventListener("click", (e) => {
-        // clicking label selects radio; nothing else
-      });
-
-      opts.appendChild(lab);
+      optsEl.appendChild(lab);
     });
 
-    // buttons
+    // nav buttons
     $("prevBtn").disabled = state.idx === 0;
     $("nextBtn").disabled = state.idx === total - 1;
 
-    $("flagBtn").classList.toggle("on", !!state.flagged[id]);
+    // flag button
     $("flagBtn").textContent = state.flagged[id] ? "🚩 Segnata" : "🚩 Segna";
 
-    $("jumpWrongBtn").style.display = (state.wrongIds && state.wrongIds.length) ? "" : "none";
-
-    updateTop();
-    renderNums();
+    // If graded or instant feedback, mark
+    if(state.graded) markCurrentGraded();
+    if(state.instant && state.answers[id] !== undefined) markCurrentInstant();
   }
 
-  function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  }
-
-  function gradeAll(){
-    const total = state.order.length;
-    const wrong = [];
-
-    // Mark current view options with correct/wrong too
-    for(const id of state.order){
-      const q = state.map[id];
-      const chosen = state.answers[id];
-      if(chosen === undefined || chosen !== q.correctIndex) wrong.push(id);
-    }
-
-    state.graded = true;
-    state.wrongIds = wrong;
-    save();
-
-    // Visual marking only for current question (non vogliamo “colorare” tutta la griglia con scroll infinito)
+  function markCurrentGraded(){
     const id = currentId();
     const q = state.map[id];
     const chosen = state.answers[id];
+    const labels = Array.from(document.querySelectorAll("#opts .opt"));
 
-    const optLabels = Array.from(document.querySelectorAll("#opts .opt"));
-    optLabels.forEach((el, idx) => {
-      el.classList.remove("correct","wrong");
+    labels.forEach((el, idx) => {
+      el.classList.remove("correct","wrong","warn");
       if(idx === q.correctIndex) el.classList.add("correct");
       if(chosen !== undefined && chosen !== q.correctIndex && idx === chosen) el.classList.add("wrong");
+      if(chosen === undefined && idx === q.correctIndex) el.classList.add("warn");
+    });
+  }
+
+  function markCurrentInstant(){
+    const id = currentId();
+    const q = state.map[id];
+    const chosen = state.answers[id];
+    const labels = Array.from(document.querySelectorAll("#opts .opt"));
+
+    labels.forEach((el, idx) => {
+      el.classList.remove("correct","wrong","warn");
     });
 
-    const score = total - wrong.length;
-    $("feedback").textContent = `Risultato: ${score}/${total}. Errori: ${wrong.length}.`;
-    updateTop();
-  }
+    if(chosen === undefined) return;
 
-  // Timer
-  let timerHandle = null;
-  function startTimer(){
-    stopTimer();
-    if(!state.settings.useTimer) return;
-    state.timer.startTs = Date.now();
-    state.timer.running = true;
-    save();
-    $("timerPill").style.display = "";
-    tickTimer();
-    timerHandle = setInterval(tickTimer, 1000);
-  }
-  function stopTimer(){
-    if(timerHandle) clearInterval(timerHandle);
-    timerHandle = null;
-    $("timerPill").style.display = "none";
-  }
-  function tickTimer(){
-    if(!state.timer.running) return;
-    const mins = Number(state.settings.timerMin || 30);
-    const limitMs = mins * 60 * 1000;
-    const elapsed = Date.now() - state.timer.startTs;
-    const left = Math.max(0, limitMs - elapsed);
-    const mm = Math.floor(left / 60000);
-    const ss = Math.floor((left % 60000) / 1000);
-    $("timerTxt").textContent = `${pad2(mm)}:${pad2(ss)}`;
-    if(left === 0){
-      state.timer.running = false;
-      save();
-      gradeAll();
-      stopTimer();
-      alert("Tempo scaduto. Quiz corretto.");
+    if(chosen === q.correctIndex){
+      labels[chosen].classList.add("correct");
+      $("feedback").textContent = "✅ Corretta";
+    } else {
+      labels[chosen].classList.add("wrong");
+      labels[q.correctIndex].classList.add("correct");
+      $("feedback").textContent = "❌ Sbagliata (mostro anche la corretta)";
     }
   }
 
-  // UI events
-  $("prevBtn").addEventListener("click", () => { if(state.idx>0){ state.idx--; state.graded=false; save(); render(); }});
-  $("nextBtn").addEventListener("click", () => { if(state.idx<state.order.length-1){ state.idx++; state.graded=false; save(); render(); }});
+  function passesFilter(id){
+    const q = state.map[id];
+    const chosen = state.answers[id];
+    const flagged = !!state.flagged[id];
+    const wrong = state.graded && chosen !== undefined && chosen !== q.correctIndex;
+
+    // search
+    if(state.search){
+      const hay = (q.question || "").toLowerCase();
+      if(!hay.includes(state.search.toLowerCase())) return false;
+    }
+
+    if(state.filter === "all") return true;
+    if(state.filter === "unanswered") return chosen === undefined;
+    if(state.filter === "flagged") return flagged;
+    if(state.filter === "wrong") return state.graded && wrong;
+    return true;
+  }
+
+  function renderSide(){
+    const nums = $("nums");
+    nums.innerHTML = "";
+
+    state.order.forEach((id, i) => {
+      if(!passesFilter(id)) return;
+
+      const q = state.map[id];
+      const chosen = state.answers[id];
+
+      const d = document.createElement("div");
+      d.className = "num";
+      d.textContent = String(i+1);
+
+      if(i === state.idx) d.classList.add("cur");
+      if(chosen !== undefined) d.classList.add("ans");
+      if(state.flagged[id]) d.classList.add("flag");
+
+      if(state.graded && chosen !== undefined){
+        if(chosen === q.correctIndex) d.classList.add("ok");
+        else d.classList.add("bad");
+      }
+
+      d.title = `Vai alla domanda ${i+1}`;
+      d.addEventListener("click", () => {
+        state.idx = i;
+        save(true);
+        renderAll();
+      });
+
+      nums.appendChild(d);
+    });
+  }
+
+  function renderAll(){
+    $("searchBox").value = state.search || "";
+    $("instantChk").checked = !!state.instant;
+
+    // chips
+    $("chipAll").classList.toggle("on", state.filter === "all");
+    $("chipUnanswered").classList.toggle("on", state.filter === "unanswered");
+    $("chipFlagged").classList.toggle("on", state.filter === "flagged");
+    $("chipWrong").classList.toggle("on", state.filter === "wrong");
+
+    renderQuestion();
+    renderSide();
+    updateTop();
+    updateJumpButtons();
+
+    if(state.graded) {
+      renderFeedbackSummary();
+      $("reviewBtn").style.display = (state.wrongIds || []).length ? "" : "none";
+    }
+  }
+
+  // --- Events
+  function setFilter(f){
+    state.filter = f;
+    save(true);
+    renderSide();
+  }
+
+  $("chipAll").addEventListener("click", () => setFilter("all"));
+  $("chipUnanswered").addEventListener("click", () => setFilter("unanswered"));
+  $("chipFlagged").addEventListener("click", () => setFilter("flagged"));
+  $("chipWrong").addEventListener("click", () => {
+    if(!state.graded){
+      alert("Prima premi “Correggi” per vedere le sbagliate.");
+      return;
+    }
+    setFilter("wrong");
+  });
+
+  $("searchBox").addEventListener("input", (e) => {
+    state.search = e.target.value.trim();
+    save(true);
+    renderSide();
+  });
+
+  $("prevBtn").addEventListener("click", () => {
+    if(state.idx > 0){
+      state.idx--;
+      save(true);
+      renderAll();
+    }
+  });
+
+  $("nextBtn").addEventListener("click", () => {
+    if(state.idx < totalCount() - 1){
+      state.idx++;
+      save(true);
+      renderAll();
+    }
+  });
+
   $("flagBtn").addEventListener("click", () => {
     const id = currentId();
     state.flagged[id] = !state.flagged[id];
-    save();
-    renderNums();
-    render();
+    save(true);
+    renderAll();
+  });
+
+  $("instantChk").addEventListener("change", (e) => {
+    state.instant = !!e.target.checked;
+    save(true);
+    if(state.instant) markCurrentInstant();
+    else if(state.graded) markCurrentGraded();
+    else $("feedback").textContent = "";
   });
 
   $("newBtn").addEventListener("click", () => {
-    buildFromSource();
-    startTimer();
-    render();
+    buildQuizFromSource();
   });
 
-  $("gradeBtn").addEventListener("click", gradeAll);
+  $("gradeBtn").addEventListener("click", () => {
+    gradeAll(true);
+    toast("Corretto");
+  });
 
-  $("jumpWrongBtn").addEventListener("click", () => {
-    if(!state.wrongIds.length) return;
+  $("reviewBtn").addEventListener("click", () => {
+    if(!state.graded || !(state.wrongIds || []).length) return;
     const firstWrong = state.wrongIds[0];
     const i = state.order.indexOf(firstWrong);
-    if(i >= 0){ state.idx = i; state.graded=false; save(); render(); }
+    if(i >= 0){
+      state.idx = i;
+      save(true);
+      renderAll();
+    }
+  });
+
+  $("jumpUnansweredBtn").addEventListener("click", () => {
+    const i = state.order.findIndex(id => state.answers[id] === undefined);
+    if(i >= 0){
+      state.idx = i;
+      save(true);
+      renderAll();
+    } else {
+      alert("Hai risposto a tutte.");
+    }
   });
 
   $("resetBtn").addEventListener("click", () => {
@@ -539,23 +892,28 @@
   $("settingsBtn").addEventListener("click", () => {
     $("shuffleQ").checked = !!state.settings.shuffleQ;
     $("shuffleO").checked = !!state.settings.shuffleO;
+    $("showExplain").checked = !!state.settings.showExplain;
     $("limitN").value = state.settings.limitN ?? "";
     $("useTimer").checked = !!state.settings.useTimer;
     $("timerMin").value = state.settings.timerMin ?? 30;
     dlg.showModal();
   });
   $("closeDlg").addEventListener("click", () => dlg.close());
+
   $("applyBtn").addEventListener("click", () => {
     state.settings.shuffleQ = $("shuffleQ").checked;
     state.settings.shuffleO = $("shuffleO").checked;
+    state.settings.showExplain = $("showExplain").checked;
+
     const lim = $("limitN").value.trim();
     state.settings.limitN = lim ? Math.max(1, parseInt(lim,10)) : null;
+
     state.settings.useTimer = $("useTimer").checked;
-    state.settings.timerMin = Math.max(1, parseInt($("timerMin").value || "30",10));
+    state.settings.timerMin = Math.max(1, parseInt($("timerMin").value || "30", 10));
+
     dlg.close();
-    buildFromSource();
-    startTimer();
-    render();
+    updateTimerUI();
+    buildQuizFromSource();
   });
 
   // Theme
@@ -571,42 +929,66 @@
 
   // Keyboard shortcuts
   document.addEventListener("keydown", (e) => {
+    if(e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+
     if(e.key === "ArrowLeft") $("prevBtn").click();
     if(e.key === "ArrowRight") $("nextBtn").click();
     if(e.key === "f" || e.key === "F") $("flagBtn").click();
     if(e.key === "g" || e.key === "G") $("gradeBtn").click();
+    if(e.key === "n" || e.key === "N") $("newBtn").click();
+    if(e.key === "s" || e.key === "S") $("settingsBtn").click();
+
+    // 1-4 select option
+    if(["1","2","3","4"].includes(e.key)){
+      const radios = Array.from(document.querySelectorAll("#opts input[type='radio']"));
+      const idx = parseInt(e.key,10) - 1;
+      if(radios[idx]){
+        radios[idx].checked = true;
+        radios[idx].dispatchEvent(new Event("change", { bubbles:true }));
+      }
+    }
   });
 
   // Boot
+  async function loadQuestions(){
+    const res = await fetch("./questions.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("Impossibile caricare questions.json");
+    const data = await res.json();
+    if(!Array.isArray(data) || !data.length) throw new Error("questions.json vuoto o non valido");
+    return data;
+  }
+
   (async () => {
-    const saved = loadSaved();
+    // theme
     const theme = localStorage.getItem("quiz_theme") || "light";
     setTheme(theme);
 
-    await loadQuestions();
-
-    // If no saved state, build new from source
-    if(!saved || !state.order || !state.order.length || !state.map){
-      state.settings = state.settings || { shuffleQ:true, shuffleO:true, limitN:null, useTimer:false, timerMin:30 };
-      buildFromSource();
+    try{
+      SOURCE = await loadQuestions();
+    }catch(err){
+      $("smallStatus").textContent = "Errore caricamento domande";
+      $("scorePill").textContent = "❌";
+      $("feedback").textContent =
+        "Non riesco a leggere ./questions.json. Controlla che sia nella stessa cartella di index.html (docs/) e che GitHub Pages sia aggiornato.";
+      console.error(err);
+      return;
     }
 
-    // Ensure settings exist
-    state.settings = state.settings || { shuffleQ:true, shuffleO:true, limitN:null, useTimer:false, timerMin:30 };
+    const hasSaved = loadSaved();
 
-    // Start timer only if enabled and not already running
-    if(state.settings.useTimer){
-      if(!state.timer || !state.timer.running){
-        startTimer();
-      } else {
-        $("timerPill").style.display = "";
-        timerHandle = setInterval(tickTimer, 1000);
-        tickTimer();
-      }
+    // validate saved state against source size
+    if(!hasSaved || !state.order || !state.order.length || !state.map){
+      buildQuizFromSource();
+    } else {
+      // if user changed settings but wants current state, keep it.
+      updateTimerUI();
+      startTimerIfNeeded(false);
+      renderAll();
     }
 
-    $("feedback").textContent = "";
-    render();
+    $("smallStatus").textContent = "Pronto";
+    updateTop();
+    updateJumpButtons();
   })();
 })();
 </script>
