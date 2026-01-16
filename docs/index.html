@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Quiz – 116 domande</title>
-  <meta name="description" content="Quiz a scelta multipla con domande random, opzioni rimescolate, timer, segnalibri, review errori e salvataggio automatico." />
+  <title>Moodle SCM – Tecniche Investigative</title>
+  <meta name="description" content="Quiz Tecniche Investigative: domande random, opzioni rimescolate, feedback immediato, flag, ricerca, timer, salvataggio." />
   <style>
     :root{
       --bg:#ffffff; --fg:#111; --muted:#6b7280;
@@ -26,7 +26,6 @@
       --badbg:#2a1414; --badbd:#a44646;
       --warnbg:#2a2314; --warnbd:#9b8437;
     }
-
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
     body{
@@ -35,10 +34,9 @@
       background: var(--bg); color: var(--fg);
       line-height: 1.35;
     }
-    a{ color: inherit; }
     .wrap{ max-width: var(--maxw); margin: 0 auto; }
 
-    /* Top bar */
+    /* Topbar */
     .topbar{
       position: sticky; top: 10px; z-index: 50;
       background: color-mix(in srgb, var(--bg) 90%, transparent);
@@ -51,6 +49,7 @@
       flex-wrap:wrap;
     }
     .left, .right{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
     .brand{
       display:flex; gap:10px; align-items:center;
       padding: 8px 10px;
@@ -62,7 +61,7 @@
     .brand b{ font-size: 14px; }
     .brand span{ color: var(--muted); font-size: 13px; }
 
-    button, input, select{
+    button, input{
       font: inherit;
       color: var(--fg);
       background: var(--card);
@@ -73,6 +72,7 @@
     button{ cursor:pointer; }
     button:hover{ background: var(--soft); }
     button:disabled{ opacity: .55; cursor:not-allowed; }
+
     .pill{
       padding: 8px 10px;
       border-radius: 999px;
@@ -96,14 +96,6 @@
       background: var(--accent);
       opacity: .85;
     }
-    .kbd{
-      font-size: 12px;
-      padding: 5px 8px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--muted);
-    }
 
     /* Layout */
     .grid{
@@ -117,7 +109,6 @@
       .grid{ grid-template-columns: 1fr; }
       .side{ order: 2; }
     }
-
     .card{
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -126,7 +117,7 @@
       padding: 14px;
     }
 
-    /* Main question */
+    /* Main */
     .subtitle{ color: var(--muted); font-size: 13px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .qtitle{ margin: 10px 0 10px; font-size: 18px; }
     .opts{ display:flex; flex-direction:column; gap: 10px; margin-top: 8px; }
@@ -158,14 +149,14 @@
       background: var(--card);
     }
 
-    /* Side panel */
+    /* Side */
     .side .head{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
-    .side .head strong{ font-size: 14px; }
     .search{
       width: 100%;
       border-radius: 14px;
       padding: 11px 12px;
       background: var(--soft);
+      border: 1px solid var(--border);
     }
     .filters{
       display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px;
@@ -205,7 +196,6 @@
     .num.bad{ border-color: var(--badbd); }
     .num.ok{ border-color: var(--okbd); }
 
-    /* Dialog */
     dialog{
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -222,10 +212,8 @@
     .formRow{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin: 10px 0; }
     .formRow label{ display:flex; gap:10px; align-items:center; }
     input[type="checkbox"]{ width:18px; height:18px; }
-    input[type="number"]{ width: 130px; border-radius: 12px; padding: 10px 12px; }
-    .hint{ margin-top: 10px; color: var(--muted); font-size: 13px; }
+    input[type="number"]{ width: 130px; border-radius: 12px; padding: 10px 12px; border: 1px solid var(--border); }
 
-    /* Toast */
     .toast{
       position: fixed;
       right: 18px;
@@ -254,14 +242,14 @@
       <div class="brand" title="Quiz">
         <div class="dot"></div>
         <div>
-          <b>Quiz Tecniche Investigative</b><br/>
-          <span id="smallStatus">Caricamento...</span>
+          <b>Moodle SCM</b><br/>
+          <span id="smallStatus">Tecniche Investigative</span>
         </div>
       </div>
 
       <button id="newBtn" title="Nuovo quiz (N)">Nuovo</button>
       <button id="gradeBtn" title="Correggi (G)">Correggi</button>
-      <button id="reviewBtn" title="Rivedi errori" style="display:none;">Rivedi errori</button>
+      <button id="reviewBtn" title="Vai alla prima sbagliata" style="display:none;">Rivedi errori</button>
       <button id="settingsBtn" title="Impostazioni (S)">Impostazioni</button>
       <span class="pill" id="scorePill">—</span>
     </div>
@@ -269,14 +257,12 @@
     <div class="right">
       <div class="progress" aria-label="Progresso"><div id="bar"></div></div>
       <span class="pill" id="timerPill" style="display:none;">⏱️ <span id="timerTxt">00:00</span></span>
-      <span class="kbd" title="Scorciatoie: ← →, F, G, N, S">← → F G N S</span>
       <button id="themeBtn" title="Tema">🌙</button>
     </div>
   </div>
 
   <div class="grid">
-    <!-- MAIN -->
-    <main class="card" id="mainCard">
+    <main class="card">
       <div class="subtitle" id="subtitle"></div>
       <h2 class="qtitle" id="qtitle"></h2>
 
@@ -294,9 +280,9 @@
         </div>
 
         <div class="actions">
-          <div class="toggle" title="Feedback immediato (mostra subito giusta/sbagliata)">
+          <div class="toggle" title="Mostra subito giusta/sbagliata">
             <label style="display:flex;gap:10px;align-items:center;cursor:pointer;">
-              <input type="checkbox" id="instantChk" />
+              <input type="checkbox" id="instantChk" checked />
               Feedback subito
             </label>
           </div>
@@ -308,7 +294,6 @@
       <div class="muted" id="feedback"></div>
     </main>
 
-    <!-- SIDE -->
     <aside class="card side">
       <div class="head">
         <strong>Navigazione</strong>
@@ -328,10 +313,7 @@
       <div class="nums" id="nums"></div>
 
       <div class="sep"></div>
-      <div class="muted">
-        <b>Tip:</b> “Nuovo” crea ordine random + opzioni rimescolate (se attivo).<br/>
-        Le risposte sono salvate sul dispositivo (si riprende da dove eri).
-      </div>
+      <div class="muted">Le risposte sono salvate sul dispositivo (riprendi da dove eri).</div>
     </aside>
   </div>
 </div>
@@ -346,7 +328,6 @@
     <div class="formRow">
       <label><input type="checkbox" id="shuffleQ" checked /> Domande random</label>
       <label><input type="checkbox" id="shuffleO" checked /> Opzioni random</label>
-      <label><input type="checkbox" id="showExplain" /> Mostra riepilogo finale dettagliato</label>
     </div>
 
     <div class="formRow">
@@ -360,11 +341,6 @@
         <input type="number" id="timerMin" min="1" step="1" value="30" />
       </label>
     </div>
-
-    <div class="hint">
-      • Se lasci “Numero domande” vuoto: usa tutte le 116.<br/>
-      • Timer: allo scadere corregge automaticamente.
-    </div>
   </div>
 
   <div class="dlgFoot">
@@ -377,42 +353,27 @@
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
+  const STORAGE_KEY = "quiz_state_tecniche_v1";
 
-  const STORAGE_KEY = "quiz_state_v3_ti116";
-  let SOURCE = []; // loaded from questions.json
-
-  // App state
+  let SOURCE = [];
   let state = {
-    settings: {
-      shuffleQ: true,
-      shuffleO: true,
-      showExplain: false,
-      limitN: null,
-      useTimer: false,
-      timerMin: 30
-    },
-    // built quiz
-    order: [],       // question ids
-    map: {},         // id -> {question, options:[{label,text,isCorrect}], correctIndex}
-    answers: {},     // id -> chosenIndex
-    flagged: {},     // id -> bool
+    settings: { shuffleQ: true, shuffleO: true, limitN: null, useTimer: false, timerMin: 30 },
+    order: [],
+    map: {},
+    answers: {},
+    flagged: {},
     idx: 0,
     graded: false,
     wrongIds: [],
-    // ui
-    filter: "all",   // all | unanswered | flagged | wrong
+    filter: "all",
     search: "",
-    instant: false,
-    // timer
+    instant: true,  // feedback immediato di default
     timer: { startTs: null, running: false }
   };
 
   function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g, m => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[m]));
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
-
   function shuffle(arr){
     for (let i = arr.length - 1; i > 0; i--){
       const j = Math.floor(Math.random() * (i + 1));
@@ -425,7 +386,7 @@
     const t = $("toast");
     t.textContent = msg || "Salvato";
     t.classList.add("show");
-    setTimeout(() => t.classList.remove("show"), 900);
+    setTimeout(() => t.classList.remove("show"), 850);
   }
 
   function save(silent=false){
@@ -434,7 +395,6 @@
       if(!silent) toast("Salvato");
     }catch(e){}
   }
-
   function loadSaved(){
     try{
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -443,27 +403,21 @@
       if(!s || !s.order || !s.map) return false;
       state = s;
       return true;
-    }catch(e){
-      return false;
-    }
+    }catch(e){ return false; }
   }
-
   function resetSaved(){
     localStorage.removeItem(STORAGE_KEY);
   }
 
   function currentId(){ return state.order[state.idx]; }
-
   function answeredCount(){ return Object.keys(state.answers || {}).length; }
   function totalCount(){ return (state.order || []).length; }
 
   function buildQuizFromSource(){
-    // prepare source (sorted by id)
     let src = [...SOURCE].sort((a,b)=>a.id-b.id);
     const n = state.settings.limitN;
     if (Number.isFinite(n) && n > 0) src = src.slice(0, n);
 
-    // ids order
     let ids = src.map(q => q.id);
     if (state.settings.shuffleQ) shuffle(ids);
 
@@ -471,7 +425,7 @@
     const map = {};
 
     for(const q of src){
-      // nel tuo file A era corretta; qui la teniamo come "isCorrect=true"
+      // Nel tuo Word la corretta è A: qui resta corretta anche dopo shuffle opzioni
       let opts = [
         { text: q.options.A, isCorrect: true },
         { text: q.options.B, isCorrect: false },
@@ -483,11 +437,7 @@
       const mapped = opts.map((o,i) => ({ label: labels[i], text: o.text, isCorrect: o.isCorrect }));
       const correctIndex = mapped.findIndex(o => o.isCorrect);
 
-      map[q.id] = {
-        question: q.question,
-        options: mapped,
-        correctIndex
-      };
+      map[q.id] = { question: q.question, options: mapped, correctIndex };
     }
 
     state.order = ids;
@@ -499,7 +449,7 @@
     state.wrongIds = [];
     state.filter = "all";
     state.search = "";
-    state.instant = false;
+    state.instant = true;
     state.timer = { startTs: null, running: false };
 
     save(true);
@@ -508,20 +458,13 @@
     renderAll();
   }
 
-  // --- Timer
+  // Timer
   let timerHandle = null;
-
   function pad2(n){ return String(n).padStart(2,'0'); }
-
   function updateTimerUI(){
     $("timerPill").style.display = state.settings.useTimer ? "" : "none";
   }
-
-  function stopTimer(){
-    if(timerHandle) clearInterval(timerHandle);
-    timerHandle = null;
-  }
-
+  function stopTimer(){ if(timerHandle) clearInterval(timerHandle); timerHandle = null; }
   function startTimerIfNeeded(restart=false){
     stopTimer();
     if(!state.settings.useTimer){
@@ -530,7 +473,6 @@
       save(true);
       return;
     }
-
     if(restart || !state.timer || !state.timer.running || !state.timer.startTs){
       state.timer = { startTs: Date.now(), running: true };
       save(true);
@@ -538,7 +480,6 @@
     tickTimer();
     timerHandle = setInterval(tickTimer, 1000);
   }
-
   function tickTimer(){
     if(!state.settings.useTimer) return;
     if(!state.timer || !state.timer.running || !state.timer.startTs) return;
@@ -561,7 +502,7 @@
     }
   }
 
-  // --- Grading
+  // Grading
   function gradeAll(silent=false){
     const wrong = [];
     for(const id of state.order){
@@ -574,31 +515,21 @@
     save(silent);
 
     $("reviewBtn").style.display = wrong.length ? "" : "none";
-    $("chipWrong").classList.toggle("on", state.filter === "wrong");
-    renderQuestion(); // re-mark current
-    renderSide();     // color palette
+    renderQuestion();
+    renderSide();
     updateTop();
     updateJumpButtons();
     renderFeedbackSummary();
   }
-
   function renderFeedbackSummary(){
     const total = totalCount();
     const wrong = (state.wrongIds || []).length;
     const correct = total - wrong;
     const unanswered = state.order.filter(id => state.answers[id] === undefined).length;
-
-    let txt = `Risultato: ${correct}/${total}.`;
-    txt += ` Errori: ${wrong}.`;
-    txt += ` Non risposte: ${unanswered}.`;
-
-    if(state.settings.showExplain && state.graded){
-      txt += " Usa “Rivedi errori” per saltare alle sbagliate.";
-    }
-    $("feedback").textContent = txt;
+    $("feedback").textContent = `Risultato: ${correct}/${total}. Errori: ${wrong}. Non risposte: ${unanswered}.`;
   }
 
-  // --- UI updates
+  // UI
   function updateTop(){
     const total = totalCount();
     const ans = answeredCount();
@@ -609,13 +540,8 @@
     $("bar").style.width = pct + "%";
 
     $("navPill").textContent = `${ans}/${total}`;
-    $("smallStatus").textContent = state.graded
-      ? `Punteggio: ${correct}/${total}`
-      : `Risposte: ${ans}/${total}`;
-
-    $("scorePill").textContent = state.graded
-      ? `✅ ${correct}/${total}`
-      : `⏳ ${ans}/${total}`;
+    $("smallStatus").textContent = state.graded ? `Punteggio: ${correct}/${total}` : `Tecniche Investigative • Risposte: ${ans}/${total}`;
+    $("scorePill").textContent = state.graded ? `✅ ${correct}/${total}` : `⏳ ${ans}/${total}`;
   }
 
   function updateJumpButtons(){
@@ -652,7 +578,7 @@
 
       inp.addEventListener("change", () => {
         state.answers[id] = i;
-        state.graded = false; // if user changes, remove grading status
+        state.graded = false;
         state.wrongIds = [];
         $("reviewBtn").style.display = "none";
 
@@ -672,14 +598,11 @@
       optsEl.appendChild(lab);
     });
 
-    // nav buttons
     $("prevBtn").disabled = state.idx === 0;
     $("nextBtn").disabled = state.idx === total - 1;
 
-    // flag button
     $("flagBtn").textContent = state.flagged[id] ? "🚩 Segnata" : "🚩 Segna";
 
-    // If graded or instant feedback, mark
     if(state.graded) markCurrentGraded();
     if(state.instant && state.answers[id] !== undefined) markCurrentInstant();
   }
@@ -704,10 +627,7 @@
     const chosen = state.answers[id];
     const labels = Array.from(document.querySelectorAll("#opts .opt"));
 
-    labels.forEach((el, idx) => {
-      el.classList.remove("correct","wrong","warn");
-    });
-
+    labels.forEach(el => el.classList.remove("correct","wrong","warn"));
     if(chosen === undefined) return;
 
     if(chosen === q.correctIndex){
@@ -726,12 +646,10 @@
     const flagged = !!state.flagged[id];
     const wrong = state.graded && chosen !== undefined && chosen !== q.correctIndex;
 
-    // search
     if(state.search){
       const hay = (q.question || "").toLowerCase();
       if(!hay.includes(state.search.toLowerCase())) return false;
     }
-
     if(state.filter === "all") return true;
     if(state.filter === "unanswered") return chosen === undefined;
     if(state.filter === "flagged") return flagged;
@@ -777,7 +695,6 @@
     $("searchBox").value = state.search || "";
     $("instantChk").checked = !!state.instant;
 
-    // chips
     $("chipAll").classList.toggle("on", state.filter === "all");
     $("chipUnanswered").classList.toggle("on", state.filter === "unanswered");
     $("chipFlagged").classList.toggle("on", state.filter === "flagged");
@@ -787,14 +704,10 @@
     renderSide();
     updateTop();
     updateJumpButtons();
-
-    if(state.graded) {
-      renderFeedbackSummary();
-      $("reviewBtn").style.display = (state.wrongIds || []).length ? "" : "none";
-    }
+    if(state.graded) renderFeedbackSummary();
   }
 
-  // --- Events
+  // Events
   function setFilter(f){
     state.filter = f;
     save(true);
@@ -819,19 +732,10 @@
   });
 
   $("prevBtn").addEventListener("click", () => {
-    if(state.idx > 0){
-      state.idx--;
-      save(true);
-      renderAll();
-    }
+    if(state.idx > 0){ state.idx--; save(true); renderAll(); }
   });
-
   $("nextBtn").addEventListener("click", () => {
-    if(state.idx < totalCount() - 1){
-      state.idx++;
-      save(true);
-      renderAll();
-    }
+    if(state.idx < totalCount() - 1){ state.idx++; save(true); renderAll(); }
   });
 
   $("flagBtn").addEventListener("click", () => {
@@ -849,35 +753,20 @@
     else $("feedback").textContent = "";
   });
 
-  $("newBtn").addEventListener("click", () => {
-    buildQuizFromSource();
-  });
-
-  $("gradeBtn").addEventListener("click", () => {
-    gradeAll(true);
-    toast("Corretto");
-  });
+  $("newBtn").addEventListener("click", () => buildQuizFromSource());
+  $("gradeBtn").addEventListener("click", () => { gradeAll(true); toast("Corretto"); });
 
   $("reviewBtn").addEventListener("click", () => {
     if(!state.graded || !(state.wrongIds || []).length) return;
     const firstWrong = state.wrongIds[0];
     const i = state.order.indexOf(firstWrong);
-    if(i >= 0){
-      state.idx = i;
-      save(true);
-      renderAll();
-    }
+    if(i >= 0){ state.idx = i; save(true); renderAll(); }
   });
 
   $("jumpUnansweredBtn").addEventListener("click", () => {
     const i = state.order.findIndex(id => state.answers[id] === undefined);
-    if(i >= 0){
-      state.idx = i;
-      save(true);
-      renderAll();
-    } else {
-      alert("Hai risposto a tutte.");
-    }
+    if(i >= 0){ state.idx = i; save(true); renderAll(); }
+    else alert("Hai risposto a tutte.");
   });
 
   $("resetBtn").addEventListener("click", () => {
@@ -892,18 +781,15 @@
   $("settingsBtn").addEventListener("click", () => {
     $("shuffleQ").checked = !!state.settings.shuffleQ;
     $("shuffleO").checked = !!state.settings.shuffleO;
-    $("showExplain").checked = !!state.settings.showExplain;
     $("limitN").value = state.settings.limitN ?? "";
     $("useTimer").checked = !!state.settings.useTimer;
     $("timerMin").value = state.settings.timerMin ?? 30;
     dlg.showModal();
   });
   $("closeDlg").addEventListener("click", () => dlg.close());
-
   $("applyBtn").addEventListener("click", () => {
     state.settings.shuffleQ = $("shuffleQ").checked;
     state.settings.shuffleO = $("shuffleO").checked;
-    state.settings.showExplain = $("showExplain").checked;
 
     const lim = $("limitN").value.trim();
     state.settings.limitN = lim ? Math.max(1, parseInt(lim,10)) : null;
@@ -927,7 +813,7 @@
     setTheme(cur === "dark" ? "light" : "dark");
   });
 
-  // Keyboard shortcuts
+  // Shortcuts
   document.addEventListener("keydown", (e) => {
     if(e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
 
@@ -937,19 +823,9 @@
     if(e.key === "g" || e.key === "G") $("gradeBtn").click();
     if(e.key === "n" || e.key === "N") $("newBtn").click();
     if(e.key === "s" || e.key === "S") $("settingsBtn").click();
-
-    // 1-4 select option
-    if(["1","2","3","4"].includes(e.key)){
-      const radios = Array.from(document.querySelectorAll("#opts input[type='radio']"));
-      const idx = parseInt(e.key,10) - 1;
-      if(radios[idx]){
-        radios[idx].checked = true;
-        radios[idx].dispatchEvent(new Event("change", { bubbles:true }));
-      }
-    }
   });
 
-  // Boot
+  // Load questions.json
   async function loadQuestions(){
     const res = await fetch("./questions.json", { cache: "no-store" });
     if(!res.ok) throw new Error("Impossibile caricare questions.json");
@@ -959,7 +835,6 @@
   }
 
   (async () => {
-    // theme
     const theme = localStorage.getItem("quiz_theme") || "light";
     setTheme(theme);
 
@@ -969,24 +844,25 @@
       $("smallStatus").textContent = "Errore caricamento domande";
       $("scorePill").textContent = "❌";
       $("feedback").textContent =
-        "Non riesco a leggere ./questions.json. Controlla che sia nella stessa cartella di index.html (docs/) e che GitHub Pages sia aggiornato.";
+        "Non riesco a leggere ./questions.json. Controlla che sia in docs/ insieme a index.html e ricarica la pagina.";
       console.error(err);
       return;
     }
 
     const hasSaved = loadSaved();
+    updateTimerUI();
 
-    // validate saved state against source size
+    // Forza feedback immediato anche se avevi un salvataggio vecchio
+    state.instant = true;
+    save(true);
+
     if(!hasSaved || !state.order || !state.order.length || !state.map){
       buildQuizFromSource();
     } else {
-      // if user changed settings but wants current state, keep it.
-      updateTimerUI();
       startTimerIfNeeded(false);
       renderAll();
     }
 
-    $("smallStatus").textContent = "Pronto";
     updateTop();
     updateJumpButtons();
   })();
