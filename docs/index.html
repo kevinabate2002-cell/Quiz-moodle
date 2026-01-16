@@ -5,150 +5,610 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Quiz esercitazione</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 20px; line-height: 1.35; }
-    .top { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    button { padding:10px 14px; border:1px solid #ddd; border-radius:10px; background:#fff; cursor:pointer; }
-    button:hover { background:#f6f6f6; }
-    .pill { padding:6px 10px; border:1px solid #ddd; border-radius:999px; }
-    .q { border:1px solid #e6e6e6; border-radius:14px; padding:14px; margin:12px 0; }
-    .q h3 { margin:0 0 10px; font-size:16px; }
-    .opt { display:block; padding:8px 10px; border:1px solid #eee; border-radius:12px; margin:6px 0; cursor:pointer; }
-    .opt input { margin-right:10px; }
-    .correct { border-color: #bfe6c6; background: #f2fbf4; }
-    .wrong { border-color: #f2b8b5; background: #fff3f3; }
-    .muted { color:#666; font-size: 13px; }
-    .sticky { position:sticky; top:10px; background:rgba(255,255,255,.92); backdrop-filter: blur(8px); padding:10px; border:1px solid #eee; border-radius:14px; margin-bottom:12px; }
+    :root{
+      --bg:#ffffff; --fg:#111; --muted:#666; --card:#fff;
+      --border:#e8e8e8; --soft:#f6f6f6;
+      --ok-bg:#f2fbf4; --ok-bd:#bfe6c6;
+      --bad-bg:#fff3f3; --bad-bd:#f2b8b5;
+      --accent:#111;
+      --shadow: 0 6px 18px rgba(0,0,0,.06);
+      --radius: 16px;
+      --radius2: 12px;
+      --maxw: 1100px;
+    }
+    [data-theme="dark"]{
+      --bg:#0c0d10; --fg:#f1f1f1; --muted:#a7a7a7; --card:#12131a;
+      --border:#222431; --soft:#161824;
+      --accent:#f1f1f1;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; padding:18px;
+      background:var(--bg); color:var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      line-height:1.35;
+    }
+    .wrap{ max-width:var(--maxw); margin:0 auto; }
+    .topbar{
+      position: sticky; top: 10px; z-index:10;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(10px);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      box-shadow: var(--shadow);
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    }
+    .left, .right{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    button, select, input{
+      font: inherit;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--fg);
+      border-radius: 999px;
+      padding: 10px 12px;
+    }
+    button{ cursor:pointer; }
+    button:hover{ background: var(--soft); }
+    .pill{
+      padding: 8px 10px;
+      border:1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: var(--card);
+    }
+    .progress{
+      height:10px; width:240px; max-width:55vw;
+      background: var(--soft);
+      border:1px solid var(--border);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .progress > div{
+      height:100%;
+      width:0%;
+      background: var(--accent);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap: 14px;
+      margin-top: 14px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+      .side{ order: 2; }
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .qtitle{
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+    .muted{ color: var(--muted); font-size: 13px; }
+    .opts{ margin-top: 10px; display:flex; flex-direction:column; gap:8px; }
+    .opt{
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 10px 12px;
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      cursor:pointer;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+    }
+    .opt input{ margin-top: 3px; }
+    .opt.correct{ border-color: var(--ok-bd); background: var(--ok-bg); }
+    .opt.wrong{ border-color: var(--bad-bd); background: var(--bad-bg); }
+    .navrow{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      margin-top: 12px;
+    }
+    .navrow .grp{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .flag{
+      border-radius: 999px;
+      padding: 10px 12px;
+    }
+    .flag.on{
+      border-color: var(--accent);
+      background: var(--soft);
+      color: var(--fg);
+    }
+
+    .nums{
+      display:grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap:8px;
+      margin-top: 10px;
+    }
+    .num{
+      padding: 9px 0;
+      text-align:center;
+      border:1px solid var(--border);
+      border-radius: 12px;
+      cursor:pointer;
+      background: var(--card);
+      color: var(--fg);
+      user-select:none;
+    }
+    .num:hover{ background: var(--soft); }
+    .num.ans{ border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+    .num.cur{ outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent); }
+    .num.flagged{ background: color-mix(in srgb, var(--soft) 60%, transparent); }
+
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .sep{ height:1px; background: var(--border); margin: 12px 0; }
+
+    dialog{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0;
+      width: min(720px, 92vw);
+      background: var(--card);
+      color: var(--fg);
+      box-shadow: var(--shadow);
+    }
+    dialog::backdrop{ background: rgba(0,0,0,.35); }
+    .dlgHead{ padding: 14px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); }
+    .dlgBody{ padding: 14px; }
+    .dlgFoot{ padding: 14px; border-top:1px solid var(--border); display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+    label.small{ display:flex; gap:10px; align-items:center; margin:10px 0; }
+    input[type="checkbox"]{ width:18px; height:18px; }
+    input[type="number"]{ width:120px; border-radius: 12px; }
+    .linkbtn{ border:none; background:transparent; color: var(--muted); cursor:pointer; padding:0; }
+    .linkbtn:hover{ color: var(--fg); text-decoration: underline; }
   </style>
 </head>
 <body>
-  <div class="sticky top">
-    <button id="new">Nuovo quiz (random)</button>
-    <button id="grade">Correggi</button>
-    <span class="pill" id="status">Caricamento...</span>
-    <span class="muted">Le opzioni vengono rimescolate: la corretta non è sempre “A”.</span>
+<div class="wrap">
+  <div class="topbar">
+    <div class="left">
+      <button id="newBtn">Nuovo quiz</button>
+      <button id="gradeBtn">Correggi</button>
+      <button id="settingsBtn">Impostazioni</button>
+      <span class="pill" id="status">Caricamento...</span>
+    </div>
+    <div class="right">
+      <div class="progress" aria-label="Progresso"><div id="bar"></div></div>
+      <span class="pill" id="timerPill" style="display:none;">⏱️ <span id="timerTxt">00:00</span></span>
+      <button id="themeBtn" title="Tema">🌙</button>
+    </div>
   </div>
 
-  <div id="quiz"></div>
+  <div class="grid">
+    <main class="card" id="mainCard" aria-live="polite">
+      <div class="muted" id="subtitle"></div>
+      <h2 class="qtitle" id="qtitle"></h2>
+      <div class="opts" id="opts"></div>
 
-  <script>
-    let QUESTIONS = [];
-    let RENDERED = []; // {id, correctIndex, options:[{label,text,isCorrect}], chosenIndex}
+      <div class="navrow">
+        <div class="grp">
+          <button id="prevBtn">← Prev</button>
+          <button id="nextBtn">Next →</button>
+          <button id="flagBtn" class="flag">🚩 Segna</button>
+        </div>
+        <div class="grp">
+          <button id="jumpWrongBtn" style="display:none;">Vai al primo errore</button>
+          <button id="resetBtn" class="linkbtn" title="Cancella salvataggio">Reset salvataggio</button>
+        </div>
+      </div>
 
-    function shuffle(arr){
-      for (let i = arr.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
+      <div class="sep"></div>
+      <div class="muted" id="feedback"></div>
+    </main>
+
+    <aside class="card side">
+      <div class="row" style="justify-content:space-between;">
+        <strong>Navigazione</strong>
+        <span class="muted" id="navInfo"></span>
+      </div>
+      <div class="nums" id="nums"></div>
+      <div class="sep"></div>
+      <div class="muted">
+        Suggerimenti:
+        <ul style="margin:8px 0 0; padding-left: 18px;">
+          <li>Usa i numeri per saltare domanda.</li>
+          <li>🚩 per segnare “da rivedere”.</li>
+          <li>Le opzioni sono rimescolate (la corretta non resta sempre A).</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <div class="dlgHead">
+    <strong>Impostazioni quiz</strong>
+    <button id="closeDlg">Chiudi</button>
+  </div>
+  <div class="dlgBody">
+    <label class="small"><input type="checkbox" id="shuffleQ" checked> Domande random</label>
+    <label class="small"><input type="checkbox" id="shuffleO" checked> Opzioni random</label>
+    <label class="small">
+      Numero domande:
+      <input type="number" id="limitN" min="1" step="1" placeholder="tutte">
+      <span class="muted">(vuoto = tutte)</span>
+    </label>
+    <label class="small"><input type="checkbox" id="useTimer"> Timer</label>
+    <label class="small">
+      Minuti timer:
+      <input type="number" id="timerMin" min="1" step="1" value="30">
+    </label>
+    <div class="muted">Le risposte vengono salvate automaticamente sul dispositivo (localStorage).</div>
+  </div>
+  <div class="dlgFoot">
+    <button id="applyBtn">Applica e ricomincia</button>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+
+  const STORAGE_KEY = "quiz_state_v2";
+  let QUESTIONS = [];
+  let state = {
+    order: [],            // ids in order
+    map: {},              // id -> {question, options:[{label,text,isCorrect}], correctIndex}
+    answers: {},          // id -> chosenIndex
+    flagged: {},          // id -> true
+    idx: 0,
+    graded: false,
+    wrongIds: [],
+    settings: {
+      shuffleQ: true,
+      shuffleO: true,
+      limitN: null,
+      useTimer: false,
+      timerMin: 30
+    },
+    timer: { startTs: null, running: false }
+  };
+
+  function shuffle(arr){
+    for (let i = arr.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+  function pad2(n){ return String(n).padStart(2,'0'); }
+
+  function save(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function loadSaved(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return false;
+      const s = JSON.parse(raw);
+      if(!s || !s.order || !s.map) return false;
+      state = s;
+      return true;
+    }catch(e){ return false; }
+  }
+  function resetSaved(){
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  async function loadQuestions(){
+    const res = await fetch("./questions.json", { cache: "no-store" });
+    QUESTIONS = await res.json();
+  }
+
+  function buildFromSource(){
+    // Apply limit
+    let src = [...QUESTIONS].sort((a,b)=>a.id-b.id);
+    const n = state.settings.limitN;
+    if (Number.isFinite(n) && n > 0) src = src.slice(0, n);
+
+    // Determine order
+    let ids = src.map(q => q.id);
+    if(state.settings.shuffleQ) shuffle(ids);
+
+    const labels = ["A","B","C","D"];
+    const map = {};
+
+    for(const q of src){
+      let opts = [
+        { key:"A", text:q.options.A, isCorrect:true },
+        { key:"B", text:q.options.B, isCorrect:false },
+        { key:"C", text:q.options.C, isCorrect:false },
+        { key:"D", text:q.options.D, isCorrect:false },
+      ];
+      if(state.settings.shuffleO) shuffle(opts);
+
+      const mapped = opts.map((o,i) => ({ label: labels[i], text: o.text, isCorrect: o.isCorrect }));
+      const correctIndex = mapped.findIndex(o => o.isCorrect);
+
+      map[q.id] = {
+        question: q.question,
+        options: mapped,
+        correctIndex
+      };
     }
 
-    function esc(s){
-      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-    }
+    state.order = ids;
+    state.map = map;
+    state.answers = {};
+    state.flagged = {};
+    state.idx = 0;
+    state.graded = false;
+    state.wrongIds = [];
+    state.timer = { startTs: null, running: false };
+    save();
+  }
 
-    async function load(){
-      const res = await fetch('./questions.json', { cache: 'no-store' });
-      QUESTIONS = await res.json();
-    }
+  function currentId(){ return state.order[state.idx]; }
+  function answeredCount(){ return Object.keys(state.answers).length; }
 
-    function render(){
-      const quizEl = document.getElementById('quiz');
-      quizEl.innerHTML = '';
-      RENDERED = [];
+  function updateTop(){
+    const total = state.order.length;
+    const ans = answeredCount();
+    $("status").textContent = state.graded
+      ? `Punteggio: ${total - state.wrongIds.length}/${total}`
+      : `Risposte: ${ans}/${total}`;
 
-      const qs = shuffle([...QUESTIONS]); // domande random
+    const pct = total ? Math.round((ans/total)*100) : 0;
+    $("bar").style.width = pct + "%";
+    $("navInfo").textContent = `${ans}/${total}`;
+  }
 
-      qs.forEach((q, idx) => {
-        // nel tuo file la corretta è sempre la A: quindi options.A è corretta
-        const opts = [
-          { key:'A', text:q.options.A, isCorrect:true },
-          { key:'B', text:q.options.B, isCorrect:false },
-          { key:'C', text:q.options.C, isCorrect:false },
-          { key:'D', text:q.options.D, isCorrect:false },
-        ];
+  function renderNums(){
+    const nums = $("nums");
+    nums.innerHTML = "";
+    state.order.forEach((id, i) => {
+      const d = document.createElement("div");
+      d.className = "num";
+      if(state.answers[id] !== undefined) d.classList.add("ans");
+      if(state.flagged[id]) d.classList.add("flagged");
+      if(i === state.idx) d.classList.add("cur");
+      d.textContent = (i+1);
+      d.title = `Vai alla domanda ${i+1}`;
+      d.addEventListener("click", () => { state.idx = i; state.graded = false; save(); render(); });
+      nums.appendChild(d);
+    });
+  }
 
-        shuffle(opts); // opzioni random
-        const correctIndex = opts.findIndex(o => o.isCorrect);
+  function render(){
+    const id = currentId();
+    const q = state.map[id];
+    const total = state.order.length;
 
-        const labels = ['A','B','C','D'];
-        const mapped = opts.map((o, i) => ({ label: labels[i], text: o.text, isCorrect: o.isCorrect }));
+    $("subtitle").textContent = `Domanda ${state.idx+1} di ${total}`;
+    $("qtitle").textContent = q.question;
 
-        const card = document.createElement('div');
-        card.className = 'q';
-        card.dataset.qid = q.id;
+    // options
+    const opts = $("opts");
+    opts.innerHTML = "";
+    const chosen = state.answers[id];
 
-        card.innerHTML = `
-          <h3>${idx+1}. ${esc(q.question)}</h3>
-          <div class="opts">
-            ${mapped.map((o, i) => `
-              <label class="opt" data-idx="${i}">
-                <input type="radio" name="q_${q.id}" value="${i}">
-                <strong>${o.label})</strong> ${esc(o.text)}
-              </label>
-            `).join('')}
-          </div>
-          <div class="muted" style="margin-top:8px;"></div>
-        `;
-
-        // store
-        RENDERED.push({ id:q.id, correctIndex, options:mapped, chosenIndex:null });
-
-        // handlers
-        card.querySelectorAll('input[type="radio"]').forEach(inp => {
-          inp.addEventListener('change', (e) => {
-            const chosen = Number(e.target.value);
-            const r = RENDERED.find(x => x.id === q.id);
-            r.chosenIndex = chosen;
-          });
-        });
-
-        quizEl.appendChild(card);
+    q.options.forEach((o, i) => {
+      const lab = document.createElement("label");
+      lab.className = "opt";
+      const inp = document.createElement("input");
+      inp.type = "radio";
+      inp.name = "q_" + id;
+      inp.value = String(i);
+      inp.checked = (chosen === i);
+      inp.addEventListener("change", () => {
+        state.answers[id] = i;
+        state.graded = false;
+        save();
+        updateTop();
+        renderNums();
+        $("feedback").textContent = "";
       });
 
-      document.getElementById('status').textContent = `Domande: ${QUESTIONS.length}`;
-    }
+      const text = document.createElement("div");
+      text.innerHTML = `<strong>${o.label})</strong> ${escapeHtml(o.text)}`;
 
-    function grade(){
-      let correct = 0;
-
-      RENDERED.forEach(r => {
-        const card = document.querySelector(`.q[data-qid="${r.id}"]`);
-        const optLabels = card.querySelectorAll('.opt');
-
-        // reset styles
-        optLabels.forEach(l => l.classList.remove('correct','wrong'));
-
-        // mark correct
-        if (r.correctIndex >= 0) optLabels[r.correctIndex].classList.add('correct');
-
-        // mark wrong chosen
-        if (r.chosenIndex != null && r.chosenIndex !== r.correctIndex) {
-          optLabels[r.chosenIndex].classList.add('wrong');
-        }
-
-        if (r.chosenIndex === r.correctIndex) correct++;
-        const info = card.querySelector('.muted');
-        info.textContent = (r.chosenIndex == null)
-          ? 'Non hai risposto.'
-          : (r.chosenIndex === r.correctIndex ? '✅ Corretta' : '❌ Sbagliata');
+      lab.appendChild(inp);
+      lab.appendChild(text);
+      lab.addEventListener("click", (e) => {
+        // clicking label selects radio; nothing else
       });
 
-      document.getElementById('status').textContent = `Punteggio: ${correct}/${RENDERED.length}`;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      opts.appendChild(lab);
+    });
+
+    // buttons
+    $("prevBtn").disabled = state.idx === 0;
+    $("nextBtn").disabled = state.idx === total - 1;
+
+    $("flagBtn").classList.toggle("on", !!state.flagged[id]);
+    $("flagBtn").textContent = state.flagged[id] ? "🚩 Segnata" : "🚩 Segna";
+
+    $("jumpWrongBtn").style.display = (state.wrongIds && state.wrongIds.length) ? "" : "none";
+
+    updateTop();
+    renderNums();
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function gradeAll(){
+    const total = state.order.length;
+    const wrong = [];
+
+    // Mark current view options with correct/wrong too
+    for(const id of state.order){
+      const q = state.map[id];
+      const chosen = state.answers[id];
+      if(chosen === undefined || chosen !== q.correctIndex) wrong.push(id);
     }
 
-    document.getElementById('new').addEventListener('click', render);
-    document.getElementById('grade').addEventListener('click', grade);
+    state.graded = true;
+    state.wrongIds = wrong;
+    save();
 
-    (async () => {
-      try {
-        await load();
-        render();
-      } catch (e) {
-        document.getElementById('status').textContent = 'Errore: non trovo questions.json';
-        console.error(e);
+    // Visual marking only for current question (non vogliamo “colorare” tutta la griglia con scroll infinito)
+    const id = currentId();
+    const q = state.map[id];
+    const chosen = state.answers[id];
+
+    const optLabels = Array.from(document.querySelectorAll("#opts .opt"));
+    optLabels.forEach((el, idx) => {
+      el.classList.remove("correct","wrong");
+      if(idx === q.correctIndex) el.classList.add("correct");
+      if(chosen !== undefined && chosen !== q.correctIndex && idx === chosen) el.classList.add("wrong");
+    });
+
+    const score = total - wrong.length;
+    $("feedback").textContent = `Risultato: ${score}/${total}. Errori: ${wrong.length}.`;
+    updateTop();
+  }
+
+  // Timer
+  let timerHandle = null;
+  function startTimer(){
+    stopTimer();
+    if(!state.settings.useTimer) return;
+    state.timer.startTs = Date.now();
+    state.timer.running = true;
+    save();
+    $("timerPill").style.display = "";
+    tickTimer();
+    timerHandle = setInterval(tickTimer, 1000);
+  }
+  function stopTimer(){
+    if(timerHandle) clearInterval(timerHandle);
+    timerHandle = null;
+    $("timerPill").style.display = "none";
+  }
+  function tickTimer(){
+    if(!state.timer.running) return;
+    const mins = Number(state.settings.timerMin || 30);
+    const limitMs = mins * 60 * 1000;
+    const elapsed = Date.now() - state.timer.startTs;
+    const left = Math.max(0, limitMs - elapsed);
+    const mm = Math.floor(left / 60000);
+    const ss = Math.floor((left % 60000) / 1000);
+    $("timerTxt").textContent = `${pad2(mm)}:${pad2(ss)}`;
+    if(left === 0){
+      state.timer.running = false;
+      save();
+      gradeAll();
+      stopTimer();
+      alert("Tempo scaduto. Quiz corretto.");
+    }
+  }
+
+  // UI events
+  $("prevBtn").addEventListener("click", () => { if(state.idx>0){ state.idx--; state.graded=false; save(); render(); }});
+  $("nextBtn").addEventListener("click", () => { if(state.idx<state.order.length-1){ state.idx++; state.graded=false; save(); render(); }});
+  $("flagBtn").addEventListener("click", () => {
+    const id = currentId();
+    state.flagged[id] = !state.flagged[id];
+    save();
+    renderNums();
+    render();
+  });
+
+  $("newBtn").addEventListener("click", () => {
+    buildFromSource();
+    startTimer();
+    render();
+  });
+
+  $("gradeBtn").addEventListener("click", gradeAll);
+
+  $("jumpWrongBtn").addEventListener("click", () => {
+    if(!state.wrongIds.length) return;
+    const firstWrong = state.wrongIds[0];
+    const i = state.order.indexOf(firstWrong);
+    if(i >= 0){ state.idx = i; state.graded=false; save(); render(); }
+  });
+
+  $("resetBtn").addEventListener("click", () => {
+    if(confirm("Vuoi cancellare il salvataggio e ricominciare?")){
+      resetSaved();
+      location.reload();
+    }
+  });
+
+  // Settings dialog
+  const dlg = $("dlg");
+  $("settingsBtn").addEventListener("click", () => {
+    $("shuffleQ").checked = !!state.settings.shuffleQ;
+    $("shuffleO").checked = !!state.settings.shuffleO;
+    $("limitN").value = state.settings.limitN ?? "";
+    $("useTimer").checked = !!state.settings.useTimer;
+    $("timerMin").value = state.settings.timerMin ?? 30;
+    dlg.showModal();
+  });
+  $("closeDlg").addEventListener("click", () => dlg.close());
+  $("applyBtn").addEventListener("click", () => {
+    state.settings.shuffleQ = $("shuffleQ").checked;
+    state.settings.shuffleO = $("shuffleO").checked;
+    const lim = $("limitN").value.trim();
+    state.settings.limitN = lim ? Math.max(1, parseInt(lim,10)) : null;
+    state.settings.useTimer = $("useTimer").checked;
+    state.settings.timerMin = Math.max(1, parseInt($("timerMin").value || "30",10));
+    dlg.close();
+    buildFromSource();
+    startTimer();
+    render();
+  });
+
+  // Theme
+  function setTheme(t){
+    document.documentElement.setAttribute("data-theme", t);
+    localStorage.setItem("quiz_theme", t);
+    $("themeBtn").textContent = (t === "dark") ? "☀️" : "🌙";
+  }
+  $("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme") || "light";
+    setTheme(cur === "dark" ? "light" : "dark");
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "ArrowLeft") $("prevBtn").click();
+    if(e.key === "ArrowRight") $("nextBtn").click();
+    if(e.key === "f" || e.key === "F") $("flagBtn").click();
+    if(e.key === "g" || e.key === "G") $("gradeBtn").click();
+  });
+
+  // Boot
+  (async () => {
+    const saved = loadSaved();
+    const theme = localStorage.getItem("quiz_theme") || "light";
+    setTheme(theme);
+
+    await loadQuestions();
+
+    // If no saved state, build new from source
+    if(!saved || !state.order || !state.order.length || !state.map){
+      state.settings = state.settings || { shuffleQ:true, shuffleO:true, limitN:null, useTimer:false, timerMin:30 };
+      buildFromSource();
+    }
+
+    // Ensure settings exist
+    state.settings = state.settings || { shuffleQ:true, shuffleO:true, limitN:null, useTimer:false, timerMin:30 };
+
+    // Start timer only if enabled and not already running
+    if(state.settings.useTimer){
+      if(!state.timer || !state.timer.running){
+        startTimer();
+      } else {
+        $("timerPill").style.display = "";
+        timerHandle = setInterval(tickTimer, 1000);
+        tickTimer();
       }
-    })();
-  </script>
+    }
+
+    $("feedback").textContent = "";
+    render();
+  })();
+})();
+</script>
 </body>
 </html>
