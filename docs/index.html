@@ -1,227 +1,181 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Moodle SCM – Tecniche Investigative</title>
-  <meta name="description" content="Quiz Tecniche Investigative: interfaccia premium, feedback immediato, random, timer, segnalibri, ricerca, salvataggio." />
+  <title>Quiz – Tecniche Investigative</title>
+  <meta name="description" content="Quiz Tecniche Investigative: UI professionale, punteggio configurabile e per domanda, modalità esame, timer, filtri, export, salvataggio." />
 
   <style>
     :root{
-      --bg0:#0b0c10;
-      --bg1:#0f1220;
-      --card: rgba(255,255,255,.08);
-      --card2: rgba(255,255,255,.06);
-      --stroke: rgba(255,255,255,.14);
-      --stroke2: rgba(255,255,255,.09);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.62);
-      --muted2: rgba(255,255,255,.45);
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --shadow2: 0 10px 30px rgba(0,0,0,.25);
-      --radius: 22px;
-      --radius2: 16px;
-      --accent: #ffffff;
-      --ok: #45d483;
-      --bad: #ff6b6b;
-      --warn: #ffd166;
-      --maxw: 1180px;
+      --bg: #0b1020;
+      --surface: #0f172a;
+      --surface2:#111c35;
+      --surface3:#0b132b;
+      --stroke: rgba(255,255,255,.10);
+      --stroke2: rgba(255,255,255,.07);
 
-      --ringBg: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.64);
+      --muted2: rgba(255,255,255,.44);
+
+      --ok:#22c55e;
+      --bad:#ef4444;
+      --warn:#f59e0b;
+      --info:#60a5fa;
+
+      --shadow: 0 22px 60px rgba(0,0,0,.48);
+      --shadow2: 0 12px 34px rgba(0,0,0,.35);
+
+      --r1: 18px;
+      --r2: 14px;
+
+      --maxw: 1240px;
     }
 
-    /* Light mode (optional, still pretty) */
     [data-theme="light"]{
-      --bg0:#f6f7fb;
-      --bg1:#ffffff;
-      --card: rgba(0,0,0,.03);
-      --card2: rgba(0,0,0,.02);
-      --stroke: rgba(0,0,0,.08);
+      --bg:#f6f7fb;
+      --surface:#ffffff;
+      --surface2:#fbfbfd;
+      --surface3:#f3f5fb;
+      --stroke: rgba(0,0,0,.10);
       --stroke2: rgba(0,0,0,.06);
+
       --text: rgba(0,0,0,.88);
-      --muted: rgba(0,0,0,.60);
-      --muted2: rgba(0,0,0,.45);
-      --shadow: 0 18px 60px rgba(0,0,0,.10);
-      --shadow2: 0 10px 30px rgba(0,0,0,.08);
-      --accent:#111;
-      --ringBg: rgba(0,0,0,.06);
+      --muted: rgba(0,0,0,.62);
+      --muted2: rgba(0,0,0,.44);
+
+      --shadow: 0 22px 60px rgba(0,0,0,.10);
+      --shadow2: 0 12px 34px rgba(0,0,0,.08);
     }
 
     *{ box-sizing:border-box; }
-    html, body{ height:100%; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      color: var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       line-height: 1.35;
+      color: var(--text);
       background:
-        radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.35), transparent 55%),
-        radial-gradient(900px 600px at 85% 20%, rgba(0,214,255,.25), transparent 50%),
-        radial-gradient(900px 700px at 70% 90%, rgba(255,209,102,.15), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
+        radial-gradient(1200px 700px at 12% 12%, color-mix(in srgb, var(--info) 22%, transparent), transparent 55%),
+        radial-gradient(900px 600px at 86% 18%, color-mix(in srgb, var(--ok) 16%, transparent), transparent 55%),
+        radial-gradient(900px 700px at 70% 95%, color-mix(in srgb, var(--warn) 12%, transparent), transparent 55%),
+        linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 85%, #000));
       padding: 18px;
     }
 
-    a{ color: inherit; }
     .wrap{ max-width: var(--maxw); margin: 0 auto; }
 
     /* Topbar */
-    .topbar{
+    header{
       position: sticky; top: 12px; z-index: 50;
-      border-radius: 999px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 10px; flex-wrap: wrap;
+
       padding: 12px;
-      display:flex; gap:12px; align-items:center; justify-content:space-between;
-      backdrop-filter: blur(14px);
-      background: color-mix(in srgb, var(--card) 82%, transparent);
+      border-radius: 999px;
       border: 1px solid var(--stroke);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(14px);
       box-shadow: var(--shadow2);
-      flex-wrap: wrap;
     }
-    .left, .right{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
 
     .brand{
       display:flex; gap:12px; align-items:center;
       padding: 10px 14px;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--card2) 85%, transparent);
       border: 1px solid var(--stroke2);
-      min-width: 240px;
+      background: color-mix(in srgb, var(--surface2) 90%, transparent);
+      min-width: 300px;
     }
     .logo{
-      width: 28px; height: 28px; border-radius: 12px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.85), rgba(255,255,255,.25));
+      width: 30px; height: 30px;
+      border-radius: 12px;
       border: 1px solid var(--stroke2);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.85), rgba(255,255,255,.18));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
     }
-    .brand b{ display:block; font-size: 14px; letter-spacing:.2px; }
+    .brand b{ display:block; font-size: 14px; letter-spacing: .2px; }
     .brand span{ display:block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
 
-    button, input{
+    .rowBtns{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+
+    button, input, select{
       font: inherit;
       color: var(--text);
-      background: color-mix(in srgb, var(--card2) 85%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
       border: 1px solid var(--stroke2);
       border-radius: 999px;
       padding: 10px 12px;
       outline: none;
     }
-    button{ cursor:pointer; transition: transform .08s ease, background .15s ease, border-color .15s ease; }
-    button:hover{ background: color-mix(in srgb, var(--card) 92%, transparent); border-color: var(--stroke); }
+    button{
+      cursor:pointer;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+    }
+    button:hover{ background: color-mix(in srgb, var(--surface) 92%, transparent); border-color: var(--stroke); }
     button:active{ transform: translateY(1px); }
     button:disabled{ opacity:.55; cursor:not-allowed; transform:none; }
-    .ghost{ background: transparent; }
-    .danger{ border-color: color-mix(in srgb, var(--bad) 35%, var(--stroke2)); }
+
     .primary{
-      background: color-mix(in srgb, var(--text) 12%, transparent);
-      border-color: color-mix(in srgb, var(--text) 24%, var(--stroke2));
+      background: color-mix(in srgb, var(--text) 10%, transparent);
+      border-color: color-mix(in srgb, var(--text) 20%, var(--stroke2));
     }
+    .danger{ border-color: color-mix(in srgb, var(--bad) 40%, var(--stroke2)); }
+    .ghost{ background: transparent; }
 
     .pill{
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 85%, transparent);
+      background: color-mix(in srgb, var(--surface2) 90%, transparent);
       color: var(--muted);
       font-size: 12.5px;
       white-space: nowrap;
     }
-
-    /* Progress ring */
-    .ringWrap{ display:flex; gap:10px; align-items:center; }
-    .ring{
-      width: 44px; height: 44px;
-      border-radius: 999px;
-      background: conic-gradient(var(--accent) var(--p,0%), var(--ringBg) 0);
-      display:grid; place-items:center;
-      border: 1px solid var(--stroke2);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
-    }
-    .ring > div{
-      width: 32px; height: 32px;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--bg1) 70%, transparent);
-      border: 1px solid var(--stroke2);
-      display:grid; place-items:center;
-      font-size: 11px;
-      color: var(--muted);
-    }
+    .pill strong{ color: var(--text); font-weight: 700; }
+    .pill.ok{ border-color: color-mix(in srgb, var(--ok) 40%, var(--stroke2)); }
+    .pill.bad{ border-color: color-mix(in srgb, var(--bad) 40%, var(--stroke2)); }
+    .pill.warn{ border-color: color-mix(in srgb, var(--warn) 40%, var(--stroke2)); }
 
     /* Layout */
     .grid{
       margin-top: 14px;
       display:grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: 1fr 400px;
       gap: 14px;
-      align-items: start;
+      align-items:start;
     }
-    @media (max-width: 980px){
+    @media (max-width: 1040px){
       .grid{ grid-template-columns: 1fr; }
-      .side{ order: 2; }
       .brand{ min-width: unset; }
     }
 
     .card{
-      border-radius: var(--radius);
-      background: color-mix(in srgb, var(--card) 85%, transparent);
+      border-radius: var(--r1);
       border: 1px solid var(--stroke);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
+    .pad{ padding: 16px; }
 
-    .cardPad{ padding: 16px; }
-
-    /* Main question */
-    .subtitle{
+    /* Main */
+    .meta{
       display:flex; gap:8px; flex-wrap:wrap; align-items:center;
       color: var(--muted);
       font-size: 12.5px;
     }
-    .qtitle{
-      margin: 10px 0 8px;
+    .qTitle{
+      margin: 10px 0 10px;
       font-size: 18px;
       letter-spacing: .1px;
     }
 
-    .opts{ display:flex; flex-direction:column; gap: 10px; margin-top: 10px; }
-
-    .opt{
-      display:flex; gap:12px; align-items:flex-start;
-      padding: 12px 12px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 85%, transparent);
-      cursor:pointer;
-      transition: transform .08s ease, border-color .15s ease, background .15s ease;
+    .controlsTop{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      margin: 10px 0 6px;
     }
-    .opt:hover{
-      transform: translateY(-1px);
-      background: color-mix(in srgb, var(--card) 92%, transparent);
-      border-color: var(--stroke);
-    }
-    .opt:active{ transform: translateY(0px); }
-    .opt input{ margin-top: 3px; accent-color: var(--accent); }
-    .opt .letter{
-      width: 30px; height: 30px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-      color: var(--muted);
-      font-weight: 700;
-      flex: 0 0 auto;
-    }
-    .opt .txt{ flex:1; }
-    .opt .txt b{ font-size: 13px; color: var(--muted2); font-weight: 650; margin-right: 6px; }
-    .opt.correct{ border-color: color-mix(in srgb, var(--ok) 55%, var(--stroke)); background: color-mix(in srgb, var(--ok) 14%, transparent); }
-    .opt.wrong{ border-color: color-mix(in srgb, var(--bad) 55%, var(--stroke)); background: color-mix(in srgb, var(--bad) 14%, transparent); }
-    .opt.warn{ border-color: color-mix(in srgb, var(--warn) 55%, var(--stroke)); background: color-mix(in srgb, var(--warn) 12%, transparent); }
-
-    .sep{
-      height: 1px;
-      background: var(--stroke2);
-      margin: 14px 0;
-    }
-    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
     .actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 
     .toggle{
@@ -229,67 +183,128 @@
       padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 85%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
       color: var(--muted);
+      font-size: 12.5px;
+      user-select:none;
     }
     .toggle input{ width: 18px; height: 18px; }
 
-    .feedback{
+    .pointsBox{
+      display:flex; gap:10px; align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
       color: var(--muted);
-      font-size: 13px;
-      min-height: 18px;
+      font-size: 12.5px;
+    }
+    .pointsBox input{
+      width: 92px;
+      border-radius: 12px;
+      padding: 8px 10px;
+      border: 1px solid var(--stroke2);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
     }
 
-    /* Side */
+    .opts{ display:flex; flex-direction:column; gap: 10px; margin-top: 10px; }
+    .opt{
+      display:flex; gap:12px; align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: var(--r2);
+      border: 1px solid var(--stroke2);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      cursor:pointer;
+      transition: transform .08s ease, border-color .15s ease, background .15s ease;
+    }
+    .opt:hover{
+      transform: translateY(-1px);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      border-color: var(--stroke);
+    }
+    .opt:active{ transform:none; }
+    .opt input{ margin-top: 3px; accent-color: var(--text); }
+    .badge{
+      width: 32px; height: 32px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke2);
+      display:grid; place-items:center;
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      color: var(--muted);
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+    .opt.correct{ border-color: color-mix(in srgb, var(--ok) 55%, var(--stroke2)); background: color-mix(in srgb, var(--ok) 12%, transparent); }
+    .opt.wrong{ border-color: color-mix(in srgb, var(--bad) 55%, var(--stroke2)); background: color-mix(in srgb, var(--bad) 12%, transparent); }
+    .opt.warn{ border-color: color-mix(in srgb, var(--warn) 55%, var(--stroke2)); background: color-mix(in srgb, var(--warn) 10%, transparent); }
+
+    .sep{ height:1px; background: var(--stroke2); margin: 14px 0; }
+    .feedback{ color: var(--muted); font-size: 13px; min-height: 18px; }
+
+    /* Sidebar */
     .sideHead{
       padding: 14px 16px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
       border-bottom: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 75%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
     }
-    .sideHead strong{ font-size: 13.5px; }
-    .searchWrap{ padding: 14px 16px; }
+    .sideHead strong{ font-size: 13.5px; letter-spacing:.2px; }
+
+    .sideBody{ padding: 14px 16px 16px; }
+
     .search{
       width: 100%;
       padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 85%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
     }
-    .filters{
-      display:flex; gap:8px; flex-wrap:wrap;
-      margin-top: 10px;
-    }
+
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
     .chip{
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 80%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
       color: var(--muted);
       cursor:pointer;
       user-select:none;
-      transition: background .15s ease, border-color .15s ease;
       font-size: 12.5px;
+      transition: background .15s ease, border-color .15s ease;
     }
     .chip:hover{ border-color: var(--stroke); }
     .chip.on{
       background: color-mix(in srgb, var(--text) 10%, transparent);
-      border-color: color-mix(in srgb, var(--text) 20%, var(--stroke2));
+      border-color: color-mix(in srgb, var(--text) 18%, var(--stroke2));
       color: var(--text);
     }
 
-    .numsWrap{ padding: 0 16px 16px; }
+    .stats{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .stat{
+      border: 1px solid var(--stroke2);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+    }
+    .stat b{ display:block; font-size: 12px; color: var(--muted2); font-weight: 750; letter-spacing:.2px; text-transform: uppercase; }
+    .stat div{ margin-top: 5px; font-size: 15px; }
+
     .nums{
+      margin-top: 12px;
       display:grid;
       grid-template-columns: repeat(8, 1fr);
       gap: 8px;
-      margin-top: 12px;
     }
     .num{
       padding: 10px 0;
       border-radius: 14px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 82%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
       text-align:center;
       cursor:pointer;
       user-select:none;
@@ -297,54 +312,61 @@
       color: var(--muted);
       transition: transform .08s ease, border-color .15s ease, background .15s ease;
     }
-    .num:hover{ transform: translateY(-1px); border-color: var(--stroke); background: color-mix(in srgb, var(--card) 92%, transparent); }
+    .num:hover{ transform: translateY(-1px); border-color: var(--stroke); background: color-mix(in srgb, var(--surface) 92%, transparent); }
     .num:active{ transform:none; }
-    .num.cur{
-      outline: 2px solid color-mix(in srgb, var(--text) 28%, transparent);
-      color: var(--text);
-    }
-    .num.ans{ color: var(--text); border-color: color-mix(in srgb, var(--text) 22%, var(--stroke2)); }
-    .num.flag{
-      background: color-mix(in srgb, var(--warn) 12%, transparent);
-      border-color: color-mix(in srgb, var(--warn) 35%, var(--stroke2));
-      color: var(--text);
-    }
+    .num.cur{ outline: 2px solid color-mix(in srgb, var(--text) 20%, transparent); color: var(--text); }
+    .num.ans{ color: var(--text); border-color: color-mix(in srgb, var(--text) 16%, var(--stroke2)); }
+    .num.flag{ border-color: color-mix(in srgb, var(--warn) 35%, var(--stroke2)); background: color-mix(in srgb, var(--warn) 10%, transparent); color: var(--text); }
     .num.ok{ border-color: color-mix(in srgb, var(--ok) 55%, var(--stroke2)); }
     .num.bad{ border-color: color-mix(in srgb, var(--bad) 55%, var(--stroke2)); }
 
     .sideFooter{
-      padding: 14px 16px;
-      border-top: 1px solid var(--stroke2);
-      color: var(--muted);
+      margin-top: 14px;
+      color: var(--muted2);
       font-size: 12.5px;
-      background: color-mix(in srgb, var(--card2) 75%, transparent);
     }
 
-    /* Drawer (settings) */
+    /* Dialogs */
     dialog{
-      width: min(720px, 92vw);
+      width: min(880px, 94vw);
       border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      background: color-mix(in srgb, var(--card) 92%, transparent);
+      border-radius: var(--r1);
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
       color: var(--text);
       box-shadow: var(--shadow);
       padding: 0;
       overflow:hidden;
       backdrop-filter: blur(16px);
     }
-    dialog::backdrop{ background: rgba(0,0,0,.45); }
+    dialog::backdrop{ background: rgba(0,0,0,.48); }
+
     .dlgHead{
       padding: 14px 16px;
-      display:flex; justify-content:space-between; align-items:center; gap:10px;
       border-bottom: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card2) 75%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
     }
     .dlgBody{ padding: 14px 16px; }
     .dlgFoot{
       padding: 14px 16px;
       border-top: 1px solid var(--stroke2);
-      display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap;
-      background: color-mix(in srgb, var(--card2) 75%, transparent);
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+    }
+    .section{
+      border: 1px solid var(--stroke2);
+      border-radius: 14px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      margin-bottom: 12px;
+    }
+    .section h3{
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: var(--muted2);
+      font-weight: 800;
+      letter-spacing:.35px;
+      text-transform: uppercase;
     }
     .formRow{
       display:flex; gap:14px; flex-wrap:wrap; align-items:center;
@@ -353,19 +375,37 @@
       font-size: 13px;
     }
     .formRow label{ display:flex; gap:10px; align-items:center; }
-    input[type="number"]{
-      width: 150px;
+    .formRow input[type="number"]{
+      width: 160px;
       border-radius: 14px;
       padding: 11px 12px;
     }
-    .hint{ color: var(--muted2); font-size: 12.5px; margin-top: 10px; }
+    .hint{ color: var(--muted2); font-size: 12.5px; margin-top: 8px; }
+
+    /* Report list */
+    .list{
+      display:flex; flex-direction:column; gap:8px;
+      margin-top: 10px;
+      max-height: 46vh;
+      overflow:auto;
+      padding-right: 4px;
+    }
+    .item{
+      border: 1px solid var(--stroke2);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: color-mix(in srgb, var(--surface3) 65%, transparent);
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .item small{ color: var(--muted); }
+    .item button{ padding: 8px 10px; }
 
     /* Toast */
     .toast{
       position: fixed; right: 18px; bottom: 18px;
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--card) 92%, transparent);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
       backdrop-filter: blur(14px);
       box-shadow: var(--shadow2);
       padding: 10px 12px;
@@ -379,10 +419,6 @@
     }
     .toast.show{ opacity: 1; transform: translateY(0); }
 
-    /* Timer pill emphasize */
-    .timerOn{ border-color: color-mix(in srgb, var(--warn) 30%, var(--stroke2)); }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; animation:none !important; }
     }
@@ -392,48 +428,39 @@
 <body>
 <div class="wrap">
 
-  <div class="topbar">
-    <div class="left">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <b>Moodle SCM</b>
-          <span id="smallStatus">Tecniche Investigative</span>
-        </div>
+  <header>
+    <div class="brand" aria-label="Titolo">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <b>Quiz • Tecniche Investigative</b>
+        <span id="subStatus">Caricamento domande…</span>
       </div>
-
-      <button id="newBtn" class="primary" title="Nuovo quiz (N)">Nuovo</button>
-      <button id="gradeBtn" title="Correggi (G)">Correggi</button>
-      <button id="reviewBtn" title="Vai alla prima sbagliata" style="display:none;">Rivedi errori</button>
-      <button id="settingsBtn" class="ghost" title="Impostazioni (S)">Impostazioni</button>
-      <button id="resetBtn" class="danger" title="Reset (cancella salvataggio)">Reset</button>
     </div>
 
-    <div class="right">
-      <div class="ringWrap" title="Progresso risposte">
-        <div class="ring" id="ring" style="--p:0%;">
-          <div id="ringTxt">0%</div>
-        </div>
-        <span class="pill" id="scorePill">—</span>
-      </div>
-
+    <div class="rowBtns">
+      <span class="pill" id="modePill" style="display:none;">Modalità esame</span>
       <span class="pill" id="timerPill" style="display:none;">⏱️ <span id="timerTxt">00:00</span></span>
+      <span class="pill" id="scorePill">—</span>
+
+      <button id="newBtn" class="primary" title="Nuovo (N)">Nuovo</button>
+      <button id="gradeBtn" title="Correggi (G)">Correggi</button>
+      <button id="reportBtn" title="Report" style="display:none;">Report</button>
+      <button id="repeatWrongBtn" title="Ripeti solo sbagliate" style="display:none;">Ripeti sbagliate</button>
+      <button id="exportBtn" title="Esporta risultati (CSV)">Esporta</button>
+      <button id="settingsBtn" class="ghost" title="Impostazioni (S)">Impostazioni</button>
       <button id="themeBtn" title="Tema">🌙</button>
+      <button id="resetBtn" class="danger" title="Reset">Reset</button>
     </div>
-  </div>
+  </header>
 
   <div class="grid">
     <!-- MAIN -->
-    <main class="card">
-      <div class="cardPad">
-        <div class="subtitle" id="subtitle"></div>
-        <h2 class="qtitle" id="qtitle"></h2>
+    <main class="card" aria-label="Domanda">
+      <div class="pad">
+        <div class="meta" id="meta"></div>
+        <h2 class="qTitle" id="qTitle"></h2>
 
-        <div class="opts" id="opts"></div>
-
-        <div class="sep"></div>
-
-        <div class="row">
+        <div class="controlsTop">
           <div class="actions">
             <button id="prevBtn" title="Prev (←)">← Prev</button>
             <button id="nextBtn" title="Next (→)">Next →</button>
@@ -442,14 +469,19 @@
           </div>
 
           <div class="actions">
-            <div class="toggle" title="Mostra subito giusta/sbagliata">
+            <div class="pointsBox" id="pointsBox" style="display:none;" title="Punti assegnati a questa domanda (solo se abilitato)">
+              Punti domanda
+              <input id="pointsInput" type="number" min="0" step="0.5" inputmode="decimal" />
+            </div>
+
+            <div class="toggle" title="Feedback immediato (disattivo in Modalità esame)">
               <label style="display:flex;gap:10px;align-items:center;cursor:pointer;">
-                <input type="checkbox" id="instantChk" checked />
-                Feedback subito
+                <input type="checkbox" id="instantChk" />
+                Feedback
               </label>
             </div>
 
-            <div class="toggle" title="Dopo la risposta passa alla domanda successiva">
+            <div class="toggle" title="Passa alla prossima dopo risposta">
               <label style="display:flex;gap:10px;align-items:center;cursor:pointer;">
                 <input type="checkbox" id="autoNextChk" />
                 Auto-next
@@ -458,71 +490,148 @@
           </div>
         </div>
 
+        <div class="opts" id="opts"></div>
+
         <div class="sep"></div>
         <div class="feedback" id="feedback"></div>
       </div>
     </main>
 
-    <!-- SIDE -->
-    <aside class="card side">
+    <!-- SIDEBAR -->
+    <aside class="card" aria-label="Navigazione">
       <div class="sideHead">
         <strong>Navigazione</strong>
         <span class="pill" id="navPill">—</span>
       </div>
 
-      <div class="searchWrap">
-        <input id="searchBox" class="search" type="search" placeholder="Cerca testo nella domanda..." />
-        <div class="filters">
+      <div class="sideBody">
+        <input id="searchBox" class="search" type="search" placeholder="Cerca nel testo della domanda…" />
+
+        <div class="chips">
           <div class="chip on" id="chipAll">Tutte</div>
           <div class="chip" id="chipUnanswered">Non risposte</div>
           <div class="chip" id="chipFlagged">Segnate 🚩</div>
           <div class="chip" id="chipWrong">Sbagliate</div>
+          <div class="chip" id="chipCorrect">Corrette</div>
         </div>
-      </div>
 
-      <div class="numsWrap">
+        <div class="stats">
+          <div class="stat"><b>Punteggio</b><div id="scoreStat">—</div></div>
+          <div class="stat"><b>Massimo</b><div id="maxStat">—</div></div>
+          <div class="stat"><b>Corrette</b><div id="okStat">—</div></div>
+          <div class="stat"><b>Sbagliate</b><div id="badStat">—</div></div>
+        </div>
+
         <div class="nums" id="nums"></div>
-      </div>
 
-      <div class="sideFooter">
-        Le risposte sono salvate sul dispositivo. Scorciatoie: ← →, F, G, N, S.
+        <div class="sideFooter">
+          Scorciatoie: ← →, A/B/C/D (rispondi), Invio (next), F (flag), G (correggi), N (nuovo), S (impostazioni).<br/>
+          Salvataggio automatico sul dispositivo.
+        </div>
       </div>
     </aside>
   </div>
 </div>
 
-<dialog id="dlg">
+<!-- SETTINGS -->
+<dialog id="dlgSettings">
   <div class="dlgHead">
     <strong>Impostazioni</strong>
-    <button id="closeDlg">Chiudi</button>
+    <button id="closeSettings">Chiudi</button>
   </div>
 
   <div class="dlgBody">
-    <div class="formRow">
-      <label><input type="checkbox" id="shuffleQ" checked /> Domande random</label>
-      <label><input type="checkbox" id="shuffleO" checked /> Opzioni random</label>
+    <div class="section">
+      <h3>Preset</h3>
+      <div class="formRow">
+        <button id="presetPractice" class="primary" title="Allenamento: feedback ON, no timer">Allenamento</button>
+        <button id="presetExam30" title="Esame: 30 domande, 30 min, no feedback">Esame 30</button>
+        <button id="presetExam60" title="Esame: 60 domande, 60 min, no feedback">Esame 60</button>
+      </div>
+      <div class="hint">I preset applicano impostazioni e ricominciano.</div>
     </div>
 
-    <div class="formRow">
-      <label>Numero domande:
-        <input type="number" id="limitN" min="1" step="1" placeholder="tutte" />
-      </label>
-
-      <label><input type="checkbox" id="useTimer" /> Timer</label>
-
-      <label>Minuti:
-        <input type="number" id="timerMin" min="1" step="1" value="30" />
-      </label>
+    <div class="section">
+      <h3>Quiz</h3>
+      <div class="formRow">
+        <label><input type="checkbox" id="shuffleQ" /> Domande random</label>
+        <label><input type="checkbox" id="shuffleO" /> Opzioni random</label>
+        <label><input type="checkbox" id="examMode" /> Modalità esame (nasconde feedback e punteggio finché non correggi)</label>
+      </div>
+      <div class="formRow">
+        <label>Numero domande:
+          <input type="number" id="limitN" min="1" step="1" placeholder="tutte" />
+        </label>
+        <label><input type="checkbox" id="useTimer" /> Timer</label>
+        <label>Minuti:
+          <input type="number" id="timerMin" min="1" step="1" value="30" />
+        </label>
+      </div>
+      <div class="hint">Se “Numero domande” è vuoto: usa tutte le domande del file.</div>
     </div>
 
-    <div class="hint">
-      • Se “Numero domande” è vuoto: usa tutte (168).<br/>
-      • Timer: allo scadere corregge automaticamente.
+    <div class="section">
+      <h3>Comfort</h3>
+      <div class="formRow">
+        <label><input type="checkbox" id="instantSet" /> Feedback immediato</label>
+        <label><input type="checkbox" id="showCorrectOnWrong" /> Se sbagli, mostra anche la corretta</label>
+        <label><input type="checkbox" id="autoNextSet" /> Auto-next</label>
+      </div>
+      <div class="hint">In Modalità esame, il feedback viene forzato OFF.</div>
+    </div>
+
+    <div class="section">
+      <h3>Punteggio</h3>
+      <div class="formRow">
+        <label>Punti corretta:
+          <input type="number" id="ptCorrect" step="0.5" value="1" />
+        </label>
+        <label>Punti sbagliata:
+          <input type="number" id="ptWrong" step="0.5" value="0" />
+        </label>
+        <label>Punti non risposta:
+          <input type="number" id="ptBlank" step="0.5" value="0" />
+        </label>
+      </div>
+
+      <div class="formRow">
+        <label><input type="checkbox" id="perQPoints" /> Punti per singola domanda</label>
+        <button id="applyPointsAllBtn" title="Applica 'Punti corretta' a tutte le domande">Applica punti a tutte</button>
+        <button id="resetPointsBtn" title="Ripristina i punti delle domande al default">Ripristina punti</button>
+      </div>
+
+      <div class="hint">
+        Default richiesto: corretta=1, sbagliata=0, non risposta=0.<br/>
+        Se attivi “punti per singola domanda”, puoi cambiare i punti direttamente in ogni domanda.
+      </div>
     </div>
   </div>
 
   <div class="dlgFoot">
-    <button id="applyBtn" class="primary">Applica e ricomincia</button>
+    <span class="pill">Applica e ricomincia per rendere effettive le modifiche.</span>
+    <button id="applySettings" class="primary">Applica e ricomincia</button>
+  </div>
+</dialog>
+
+<!-- REPORT -->
+<dialog id="dlgReport">
+  <div class="dlgHead">
+    <strong>Report</strong>
+    <button id="closeReport">Chiudi</button>
+  </div>
+  <div class="dlgBody">
+    <div class="section">
+      <h3>Riepilogo</h3>
+      <div class="formRow" id="reportSummary"></div>
+    </div>
+    <div class="section">
+      <h3>Errori (clicca per andare)</h3>
+      <div class="list" id="wrongList"></div>
+    </div>
+  </div>
+  <div class="dlgFoot">
+    <span class="pill">Suggerimento: “Ripeti sbagliate” crea un quiz solo con gli errori.</span>
+    <button id="repeatWrongBtn2" class="primary">Ripeti sbagliate</button>
   </div>
 </dialog>
 
@@ -531,28 +640,68 @@
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
-  const STORAGE_KEY = "quiz_state_tecniche_vFINAL";
+
+  const APP_VERSION = "ti_quiz_impeccabile_v1";
+  const STORAGE_KEY = "ti_quiz_state_impeccabile";
+  const THEME_KEY = "ti_theme_impeccabile";
+  const LABELS = ["A","B","C","D"];
 
   let SOURCE = [];
+  let timerHandle = null;
+
   let state = {
-    settings: { shuffleQ: true, shuffleO: true, limitN: null, useTimer: false, timerMin: 30 },
+    version: APP_VERSION,
+    settings: {
+      shuffleQ: true,
+      shuffleO: true,
+      limitN: null,
+      useTimer: false,
+      timerMin: 30,
+
+      examMode: false,
+
+      instant: true,
+      showCorrectOnWrong: true,
+      autoNext: false,
+
+      scoring: { correct: 1, wrong: 0, blank: 0 },
+      perQuestionPoints: true
+    },
+
     order: [],
-    map: {},
-    answers: {},
-    flagged: {},
+    map: {},          // id -> { question, options:[{label,text,isCorrect}], correctIndex }
+    answers: {},      // id -> optionIndex
+    flagged: {},      // id -> true
+    points: {},       // id -> points for correct answer (if perQuestionPoints)
     idx: 0,
+
     graded: false,
     wrongIds: [],
+    correctIds: [],
+
     filter: "all",
     search: "",
-    instant: true,
-    autoNext: false,
+
     timer: { startTs: null, running: false }
   };
+
+  /* ---------------- Utils ---------------- */
+  function toast(msg){
+    const t = $("toast");
+    t.textContent = msg || "Salvato";
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 850);
+  }
+
+  function safeNum(x, fallback){
+    const n = Number(x);
+    return Number.isFinite(n) ? n : fallback;
+  }
 
   function escapeHtml(s){
     return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
+
   function shuffle(arr){
     for (let i = arr.length - 1; i > 0; i--){
       const j = Math.floor(Math.random() * (i + 1));
@@ -561,58 +710,84 @@
     return arr;
   }
 
-  function toast(msg){
-    const t = $("toast");
-    t.textContent = msg || "Salvato";
-    t.classList.add("show");
-    setTimeout(() => t.classList.remove("show"), 850);
-  }
-
   function save(silent=false){
     try{
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       if(!silent) toast("Salvato");
     }catch(e){}
   }
+
   function loadSaved(){
     try{
       const raw = localStorage.getItem(STORAGE_KEY);
       if(!raw) return false;
       const s = JSON.parse(raw);
       if(!s || !s.order || !s.map) return false;
+
+      // migrazione versione
+      if(s.version !== APP_VERSION) return false;
+
       state = s;
+      // normalizza
+      if(!state.settings?.scoring) state.settings.scoring = { correct: 1, wrong: 0, blank: 0 };
+      if(typeof state.settings.perQuestionPoints !== "boolean") state.settings.perQuestionPoints = true;
+
       return true;
     }catch(e){ return false; }
   }
-  function resetSaved(){ localStorage.removeItem(STORAGE_KEY); }
+
+  function resetSaved(){
+    localStorage.removeItem(STORAGE_KEY);
+  }
 
   function currentId(){ return state.order[state.idx]; }
+  function totalCount(){ return state.order.length; }
   function answeredCount(){ return Object.keys(state.answers || {}).length; }
-  function totalCount(){ return (state.order || []).length; }
 
-  function buildQuizFromSource(){
+  function ensurePointsForIds(ids){
+    if(!state.points) state.points = {};
+    const def = safeNum(state.settings.scoring.correct, 1);
+    for(const id of ids){
+      const v = safeNum(state.points[id], NaN);
+      if(!Number.isFinite(v)) state.points[id] = def;
+    }
+  }
+
+  function getPointsFor(id){
+    if(!state.settings.perQuestionPoints) return safeNum(state.settings.scoring.correct, 1);
+    const p = safeNum(state.points?.[id], NaN);
+    return Number.isFinite(p) ? p : safeNum(state.settings.scoring.correct, 1);
+  }
+
+  /* ---------------- Build Quiz ---------------- */
+  function buildQuizFromSource(customIds=null){
     let src = [...SOURCE].sort((a,b)=>a.id-b.id);
-    const n = state.settings.limitN;
-    if (Number.isFinite(n) && n > 0) src = src.slice(0, n);
+
+    if(Array.isArray(customIds) && customIds.length){
+      const set = new Set(customIds);
+      src = src.filter(q => set.has(q.id));
+    }
+
+    const lim = safeNum(state.settings.limitN, NaN);
+    if(Number.isFinite(lim) && lim > 0) src = src.slice(0, lim);
 
     let ids = src.map(q => q.id);
-    if (state.settings.shuffleQ) shuffle(ids);
+    if(state.settings.shuffleQ) shuffle(ids);
 
-    const labels = ["A","B","C","D"];
     const map = {};
-
     for(const q of src){
-      // corretta sorgente = A (come la tua BD), poi rimescoliamo in UI
+      // BD: corretta nel sorgente = A
       let opts = [
         { text: q.options.A, isCorrect: true },
         { text: q.options.B, isCorrect: false },
         { text: q.options.C, isCorrect: false },
         { text: q.options.D, isCorrect: false },
       ];
-      if (state.settings.shuffleO) shuffle(opts);
+      if(state.settings.shuffleO) shuffle(opts);
 
-      const mapped = opts.map((o,i) => ({ label: labels[i], text: o.text, isCorrect: o.isCorrect }));
+      const mapped = opts.map((o,i) => ({ label: LABELS[i], text: o.text, isCorrect: o.isCorrect }));
       const correctIndex = mapped.findIndex(o => o.isCorrect);
+
       map[q.id] = { question: q.question, options: mapped, correctIndex };
     }
 
@@ -621,11 +796,22 @@
     state.answers = {};
     state.flagged = {};
     state.idx = 0;
+
     state.graded = false;
     state.wrongIds = [];
+    state.correctIds = [];
+
     state.filter = "all";
     state.search = "";
-    state.instant = true;
+
+    ensurePointsForIds(ids);
+
+    // Modalità esame forza no feedback
+    if(state.settings.examMode){
+      state.settings.instant = false;
+      state.settings.showCorrectOnWrong = false;
+    }
+
     state.timer = { startTs: null, running: false };
 
     save(true);
@@ -634,40 +820,89 @@
     renderAll();
   }
 
-  // Timer
-  let timerHandle = null;
-  function pad2(n){ return String(n).padStart(2,'0'); }
+  /* ---------------- Scoring ---------------- */
+  function computeScore(){
+    const s = state.settings.scoring || { correct: 1, wrong: 0, blank: 0 };
+    const pWrong = safeNum(s.wrong, 0);
+    const pBlank = safeNum(s.blank, 0);
+
+    let score = 0;
+    let max = 0;
+    let ok = 0;
+    let bad = 0;
+    let blank = 0;
+
+    for(const id of state.order){
+      const q = state.map[id];
+      const chosen = state.answers[id];
+      const pCorrect = getPointsFor(id);
+      max += pCorrect;
+
+      if(chosen === undefined){
+        blank++;
+        score += pBlank;
+        continue;
+      }
+      if(chosen === q.correctIndex){
+        ok++;
+        score += pCorrect;
+      } else {
+        bad++;
+        score += pWrong;
+      }
+    }
+    return { score, max, ok, bad, blank };
+  }
+
+  function scoreForUI(){
+    // In modalità esame: non mostrare punteggio finché non correggi (anti-spoiler)
+    if(state.settings.examMode && !state.graded){
+      return { hidden: true, score: 0, max: 0, ok: 0, bad: 0, blank: 0 };
+    }
+    return { hidden: false, ...computeScore() };
+  }
+
+  /* ---------------- Timer ---------------- */
+  function stopTimer(){
+    if(timerHandle) clearInterval(timerHandle);
+    timerHandle = null;
+  }
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+
   function updateTimerUI(){
     $("timerPill").style.display = state.settings.useTimer ? "" : "none";
-    $("timerPill").classList.toggle("timerOn", !!state.settings.useTimer);
   }
-  function stopTimer(){ if(timerHandle) clearInterval(timerHandle); timerHandle = null; }
+
   function startTimerIfNeeded(restart=false){
     stopTimer();
     if(!state.settings.useTimer){
-      state.timer = { startTs: null, running: false };
       $("timerTxt").textContent = "00:00";
+      state.timer = { startTs: null, running: false };
       save(true);
       return;
     }
-    if(restart || !state.timer || !state.timer.running || !state.timer.startTs){
+
+    if(restart || !state.timer?.running || !state.timer?.startTs){
       state.timer = { startTs: Date.now(), running: true };
       save(true);
     }
+
     tickTimer();
     timerHandle = setInterval(tickTimer, 1000);
   }
+
   function tickTimer(){
     if(!state.settings.useTimer) return;
-    if(!state.timer || !state.timer.running || !state.timer.startTs) return;
+    if(!state.timer?.running || !state.timer?.startTs) return;
 
-    const mins = Number(state.settings.timerMin || 30);
+    const mins = safeNum(state.settings.timerMin, 30);
     const limitMs = mins * 60 * 1000;
     const elapsed = Date.now() - state.timer.startTs;
     const left = Math.max(0, limitMs - elapsed);
 
-    const mm = Math.floor(left / 60000);
-    const ss = Math.floor((left % 60000) / 1000);
+    const mm = Math.floor(left/60000);
+    const ss = Math.floor((left%60000)/1000);
     $("timerTxt").textContent = `${pad2(mm)}:${pad2(ss)}`;
 
     if(left === 0){
@@ -679,71 +914,106 @@
     }
   }
 
-  // Grading
+  /* ---------------- Grading ---------------- */
   function gradeAll(silent=false){
     const wrong = [];
+    const correct = [];
+
     for(const id of state.order){
       const q = state.map[id];
       const chosen = state.answers[id];
-      if(chosen === undefined || chosen !== q.correctIndex) wrong.push(id);
+      if(chosen !== undefined && chosen === q.correctIndex) correct.push(id);
+      else wrong.push(id); // include non risposte
     }
+
     state.graded = true;
     state.wrongIds = wrong;
+    state.correctIds = correct;
+
+    $("repeatWrongBtn").style.display = wrong.length ? "" : "none";
+    $("reportBtn").style.display = "" ;
+
     save(silent);
-
-    $("reviewBtn").style.display = wrong.length ? "" : "none";
-    renderQuestion();
-    renderSide();
-    updateTop();
-    updateJumpButtons();
-    renderFeedbackSummary();
-  }
-  function renderFeedbackSummary(){
-    const total = totalCount();
-    const wrong = (state.wrongIds || []).length;
-    const correct = total - wrong;
-    const unanswered = state.order.filter(id => state.answers[id] === undefined).length;
-    $("feedback").textContent = `Risultato: ${correct}/${total}. Errori: ${wrong}. Non risposte: ${unanswered}.`;
+    renderAll();
+    renderReport();
+    toast("Corretto");
   }
 
-  // UI
-  function updateTop(){
+  /* ---------------- Render ---------------- */
+  function setChipOn(id, on){ $(id).classList.toggle("on", on); }
+
+  function updateHeader(){
     const total = totalCount();
     const ans = answeredCount();
-    const wrong = (state.wrongIds || []).length;
-    const correct = total ? (total - wrong) : 0;
-
-    const pct = total ? Math.round((ans/total)*100) : 0;
+    const s = scoreForUI();
 
     $("navPill").textContent = `${ans}/${total}`;
-    $("smallStatus").textContent = state.graded
-      ? `Punteggio: ${correct}/${total}`
-      : `Tecniche Investigative • Risposte: ${ans}/${total}`;
 
-    $("scorePill").textContent = state.graded ? `✅ ${correct}/${total}` : `⏳ ${ans}/${total}`;
+    $("modePill").style.display = state.settings.examMode ? "" : "none";
 
-    // Ring
-    $("ring").style.setProperty("--p", pct + "%");
-    $("ringTxt").textContent = pct + "%";
+    if(s.hidden){
+      $("scorePill").textContent = "Punteggio: —";
+      $("scoreStat").textContent = "—";
+      $("maxStat").textContent = "—";
+      $("okStat").textContent = "—";
+      $("badStat").textContent = "—";
+
+      $("subStatus").textContent = state.graded
+        ? `Corretto • Risposte: ${ans}/${total}`
+        : `Modalità esame • Risposte: ${ans}/${total}`;
+      return;
+    }
+
+    const pct = s.max ? Math.round((s.score/s.max)*100) : 0;
+
+    $("scorePill").textContent = state.graded
+      ? `✅ ${s.score}/${s.max} (${pct}%)`
+      : `⏳ ${s.score}/${s.max} (${pct}%)`;
+
+    $("scoreStat").textContent = String(s.score);
+    $("maxStat").textContent = String(s.max);
+    $("okStat").textContent = String(s.ok);
+    $("badStat").textContent = String(s.bad);
+
+    $("subStatus").textContent = state.graded
+      ? `Corretto • Punteggio ${s.score}/${s.max} (${pct}%)`
+      : `In corso • Punteggio ${s.score}/${s.max} (${pct}%)`;
   }
 
-  function updateJumpButtons(){
-    const unanswered = state.order.some(id => state.answers[id] === undefined);
-    $("jumpUnansweredBtn").style.display = unanswered ? "" : "none";
+  function renderMeta(){
+    const id = currentId();
+    const total = totalCount();
+
+    const hasAns = state.answers[id] !== undefined;
+    const flagged = !!state.flagged[id];
+
+    const pills = [];
+    pills.push(`<span class="pill">Domanda <strong>${state.idx+1}</strong> / ${total}</span>`);
+    pills.push(hasAns ? `<span class="pill">Risposta data</span>` : `<span class="pill">Non risposta</span>`);
+    if(flagged) pills.push(`<span class="pill warn">🚩 Segnata</span>`);
+    pills.push(`<span class="pill">ID: ${id}</span>`);
+
+    if(state.settings.examMode) pills.push(`<span class="pill">Modalità esame</span>`);
+
+    $("meta").innerHTML = pills.join(" ");
+
+    // punti domanda box
+    $("pointsBox").style.display = state.settings.perQuestionPoints ? "" : "none";
+    if(state.settings.perQuestionPoints){
+      $("pointsInput").value = String(getPointsFor(id));
+    }
+
+    $("instantChk").checked = !!state.settings.instant;
+    $("autoNextChk").checked = !!state.settings.autoNext;
   }
 
   function renderQuestion(){
     const id = currentId();
     const q = state.map[id];
-    const total = totalCount();
+    if(!q) return;
 
-    $("subtitle").innerHTML = `
-      <span class="pill">Domanda ${state.idx+1} / ${total}</span>
-      ${state.flagged[id] ? '<span class="pill">🚩 Segnata</span>' : ''}
-      ${state.answers[id] !== undefined ? '<span class="pill">Risposta data</span>' : '<span class="pill">Non risposta</span>'}
-    `;
-
-    $("qtitle").textContent = q.question;
+    renderMeta();
+    $("qTitle").textContent = q.question;
 
     const chosen = state.answers[id];
     const optsEl = $("opts");
@@ -752,7 +1022,8 @@
     q.options.forEach((o, i) => {
       const lab = document.createElement("label");
       lab.className = "opt";
-      lab.setAttribute("role", "button");
+      lab.setAttribute("role","button");
+      lab.setAttribute("tabindex","0");
 
       const inp = document.createElement("input");
       inp.type = "radio";
@@ -760,85 +1031,99 @@
       inp.value = String(i);
       inp.checked = (chosen === i);
 
-      inp.addEventListener("change", () => {
+      const badge = document.createElement("div");
+      badge.className = "badge";
+      badge.textContent = o.label;
+
+      const text = document.createElement("div");
+      text.innerHTML = `<b style="color:var(--muted2);font-weight:750;margin-right:6px;">${o.label})</b> ${escapeHtml(o.text)}`;
+
+      function choose(){
         state.answers[id] = i;
+
+        // se cambi dopo correzione, annulla stato "graded" (coerente)
         state.graded = false;
         state.wrongIds = [];
-        $("reviewBtn").style.display = "none";
+        state.correctIds = [];
+        $("repeatWrongBtn").style.display = "none";
+        $("reportBtn").style.display = "none";
 
         save(true);
-        updateTop();
-        updateJumpButtons();
         renderSide();
+        highlightAnswer();
+        updateHeader();
+        updateJumpButtons();
 
-        if(state.instant) markCurrentInstant();
-        else $("feedback").textContent = "";
-
-        if(state.autoNext){
-          // piccola pausa per far vedere il feedback
+        if(state.settings.autoNext){
           setTimeout(() => {
-            if(state.idx < totalCount() - 1){
+            if(state.idx < totalCount()-1){
               state.idx++;
               save(true);
               renderAll();
             }
-          }, 550);
+          }, 520);
+        }
+      }
+
+      inp.addEventListener("change", choose);
+      lab.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          inp.checked = true;
+          choose();
         }
       });
 
-      const letter = document.createElement("div");
-      letter.className = "letter";
-      letter.textContent = o.label;
-
-      const text = document.createElement("div");
-      text.className = "txt";
-      text.innerHTML = `<b>${o.label})</b> ${escapeHtml(o.text)}`;
-
       lab.appendChild(inp);
-      lab.appendChild(letter);
+      lab.appendChild(badge);
       lab.appendChild(text);
       optsEl.appendChild(lab);
     });
 
     $("prevBtn").disabled = state.idx === 0;
-    $("nextBtn").disabled = state.idx === total - 1;
-
+    $("nextBtn").disabled = state.idx === totalCount() - 1;
     $("flagBtn").textContent = state.flagged[id] ? "🚩 Segnata" : "🚩 Segna";
 
-    if(state.graded) markCurrentGraded();
-    if(state.instant && state.answers[id] !== undefined) markCurrentInstant();
+    highlightAnswer();
   }
 
-  function markCurrentGraded(){
+  function highlightAnswer(){
     const id = currentId();
     const q = state.map[id];
     const chosen = state.answers[id];
-    const labels = Array.from(document.querySelectorAll("#opts .opt"));
 
-    labels.forEach((el, idx) => {
-      el.classList.remove("correct","wrong","warn");
-      if(idx === q.correctIndex) el.classList.add("correct");
-      if(chosen !== undefined && chosen !== q.correctIndex && idx === chosen) el.classList.add("wrong");
-      if(chosen === undefined && idx === q.correctIndex) el.classList.add("warn");
-    });
-  }
+    const rows = Array.from(document.querySelectorAll("#opts .opt"));
+    rows.forEach(el => el.classList.remove("correct","wrong","warn"));
+    $("feedback").textContent = "";
 
-  function markCurrentInstant(){
-    const id = currentId();
-    const q = state.map[id];
-    const chosen = state.answers[id];
-    const labels = Array.from(document.querySelectorAll("#opts .opt"));
+    if(state.graded){
+      rows.forEach((el, idx) => {
+        if(idx === q.correctIndex) el.classList.add("correct");
+        if(chosen !== undefined && chosen !== q.correctIndex && idx === chosen) el.classList.add("wrong");
+        if(chosen === undefined && idx === q.correctIndex) el.classList.add("warn");
+      });
+      const s = computeScore();
+      const pct = s.max ? Math.round((s.score/s.max)*100) : 0;
+      $("feedback").textContent = `Corretto. Punteggio: ${s.score}/${s.max} (${pct}%).`;
+      return;
+    }
 
-    labels.forEach(el => el.classList.remove("correct","wrong","warn"));
+    // Modalità esame: nessun feedback
+    if(state.settings.examMode) return;
+    if(!state.settings.instant) return;
     if(chosen === undefined) return;
 
     if(chosen === q.correctIndex){
-      labels[chosen].classList.add("correct");
+      rows[chosen]?.classList.add("correct");
       $("feedback").textContent = "✅ Corretta";
     } else {
-      labels[chosen].classList.add("wrong");
-      labels[q.correctIndex].classList.add("correct");
-      $("feedback").textContent = "❌ Sbagliata (mostro anche la corretta)";
+      rows[chosen]?.classList.add("wrong");
+      if(state.settings.showCorrectOnWrong){
+        rows[q.correctIndex]?.classList.add("correct");
+        $("feedback").textContent = "❌ Sbagliata (mostro anche la corretta)";
+      } else {
+        $("feedback").textContent = "❌ Sbagliata";
+      }
     }
   }
 
@@ -846,20 +1131,30 @@
     const q = state.map[id];
     const chosen = state.answers[id];
     const flagged = !!state.flagged[id];
-    const wrong = state.graded && chosen !== undefined && chosen !== q.correctIndex;
 
     if(state.search){
       const hay = (q.question || "").toLowerCase();
       if(!hay.includes(state.search.toLowerCase())) return false;
     }
+
+    const isCorrect = state.graded && chosen !== undefined && chosen === q.correctIndex;
+    const isWrong = state.graded && chosen !== undefined && chosen !== q.correctIndex;
+
     if(state.filter === "all") return true;
     if(state.filter === "unanswered") return chosen === undefined;
     if(state.filter === "flagged") return flagged;
-    if(state.filter === "wrong") return state.graded && wrong;
+    if(state.filter === "wrong") return state.graded && isWrong;
+    if(state.filter === "correct") return state.graded && isCorrect;
     return true;
   }
 
   function renderSide(){
+    setChipOn("chipAll", state.filter === "all");
+    setChipOn("chipUnanswered", state.filter === "unanswered");
+    setChipOn("chipFlagged", state.filter === "flagged");
+    setChipOn("chipWrong", state.filter === "wrong");
+    setChipOn("chipCorrect", state.filter === "correct");
+
     const nums = $("nums");
     nums.innerHTML = "";
 
@@ -882,7 +1177,6 @@
         else d.classList.add("bad");
       }
 
-      d.title = `Vai alla domanda ${i+1}`;
       d.addEventListener("click", () => {
         state.idx = i;
         save(true);
@@ -893,56 +1187,159 @@
     });
   }
 
-  function renderAll(){
-    $("searchBox").value = state.search || "";
-    $("instantChk").checked = !!state.instant;
-    $("autoNextChk").checked = !!state.autoNext;
-
-    $("chipAll").classList.toggle("on", state.filter === "all");
-    $("chipUnanswered").classList.toggle("on", state.filter === "unanswered");
-    $("chipFlagged").classList.toggle("on", state.filter === "flagged");
-    $("chipWrong").classList.toggle("on", state.filter === "wrong");
-
-    renderQuestion();
-    renderSide();
-    updateTop();
-    updateJumpButtons();
-    if(state.graded) renderFeedbackSummary();
+  function updateJumpButtons(){
+    const unanswered = state.order.some(id => state.answers[id] === undefined);
+    $("jumpUnansweredBtn").style.display = unanswered ? "" : "none";
   }
 
-  // Filters
+  function renderAll(){
+    renderQuestion();
+    renderSide();
+    updateJumpButtons();
+    updateHeader();
+  }
+
+  /* ---------------- Report ---------------- */
+  function renderReport(){
+    if(!state.graded) return;
+
+    const s = computeScore();
+    const pct = s.max ? Math.round((s.score/s.max)*100) : 0;
+
+    $("reportSummary").innerHTML = `
+      <span class="pill ok">Corrette: <strong>${s.ok}</strong></span>
+      <span class="pill bad">Sbagliate: <strong>${s.bad}</strong></span>
+      <span class="pill">Non risposte: <strong>${s.blank}</strong></span>
+      <span class="pill">Punteggio: <strong>${s.score}/${s.max}</strong> (${pct}%)</span>
+    `;
+
+    const list = $("wrongList");
+    list.innerHTML = "";
+
+    // lista solo sbagliate + non risposte
+    const wrongIds = [];
+    state.order.forEach((id, idx) => {
+      const q = state.map[id];
+      const chosen = state.answers[id];
+      if(chosen === undefined || chosen !== q.correctIndex){
+        wrongIds.push(id);
+
+        const item = document.createElement("div");
+        item.className = "item";
+
+        const chosenLabel = (chosen === undefined) ? "—" : q.options[chosen].label;
+        const correctLabel = q.options[q.correctIndex].label;
+        const pts = getPointsFor(id);
+
+        item.innerHTML = `
+          <div>
+            <div><strong>#${idx+1}</strong> <small>(ID ${id})</small></div>
+            <small>Scelta: ${chosenLabel} • Corretta: ${correctLabel} • Punti: ${pts}</small>
+          </div>
+        `;
+
+        const btn = document.createElement("button");
+        btn.textContent = "Vai";
+        btn.addEventListener("click", () => {
+          const i = state.order.indexOf(id);
+          if(i >= 0){
+            state.idx = i;
+            save(true);
+            $("dlgReport").close();
+            renderAll();
+          }
+        });
+
+        item.appendChild(btn);
+        list.appendChild(item);
+      }
+    });
+
+    state.wrongIds = wrongIds;
+    $("repeatWrongBtn2").disabled = !wrongIds.length;
+    save(true);
+  }
+
+  /* ---------------- Export ---------------- */
+  function exportCSV(){
+    const s = computeScore();
+    const rows = [];
+    rows.push(["num","id","question","chosen","correct","points_correct","points_awarded"].join(","));
+
+    state.order.forEach((id, idx) => {
+      const q = state.map[id];
+      const chosenIdx = state.answers[id];
+      const correctIdx = q.correctIndex;
+
+      const chosen = (chosenIdx === undefined) ? "" : q.options[chosenIdx].label;
+      const correct = q.options[correctIdx].label;
+
+      const pCorrect = getPointsFor(id);
+      const pWrong = safeNum(state.settings.scoring.wrong, 0);
+      const pBlank = safeNum(state.settings.scoring.blank, 0);
+
+      let awarded = pBlank;
+      if(chosenIdx !== undefined){
+        awarded = (chosenIdx === correctIdx) ? pCorrect : pWrong;
+      }
+
+      const question = (q.question || "").replaceAll('"','""');
+      rows.push([
+        idx+1,
+        id,
+        `"${question}"`,
+        chosen,
+        correct,
+        pCorrect,
+        awarded
+      ].join(","));
+    });
+
+    rows.push("");
+    rows.push(`"SCORE",${s.score},"MAX",${s.max},"OK",${s.ok},"BAD",${s.bad},"BLANK",${s.blank}`);
+
+    const csv = rows.join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "risultati_tecniche_investigative.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  /* ---------------- Events ---------------- */
   function setFilter(f){
+    if((f === "wrong" || f === "correct") && !state.graded){
+      alert("Prima premi “Correggi” per filtrare corrette/sbagliate.");
+      return;
+    }
     state.filter = f;
     save(true);
     renderSide();
   }
+
   $("chipAll").addEventListener("click", () => setFilter("all"));
   $("chipUnanswered").addEventListener("click", () => setFilter("unanswered"));
   $("chipFlagged").addEventListener("click", () => setFilter("flagged"));
-  $("chipWrong").addEventListener("click", () => {
-    if(!state.graded){
-      alert("Prima premi “Correggi” per vedere le sbagliate.");
-      return;
-    }
-    setFilter("wrong");
-  });
+  $("chipWrong").addEventListener("click", () => setFilter("wrong"));
+  $("chipCorrect").addEventListener("click", () => setFilter("correct"));
 
-  // Search
   $("searchBox").addEventListener("input", (e) => {
     state.search = e.target.value.trim();
     save(true);
     renderSide();
   });
 
-  // Nav buttons
   $("prevBtn").addEventListener("click", () => {
     if(state.idx > 0){ state.idx--; save(true); renderAll(); }
   });
   $("nextBtn").addEventListener("click", () => {
-    if(state.idx < totalCount() - 1){ state.idx++; save(true); renderAll(); }
+    if(state.idx < totalCount()-1){ state.idx++; save(true); renderAll(); }
   });
 
-  // Flag
   $("flagBtn").addEventListener("click", () => {
     const id = currentId();
     state.flagged[id] = !state.flagged[id];
@@ -950,33 +1347,58 @@
     renderAll();
   });
 
-  // Instant + autoNext
-  $("instantChk").addEventListener("change", (e) => {
-    state.instant = !!e.target.checked;
-    save(true);
-    if(state.instant) markCurrentInstant();
-    else if(state.graded) markCurrentGraded();
-    else $("feedback").textContent = "";
-  });
-  $("autoNextChk").addEventListener("change", (e) => {
-    state.autoNext = !!e.target.checked;
-    save(true);
-  });
-
-  // New / Grade / Review / Reset
-  $("newBtn").addEventListener("click", () => buildQuizFromSource());
-  $("gradeBtn").addEventListener("click", () => { gradeAll(true); toast("Corretto"); });
-  $("reviewBtn").addEventListener("click", () => {
-    if(!state.graded || !(state.wrongIds || []).length) return;
-    const firstWrong = state.wrongIds[0];
-    const i = state.order.indexOf(firstWrong);
-    if(i >= 0){ state.idx = i; save(true); renderAll(); }
-  });
   $("jumpUnansweredBtn").addEventListener("click", () => {
     const i = state.order.findIndex(id => state.answers[id] === undefined);
     if(i >= 0){ state.idx = i; save(true); renderAll(); }
     else alert("Hai risposto a tutte.");
   });
+
+  $("instantChk").addEventListener("change", (e) => {
+    state.settings.instant = !!e.target.checked;
+    if(state.settings.examMode) state.settings.instant = false;
+    save(true);
+    highlightAnswer();
+  });
+
+  $("autoNextChk").addEventListener("change", (e) => {
+    state.settings.autoNext = !!e.target.checked;
+    save(true);
+  });
+
+  $("pointsInput").addEventListener("change", () => {
+    if(!state.settings.perQuestionPoints) return;
+    const id = currentId();
+    const v = safeNum($("pointsInput").value, NaN);
+    if(!Number.isFinite(v) || v < 0) return;
+    state.points[id] = v;
+    save(true);
+    updateHeader();
+    toast("Punti domanda aggiornati");
+  });
+
+  $("newBtn").addEventListener("click", () => buildQuizFromSource());
+
+  $("gradeBtn").addEventListener("click", () => gradeAll(true));
+
+  $("reportBtn").addEventListener("click", () => {
+    renderReport();
+    $("dlgReport").showModal();
+  });
+
+  $("repeatWrongBtn").addEventListener("click", () => {
+    if(!state.wrongIds?.length) return;
+    buildQuizFromSource(state.wrongIds);
+    $("feedback").textContent = "Modalità: ripeti solo le sbagliate.";
+  });
+  $("repeatWrongBtn2").addEventListener("click", () => {
+    if(!state.wrongIds?.length) return;
+    $("dlgReport").close();
+    buildQuizFromSource(state.wrongIds);
+    $("feedback").textContent = "Modalità: ripeti solo le sbagliate.";
+  });
+
+  $("exportBtn").addEventListener("click", exportCSV);
+
   $("resetBtn").addEventListener("click", () => {
     if(confirm("Vuoi cancellare il salvataggio e ricominciare?")){
       resetSaved();
@@ -984,20 +1406,35 @@
     }
   });
 
-  // Settings dialog
-  const dlg = $("dlg");
+  /* ---------------- Settings Dialog ---------------- */
+  const dlgS = $("dlgSettings");
   $("settingsBtn").addEventListener("click", () => {
     $("shuffleQ").checked = !!state.settings.shuffleQ;
     $("shuffleO").checked = !!state.settings.shuffleO;
+    $("examMode").checked = !!state.settings.examMode;
+
     $("limitN").value = state.settings.limitN ?? "";
     $("useTimer").checked = !!state.settings.useTimer;
     $("timerMin").value = state.settings.timerMin ?? 30;
-    dlg.showModal();
+
+    $("instantSet").checked = !!state.settings.instant;
+    $("showCorrectOnWrong").checked = !!state.settings.showCorrectOnWrong;
+    $("autoNextSet").checked = !!state.settings.autoNext;
+
+    $("ptCorrect").value = String(safeNum(state.settings.scoring.correct,1));
+    $("ptWrong").value = String(safeNum(state.settings.scoring.wrong,0));
+    $("ptBlank").value = String(safeNum(state.settings.scoring.blank,0));
+
+    $("perQPoints").checked = !!state.settings.perQuestionPoints;
+
+    dlgS.showModal();
   });
-  $("closeDlg").addEventListener("click", () => dlg.close());
-  $("applyBtn").addEventListener("click", () => {
+  $("closeSettings").addEventListener("click", () => dlgS.close());
+
+  function applySettings(){
     state.settings.shuffleQ = $("shuffleQ").checked;
     state.settings.shuffleO = $("shuffleO").checked;
+    state.settings.examMode = $("examMode").checked;
 
     const lim = $("limitN").value.trim();
     state.settings.limitN = lim ? Math.max(1, parseInt(lim,10)) : null;
@@ -1005,15 +1442,98 @@
     state.settings.useTimer = $("useTimer").checked;
     state.settings.timerMin = Math.max(1, parseInt($("timerMin").value || "30", 10));
 
-    dlg.close();
+    state.settings.instant = $("instantSet").checked;
+    state.settings.showCorrectOnWrong = $("showCorrectOnWrong").checked;
+    state.settings.autoNext = $("autoNextSet").checked;
+
+    state.settings.scoring.correct = safeNum($("ptCorrect").value, 1);
+    state.settings.scoring.wrong = safeNum($("ptWrong").value, 0);
+    state.settings.scoring.blank = safeNum($("ptBlank").value, 0);
+
+    state.settings.perQuestionPoints = $("perQPoints").checked;
+
+    if(state.settings.examMode){
+      state.settings.instant = false;
+      state.settings.showCorrectOnWrong = false;
+    }
+
+    save(true);
     updateTimerUI();
+    buildQuizFromSource();
+  }
+
+  $("applySettings").addEventListener("click", () => {
+    dlgS.close();
+    applySettings();
+  });
+
+  // Preset
+  $("presetPractice").addEventListener("click", () => {
+    state.settings.examMode = false;
+    state.settings.useTimer = false;
+    state.settings.limitN = null;
+    state.settings.instant = true;
+    state.settings.showCorrectOnWrong = true;
+    state.settings.autoNext = false;
+    state.settings.shuffleQ = true;
+    state.settings.shuffleO = true;
+    save(true);
+    dlgS.close();
+    buildQuizFromSource();
+  });
+  $("presetExam30").addEventListener("click", () => {
+    state.settings.examMode = true;
+    state.settings.useTimer = true;
+    state.settings.timerMin = 30;
+    state.settings.limitN = 30;
+    state.settings.instant = false;
+    state.settings.showCorrectOnWrong = false;
+    state.settings.autoNext = false;
+    state.settings.shuffleQ = true;
+    state.settings.shuffleO = true;
+    save(true);
+    dlgS.close();
+    buildQuizFromSource();
+  });
+  $("presetExam60").addEventListener("click", () => {
+    state.settings.examMode = true;
+    state.settings.useTimer = true;
+    state.settings.timerMin = 60;
+    state.settings.limitN = 60;
+    state.settings.instant = false;
+    state.settings.showCorrectOnWrong = false;
+    state.settings.autoNext = false;
+    state.settings.shuffleQ = true;
+    state.settings.shuffleO = true;
+    save(true);
+    dlgS.close();
     buildQuizFromSource();
   });
 
-  // Theme
+  $("applyPointsAllBtn").addEventListener("click", () => {
+    const def = safeNum($("ptCorrect").value, 1);
+    ensurePointsForIds(state.order);
+    for(const id of state.order) state.points[id] = def;
+    save(true);
+    toast("Punti applicati a tutte");
+  });
+
+  $("resetPointsBtn").addEventListener("click", () => {
+    const def = safeNum($("ptCorrect").value, 1);
+    ensurePointsForIds(state.order);
+    for(const id of state.order) state.points[id] = def;
+    save(true);
+    toast("Punti ripristinati");
+  });
+
+  /* ---------------- Report Dialog ---------------- */
+  const dlgR = $("dlgReport");
+  $("closeReport").addEventListener("click", () => dlgR.close());
+
+  /* ---------------- Theme ---------------- */
   function setTheme(t){
     document.documentElement.setAttribute("data-theme", t);
-    localStorage.setItem("quiz_theme", t);
+    localStorage.setItem(THEME_KEY, t);
     $("themeBtn").textContent = (t === "light") ? "🌙" : "☀️";
   }
   $("themeBtn").addEventListener("click", () => {
@@ -1021,18 +1541,35 @@
     setTheme(cur === "dark" ? "light" : "dark");
   });
 
-  // Shortcuts
+  /* ---------------- Keyboard ---------------- */
   document.addEventListener("keydown", (e) => {
-    if(e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
-    if(e.key === "ArrowLeft") $("prevBtn").click();
-    if(e.key === "ArrowRight") $("nextBtn").click();
-    if(e.key === "f" || e.key === "F") $("flagBtn").click();
-    if(e.key === "g" || e.key === "G") $("gradeBtn").click();
-    if(e.key === "n" || e.key === "N") $("newBtn").click();
-    if(e.key === "s" || e.key === "S") $("settingsBtn").click();
+    const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : "";
+    if(tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+    // nav
+    if(e.key === "ArrowLeft"){ $("prevBtn").click(); }
+    if(e.key === "ArrowRight"){ $("nextBtn").click(); }
+    if(e.key === "Enter"){ $("nextBtn").click(); }
+
+    // actions
+    if(e.key === "f" || e.key === "F"){ $("flagBtn").click(); }
+    if(e.key === "g" || e.key === "G"){ $("gradeBtn").click(); }
+    if(e.key === "n" || e.key === "N"){ $("newBtn").click(); }
+    if(e.key === "s" || e.key === "S"){ $("settingsBtn").click(); }
+
+    // answer A/B/C/D
+    const k = e.key.toUpperCase();
+    if(["A","B","C","D"].includes(k)){
+      const idx = ["A","B","C","D"].indexOf(k);
+      const input = document.querySelector(`#opts .opt:nth-child(${idx+1}) input`);
+      if(input){
+        input.checked = true;
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }
   });
 
-  // Load questions.json
+  /* ---------------- Load questions.json ---------------- */
   async function loadQuestions(){
     const res = await fetch("./questions.json", { cache: "no-store" });
     if(!res.ok) throw new Error("Impossibile caricare questions.json");
@@ -1041,16 +1578,15 @@
     return data;
   }
 
+  /* ---------------- Boot ---------------- */
   (async () => {
-    const theme = localStorage.getItem("quiz_theme") || "dark";
-    setTheme(theme);
+    setTheme(localStorage.getItem(THEME_KEY) || "dark");
 
     try{
       SOURCE = await loadQuestions();
     }catch(err){
-      $("smallStatus").textContent = "Errore caricamento domande";
-      $("scorePill").textContent = "❌";
-      $("feedback").textContent = "Non riesco a leggere ./questions.json. Controlla che sia in docs/ insieme a index.html.";
+      $("subStatus").textContent = "Errore caricamento domande";
+      $("feedback").textContent = "Non riesco a leggere ./questions.json. Assicurati che sia in docs/ insieme a index.html.";
       console.error(err);
       return;
     }
@@ -1058,19 +1594,25 @@
     const hasSaved = loadSaved();
     updateTimerUI();
 
-    // Forza feedback immediato sempre
-    state.instant = true;
-    save(true);
-
-    if(!hasSaved || !state.order || !state.order.length || !state.map){
+    if(!hasSaved){
+      // default impeccabile: 1/0/0 + punti per domanda ON
+      state.version = APP_VERSION;
+      state.settings.scoring = { correct: 1, wrong: 0, blank: 0 };
+      state.settings.perQuestionPoints = true;
+      state.settings.shuffleQ = true;
+      state.settings.shuffleO = true;
+      state.settings.examMode = false;
+      state.settings.instant = true;
+      state.settings.showCorrectOnWrong = true;
+      state.settings.autoNext = false;
       buildQuizFromSource();
-    } else {
+    }else{
+      ensurePointsForIds(state.order);
       startTimerIfNeeded(false);
       renderAll();
     }
 
-    updateTop();
-    updateJumpButtons();
+    $("subStatus").textContent = `Pronto • Domande disponibili: ${SOURCE.length}`;
   })();
 })();
 </script>
