@@ -85,7 +85,8 @@
       border-radius: 999px;
       border: 1px solid var(--stroke2);
       background: color-mix(in srgb, var(--surface2) 90%, transparent);
-      min-width: 300px;
+      min-width: 320px;
+      flex: 1 1 auto;
     }
     .logo{
       width: 30px; height: 30px;
@@ -96,8 +97,6 @@
     }
     .brand b{ display:block; font-size: 14px; letter-spacing: .2px; }
     .brand span{ display:block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-
-    .rowBtns{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
 
     button, input, select{
       font: inherit;
@@ -140,7 +139,7 @@
     .grid{
       margin-top: 14px;
       display:grid;
-      grid-template-columns: 1fr 400px;
+      grid-template-columns: 1fr 420px;
       gap: 14px;
       align-items:start;
     }
@@ -158,53 +157,13 @@
     }
     .pad{ padding: 16px; }
 
-    .meta{
-      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
-      color: var(--muted);
-      font-size: 12.5px;
-    }
+    /* MAIN LEFT */
     .qTitle{
-      margin: 10px 0 10px;
+      margin: 0 0 12px;
       font-size: 18px;
       letter-spacing: .1px;
     }
-
-    .controlsTop{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
-      margin: 10px 0 6px;
-    }
-    .actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-
-    .toggle{
-      display:flex; gap:10px; align-items:center;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--surface2) 92%, transparent);
-      color: var(--muted);
-      font-size: 12.5px;
-      user-select:none;
-    }
-    .toggle input{ width: 18px; height: 18px; }
-
-    .pointsBox{
-      display:flex; gap:10px; align-items:center;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--surface2) 92%, transparent);
-      color: var(--muted);
-      font-size: 12.5px;
-    }
-    .pointsBox input{
-      width: 92px;
-      border-radius: 12px;
-      padding: 8px 10px;
-      border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--surface) 92%, transparent);
-    }
-
-    .opts{ display:flex; flex-direction:column; gap: 10px; margin-top: 10px; }
+    .opts{ display:flex; flex-direction:column; gap: 10px; margin-top: 8px; }
     .opt{
       display:flex; gap:12px; align-items:flex-start;
       padding: 12px 12px;
@@ -238,6 +197,18 @@
     .sep{ height:1px; background: var(--stroke2); margin: 14px 0; }
     .feedback{ color: var(--muted); font-size: 13px; min-height: 18px; }
 
+    .mainNav{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top: 14px;
+    }
+    .mainNav button{ padding: 11px 14px; }
+
+    /* RIGHT PANEL */
+    .sideSticky{
+      position: sticky;
+      top: 86px;
+    }
+
     .sideHead{
       padding: 14px 16px;
       border-bottom: 1px solid var(--stroke2);
@@ -248,12 +219,85 @@
 
     .sideBody{ padding: 14px 16px 16px; }
 
+    .section{
+      border: 1px solid var(--stroke2);
+      border-radius: 14px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      margin-bottom: 12px;
+    }
+    .sectionTitle{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .sectionTitle b{
+      font-size: 12px;
+      color: var(--muted2);
+      font-weight: 800;
+      letter-spacing:.35px;
+      text-transform: uppercase;
+    }
+
+    .toolbarPills{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    }
+
+    .btnGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .btnGrid button{ width: 100%; }
+
+    .row{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+
+    .toggle{
+      display:flex; gap:10px; align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: color-mix(in srgb, var(--surface3) 60%, transparent);
+      color: var(--muted);
+      font-size: 12.5px;
+      user-select:none;
+      flex: 1 1 auto;
+      min-width: 160px;
+    }
+    .toggle input{ width: 18px; height: 18px; }
+
+    .pointsBox{
+      display:flex; gap:10px; align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: color-mix(in srgb, var(--surface3) 60%, transparent);
+      color: var(--muted);
+      font-size: 12.5px;
+      width: 100%;
+    }
+    .pointsBox input{
+      width: 92px;
+      border-radius: 12px;
+      padding: 8px 10px;
+      border: 1px solid var(--stroke2);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+    }
+
+    .meta{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+
     .search{
       width: 100%;
       padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      background: color-mix(in srgb, var(--surface3) 55%, transparent);
     }
 
     .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
@@ -261,7 +305,7 @@
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      background: color-mix(in srgb, var(--surface3) 55%, transparent);
       color: var(--muted);
       cursor:pointer;
       user-select:none;
@@ -285,7 +329,7 @@
       border: 1px solid var(--stroke2);
       border-radius: 14px;
       padding: 10px 12px;
-      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      background: color-mix(in srgb, var(--surface3) 55%, transparent);
     }
     .stat b{
       display:block;
@@ -307,7 +351,7 @@
       padding: 10px 0;
       border-radius: 14px;
       border: 1px solid var(--stroke2);
-      background: color-mix(in srgb, var(--surface2) 92%, transparent);
+      background: color-mix(in srgb, var(--surface3) 55%, transparent);
       text-align:center;
       cursor:pointer;
       user-select:none;
@@ -322,12 +366,6 @@
     .num.flag{ border-color: color-mix(in srgb, var(--warn) 35%, var(--stroke2)); background: color-mix(in srgb, var(--warn) 10%, transparent); color: var(--text); }
     .num.ok{ border-color: color-mix(in srgb, var(--ok) 55%, var(--stroke2)); }
     .num.bad{ border-color: color-mix(in srgb, var(--bad) 55%, var(--stroke2)); }
-
-    .sideFooter{
-      margin-top: 14px;
-      color: var(--muted2);
-      font-size: 12.5px;
-    }
 
     dialog{
       width: min(880px, 94vw);
@@ -355,35 +393,6 @@
       background: color-mix(in srgb, var(--surface2) 92%, transparent);
       display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
     }
-
-    .section{
-      border: 1px solid var(--stroke2);
-      border-radius: 14px;
-      padding: 12px;
-      background: color-mix(in srgb, var(--surface2) 92%, transparent);
-      margin-bottom: 12px;
-    }
-    .section h3{
-      margin: 0 0 10px;
-      font-size: 12px;
-      color: var(--muted2);
-      font-weight: 800;
-      letter-spacing:.35px;
-      text-transform: uppercase;
-    }
-    .formRow{
-      display:flex; gap:14px; flex-wrap:wrap; align-items:center;
-      margin: 10px 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .formRow label{ display:flex; gap:10px; align-items:center; }
-    .formRow input[type="number"]{
-      width: 160px;
-      border-radius: 14px;
-      padding: 11px 12px;
-    }
-    .hint{ color: var(--muted2); font-size: 12.5px; margin-top: 8px; }
 
     .list{
       display:flex; flex-direction:column; gap:8px;
@@ -429,6 +438,7 @@
 <body>
 <div class="wrap">
 
+  <!-- Header solo brand (controlli tutti a destra) -->
   <header>
     <div class="brand" aria-label="Titolo">
       <div class="logo" aria-hidden="true"></div>
@@ -437,95 +447,137 @@
         <span id="subStatus">Caricamento domande…</span>
       </div>
     </div>
-
-    <div class="rowBtns">
-      <span class="pill" id="modePill" style="display:none;">Modalità esame</span>
-      <span class="pill" id="timerPill" style="display:none;">⏱️ <span id="timerTxt">00:00</span></span>
-      <span class="pill" id="scorePill">—</span>
-
-      <button id="newBtn" class="primary" title="Nuovo (N)">Nuovo</button>
-      <button id="gradeBtn" title="Correggi (G)">Correggi</button>
-      <button id="reportBtn" title="Report" style="display:none;">Report</button>
-      <button id="repeatWrongBtn" title="Ripeti solo sbagliate" style="display:none;">Ripeti sbagliate</button>
-      <button id="exportBtn" title="Esporta risultati (CSV)">Esporta</button>
-      <button id="settingsBtn" class="ghost" title="Impostazioni (S)">Impostazioni</button>
-      <button id="themeBtn" title="Tema">🌙</button>
-      <button id="resetBtn" class="danger" title="Reset">Reset</button>
-    </div>
   </header>
 
   <div class="grid">
+    <!-- LEFT: SOLO domanda + opzioni + Prev/Next -->
     <main class="card" aria-label="Domanda">
       <div class="pad">
-        <div class="meta" id="meta"></div>
         <h2 class="qTitle" id="qTitle"></h2>
-
-        <div class="controlsTop">
-          <div class="actions">
-            <button id="prevBtn" title="Prev (←)">← Prev</button>
-            <button id="nextBtn" title="Next (→)">Next →</button>
-            <button id="flagBtn" title="Segna/Unsegna (F)">🚩 Segna</button>
-            <button id="jumpUnansweredBtn" title="Vai alla prima non risposta" style="display:none;">Vai a non risposte</button>
-          </div>
-
-          <div class="actions">
-            <div class="pointsBox" id="pointsBox" style="display:none;" title="Punti assegnati a questa domanda (solo se abilitato)">
-              Punti domanda
-              <input id="pointsInput" type="number" min="0" step="0.5" inputmode="decimal" />
-            </div>
-
-            <div class="toggle" title="Feedback immediato (disattivo in Modalità esame)">
-              <label style="display:flex;gap:10px;align-items:center;cursor:pointer;">
-                <input type="checkbox" id="instantChk" />
-                Feedback
-              </label>
-            </div>
-
-            <div class="toggle" title="Passa alla prossima dopo risposta">
-              <label style="display:flex;gap:10px;align-items:center;cursor:pointer;">
-                <input type="checkbox" id="autoNextChk" />
-                Auto-next
-              </label>
-            </div>
-          </div>
-        </div>
-
         <div class="opts" id="opts"></div>
 
         <div class="sep"></div>
         <div class="feedback" id="feedback"></div>
+
+        <div class="mainNav">
+          <button id="prevBtn" title="Prev (←)">← Prev</button>
+          <button id="nextBtn" title="Next (→)">Next →</button>
+        </div>
       </div>
     </main>
 
-    <aside class="card" aria-label="Navigazione">
-      <div class="sideHead">
-        <strong>Navigazione</strong>
-        <span class="pill" id="navPill">—</span>
-      </div>
-
-      <div class="sideBody">
-        <input id="searchBox" class="search" type="search" placeholder="Cerca nel testo della domanda…" />
-
-        <div class="chips">
-          <div class="chip on" id="chipAll">Tutte</div>
-          <div class="chip" id="chipUnanswered">Non risposte</div>
-          <div class="chip" id="chipFlagged">Segnate 🚩</div>
-          <div class="chip" id="chipWrong">Sbagliate</div>
-          <div class="chip" id="chipCorrect">Corrette</div>
+    <!-- RIGHT: TUTTO IL RESTO -->
+    <aside class="sideSticky">
+      <div class="card" aria-label="Pannello">
+        <div class="sideHead">
+          <strong>Pannello</strong>
+          <span class="pill" id="navPill">—</span>
         </div>
 
-        <div class="stats">
-          <div class="stat"><b>Punteggio</b><div id="scoreStat">—</div></div>
-          <div class="stat"><b>Massimo</b><div id="maxStat">—</div></div>
-          <div class="stat"><b>Corrette</b><div id="okStat">—</div></div>
-          <div class="stat"><b>Sbagliate</b><div id="badStat">—</div></div>
-        </div>
+        <div class="sideBody">
 
-        <div class="nums" id="nums"></div>
+          <!-- STATUS/PILLS -->
+          <div class="section">
+            <div class="sectionTitle">
+              <b>Stato</b>
+              <div class="toolbarPills">
+                <span class="pill" id="modePill" style="display:none;">Modalità esame</span>
+                <span class="pill" id="timerPill" style="display:none;">⏱️ <span id="timerTxt">00:00</span></span>
+                <span class="pill" id="scorePill">—</span>
+              </div>
+            </div>
+            <div class="meta" id="meta"></div>
+          </div>
 
-        <div class="sideFooter">
-          Scorciatoie: ← →, A/B/C/D (rispondi), Invio (next), F (flag), G (correggi), N (nuovo), S (impostazioni).<br/>
-          Salvataggio automatico sul dispositivo.
+          <!-- ACTION BUTTONS -->
+          <div class="section">
+            <div class="sectionTitle">
+              <b>Azioni</b>
+              <div class="row">
+                <button id="themeBtn" title="Tema">🌙</button>
+              </div>
+            </div>
+
+            <div class="btnGrid">
+              <button id="newBtn" class="primary" title="Nuovo (N)">Nuovo</button>
+              <button id="gradeBtn" title="Correggi (G)">Correggi</button>
+
+              <button id="reportBtn" title="Report" style="display:none;">Report</button>
+              <button id="repeatWrongBtn" title="Ripeti solo sbagliate" style="display:none;">Ripeti sbagliate</button>
+
+              <button id="exportBtn" title="Esporta risultati (CSV)">Esporta</button>
+              <button id="settingsBtn" class="ghost" title="Impostazioni (S)">Impostazioni</button>
+
+              <button id="flagBtn" title="Segna/Unsegna (F)">🚩 Segna</button>
+              <button id="jumpUnansweredBtn" title="Vai alla prima non risposta" style="display:none;">Vai a non risposte</button>
+
+              <button id="resetBtn" class="danger" title="Reset" style="grid-column: 1 / -1;">Reset</button>
+            </div>
+          </div>
+
+          <!-- QUICK CONTROLS -->
+          <div class="section">
+            <div class="sectionTitle">
+              <b>Controlli rapidi</b>
+              <span class="pill">Comfort</span>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="pointsBox" id="pointsBox" style="display:none;" title="Punti assegnati a questa domanda (solo se abilitato)">
+                Punti domanda
+                <input id="pointsInput" type="number" min="0" step="0.5" inputmode="decimal" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="toggle" title="Feedback immediato (disattivo in Modalità esame)">
+                <label style="display:flex;gap:10px;align-items:center;cursor:pointer;width:100%;">
+                  <input type="checkbox" id="instantChk" />
+                  Feedback
+                </label>
+              </div>
+
+              <div class="toggle" title="Passa alla prossima dopo risposta">
+                <label style="display:flex;gap:10px;align-items:center;cursor:pointer;width:100%;">
+                  <input type="checkbox" id="autoNextChk" />
+                  Auto-next
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEARCH + FILTERS -->
+          <div class="section">
+            <div class="sectionTitle">
+              <b>Navigazione</b>
+              <span class="pill">Filtri</span>
+            </div>
+
+            <input id="searchBox" class="search" type="search" placeholder="Cerca nel testo della domanda…" />
+
+            <div class="chips">
+              <div class="chip on" id="chipAll">Tutte</div>
+              <div class="chip" id="chipUnanswered">Non risposte</div>
+              <div class="chip" id="chipFlagged">Segnate 🚩</div>
+              <div class="chip" id="chipWrong">Sbagliate</div>
+              <div class="chip" id="chipCorrect">Corrette</div>
+            </div>
+
+            <div class="stats">
+              <div class="stat"><b>Punteggio</b><div id="scoreStat">—</div></div>
+              <div class="stat"><b>Massimo</b><div id="maxStat">—</div></div>
+              <div class="stat"><b>Corrette</b><div id="okStat">—</div></div>
+              <div class="stat"><b>Sbagliate</b><div id="badStat">—</div></div>
+            </div>
+
+            <div class="nums" id="nums"></div>
+          </div>
+
+          <div style="color:var(--muted2);font-size:12.5px;">
+            Scorciatoie: ← →, A/B/C/D (rispondi), Invio (next), F (flag), G (correggi), N (nuovo), S (impostazioni).<br/>
+            Salvataggio automatico sul dispositivo.
+          </div>
+
         </div>
       </div>
     </aside>
@@ -541,67 +593,66 @@
 
   <div class="dlgBody">
     <div class="section">
-      <h3>Preset</h3>
-      <div class="formRow">
+      <div class="sectionTitle"><b>Preset</b><span class="pill">Rapidi</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button id="presetPractice" class="primary" title="Allenamento: feedback ON, no timer">Allenamento</button>
         <button id="presetExam30" title="Esame: 30 domande, 30 min, no feedback">Esame 30</button>
         <button id="presetExam60" title="Esame: 60 domande, 60 min, no feedback">Esame 60</button>
       </div>
-      <div class="hint">I preset applicano impostazioni e ricominciano.</div>
+      <div style="color:var(--muted2);font-size:12.5px;margin-top:8px;">I preset applicano impostazioni e ricominciano.</div>
     </div>
 
     <div class="section">
-      <h3>Quiz</h3>
-      <div class="formRow">
-        <label><input type="checkbox" id="shuffleQ" /> Domande random</label>
-        <label><input type="checkbox" id="shuffleO" /> Opzioni random</label>
-        <label><input type="checkbox" id="examMode" /> Modalità esame (nasconde feedback e punteggio finché non correggi)</label>
+      <div class="sectionTitle"><b>Quiz</b><span class="pill">Random/Timer</span></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px;">
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="shuffleQ" /> Domande random</label>
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="shuffleO" /> Opzioni random</label>
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="examMode" /> Modalità esame</label>
       </div>
-      <div class="formRow">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px;margin-top:10px;">
         <label>Numero domande:
-          <input type="number" id="limitN" min="1" step="1" placeholder="tutte" />
+          <input type="number" id="limitN" min="1" step="1" placeholder="tutte" style="width:160px;border-radius:14px;padding:11px 12px;" />
         </label>
-        <label><input type="checkbox" id="useTimer" /> Timer</label>
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="useTimer" /> Timer</label>
         <label>Minuti:
-          <input type="number" id="timerMin" min="1" step="1" value="30" />
+          <input type="number" id="timerMin" min="1" step="1" value="30" style="width:160px;border-radius:14px;padding:11px 12px;" />
         </label>
       </div>
-      <div class="hint">Se “Numero domande” è vuoto: usa tutte le domande del file.</div>
+      <div style="color:var(--muted2);font-size:12.5px;margin-top:8px;">Se “Numero domande” è vuoto: usa tutte le domande del file.</div>
     </div>
 
     <div class="section">
-      <h3>Comfort</h3>
-      <div class="formRow">
-        <label><input type="checkbox" id="instantSet" /> Feedback immediato</label>
-        <label><input type="checkbox" id="showCorrectOnWrong" /> Se sbagli, mostra anche la corretta</label>
-        <label><input type="checkbox" id="autoNextSet" /> Auto-next</label>
+      <div class="sectionTitle"><b>Comfort</b><span class="pill">Feedback</span></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px;">
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="instantSet" /> Feedback immediato</label>
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="showCorrectOnWrong" /> Se sbagli, mostra anche la corretta</label>
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="autoNextSet" /> Auto-next</label>
       </div>
-      <div class="hint">In Modalità esame, il feedback viene forzato OFF.</div>
+      <div style="color:var(--muted2);font-size:12.5px;margin-top:8px;">In Modalità esame, il feedback viene forzato OFF.</div>
     </div>
 
     <div class="section">
-      <h3>Punteggio</h3>
-      <div class="formRow">
+      <div class="sectionTitle"><b>Punteggio</b><span class="pill">1/0</span></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px;">
         <label>Punti corretta:
-          <input type="number" id="ptCorrect" step="0.5" value="1" />
+          <input type="number" id="ptCorrect" step="0.5" value="1" style="width:160px;border-radius:14px;padding:11px 12px;" />
         </label>
         <label>Punti sbagliata:
-          <input type="number" id="ptWrong" step="0.5" value="0" />
+          <input type="number" id="ptWrong" step="0.5" value="0" style="width:160px;border-radius:14px;padding:11px 12px;" />
         </label>
         <label>Punti non risposta:
-          <input type="number" id="ptBlank" step="0.5" value="0" />
+          <input type="number" id="ptBlank" step="0.5" value="0" style="width:160px;border-radius:14px;padding:11px 12px;" />
         </label>
       </div>
 
-      <div class="formRow">
-        <label><input type="checkbox" id="perQPoints" /> Punti per singola domanda</label>
-        <button id="applyPointsAllBtn" title="Applica 'Punti corretta' a tutte le domande">Applica punti a tutte</button>
-        <button id="resetPointsBtn" title="Ripristina i punti delle domande al default">Ripristina punti</button>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px;margin-top:10px;">
+        <label style="display:flex;gap:10px;align-items:center;"><input type="checkbox" id="perQPoints" /> Punti per singola domanda</label>
+        <button id="applyPointsAllBtn">Applica punti a tutte</button>
+        <button id="resetPointsBtn">Ripristina punti</button>
       </div>
 
-      <div class="hint">
-        Default: corretta=1, sbagliata=0, non risposta=0.<br/>
-        Se attivi “punti per singola domanda”, puoi cambiare i punti direttamente in ogni domanda.
+      <div style="color:var(--muted2);font-size:12.5px;margin-top:8px;">
+        Default: corretta=1, sbagliata=0, non risposta=0. Se attivi “punti per singola domanda”, modifichi “Punti domanda” nel pannello.
       </div>
     </div>
   </div>
@@ -620,16 +671,16 @@
   </div>
   <div class="dlgBody">
     <div class="section">
-      <h3>Riepilogo</h3>
-      <div class="formRow" id="reportSummary"></div>
+      <div class="sectionTitle"><b>Riepilogo</b><span class="pill">Esito</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;" id="reportSummary"></div>
     </div>
     <div class="section">
-      <h3>Errori (clicca per andare)</h3>
+      <div class="sectionTitle"><b>Errori</b><span class="pill">Clicca per andare</span></div>
       <div class="list" id="wrongList"></div>
     </div>
   </div>
   <div class="dlgFoot">
-    <span class="pill">Suggerimento: “Ripeti sbagliate” crea un quiz solo con gli errori.</span>
+    <span class="pill">“Ripeti sbagliate” crea un quiz solo con gli errori.</span>
     <button id="repeatWrongBtn2" class="primary">Ripeti sbagliate</button>
   </div>
 </dialog>
@@ -640,7 +691,7 @@
 (() => {
   const $ = (id) => document.getElementById(id);
 
-  const APP_VERSION = "ti_quiz_impeccabile_v1";
+  const APP_VERSION = "ti_quiz_impeccabile_v2_rightpanel";
   const STORAGE_KEY = "ti_quiz_state_impeccabile";
   const THEME_KEY = "ti_theme_impeccabile";
   const LABELS = ["A","B","C","D"];
@@ -684,7 +735,6 @@
     timer: { startTs: null, running: false }
   };
 
-  /* ---------------- Utils ---------------- */
   function toast(msg){
     const t = $("toast");
     t.textContent = msg || "Salvato";
@@ -697,11 +747,7 @@
     return Number.isFinite(n) ? n : fallback;
   }
 
-  function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  }
-
-  // ✅ MODIFICA: rimuove prefisso A)/B)/C)/D) (o A. / A: / A - ecc.) dal testo opzione
+  // rimuove prefisso A)/B)/C)/D) (o A. / A: / A - ecc.) dal testo opzione
   function stripChoicePrefix(s){
     return String(s).replace(/^\s*[A-D]\s*[\)\.\-:]\s*/i, "");
   }
@@ -727,6 +773,8 @@
       if(!raw) return false;
       const s = JSON.parse(raw);
       if(!s || !s.order || !s.map) return false;
+
+      // se cambi layout/versione: riparti pulito per evitare stati strani
       if(s.version !== APP_VERSION) return false;
 
       state = s;
@@ -759,7 +807,6 @@
     return Number.isFinite(p) ? p : safeNum(state.settings.scoring.correct, 1);
   }
 
-  /* ---------------- Build Quiz ---------------- */
   function buildQuizFromSource(customIds=null){
     let src = [...SOURCE].sort((a,b)=>a.id-b.id);
 
@@ -784,7 +831,6 @@
       ];
       if(state.settings.shuffleO) shuffle(opts);
 
-      // ✅ MODIFICA: pulisco il testo opzione dal prefisso A)/B)/...
       const mapped = opts.map((o,i) => ({
         label: LABELS[i],
         text: stripChoicePrefix(o.text),
@@ -823,7 +869,6 @@
     renderAll();
   }
 
-  /* ---------------- Scoring ---------------- */
   function computeScore(){
     const s = state.settings.scoring || { correct: 1, wrong: 0, blank: 0 };
     const pWrong = safeNum(s.wrong, 0);
@@ -864,12 +909,10 @@
     return { hidden: false, ...computeScore() };
   }
 
-  /* ---------------- Timer ---------------- */
   function stopTimer(){
     if(timerHandle) clearInterval(timerHandle);
     timerHandle = null;
   }
-
   function pad2(n){ return String(n).padStart(2,"0"); }
 
   function updateTimerUI(){
@@ -916,7 +959,6 @@
     }
   }
 
-  /* ---------------- Grading ---------------- */
   function gradeAll(silent=false){
     const wrong = [];
     const correct = [];
@@ -941,7 +983,6 @@
     toast("Corretto");
   }
 
-  /* ---------------- Render ---------------- */
   function setChipOn(id, on){ $(id).classList.toggle("on", on); }
 
   function updateHeader(){
@@ -1004,6 +1045,8 @@
 
     $("instantChk").checked = !!state.settings.instant;
     $("autoNextChk").checked = !!state.settings.autoNext;
+
+    $("flagBtn").textContent = state.flagged[id] ? "🚩 Segnata" : "🚩 Segna";
   }
 
   function renderQuestion(){
@@ -1035,7 +1078,6 @@
       badge.textContent = o.label;
 
       const text = document.createElement("div");
-      // ✅ MODIFICA: qui non metto più "A) ..." nel testo (badge già basta)
       text.textContent = o.text;
 
       function choose(){
@@ -1081,7 +1123,6 @@
 
     $("prevBtn").disabled = state.idx === 0;
     $("nextBtn").disabled = state.idx === totalCount() - 1;
-    $("flagBtn").textContent = state.flagged[id] ? "🚩 Segnata" : "🚩 Segna";
 
     highlightAnswer();
   }
@@ -1197,7 +1238,6 @@
     updateHeader();
   }
 
-  /* ---------------- Report ---------------- */
   function renderReport(){
     if(!state.graded) return;
 
@@ -1257,7 +1297,6 @@
     save(true);
   }
 
-  /* ---------------- Export ---------------- */
   function exportCSV(){
     const s = computeScore();
     const rows = [];
@@ -1299,7 +1338,6 @@
     URL.revokeObjectURL(url);
   }
 
-  /* ---------------- Events ---------------- */
   function setFilter(f){
     if((f === "wrong" || f === "correct") && !state.graded){
       alert("Prima premi “Correggi” per filtrare corrette/sbagliate.");
@@ -1394,7 +1432,7 @@
     }
   });
 
-  /* ---------------- Settings Dialog ---------------- */
+  // Settings dialog
   const dlgS = $("dlgSettings");
   $("settingsBtn").addEventListener("click", () => {
     $("shuffleQ").checked = !!state.settings.shuffleQ;
@@ -1513,11 +1551,11 @@
     toast("Punti ripristinati");
   });
 
-  /* ---------------- Report Dialog ---------------- */
+  // Report dialog
   const dlgR = $("dlgReport");
   $("closeReport").addEventListener("click", () => dlgR.close());
 
-  /* ---------------- Theme ---------------- */
+  // Theme
   function setTheme(t){
     document.documentElement.setAttribute("data-theme", t);
     localStorage.setItem(THEME_KEY, t);
@@ -1528,7 +1566,7 @@
     setTheme(cur === "dark" ? "light" : "dark");
   });
 
-  /* ---------------- Keyboard ---------------- */
+  // Keyboard
   document.addEventListener("keydown", (e) => {
     const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : "";
     if(tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
@@ -1553,9 +1591,6 @@
     }
   });
 
-  $("exportBtn").addEventListener("click", exportCSV);
-
-  /* ---------------- Load questions.json ---------------- */
   async function loadQuestions(){
     const res = await fetch("./questions.json", { cache: "no-store" });
     if(!res.ok) throw new Error("Impossibile caricare questions.json");
@@ -1564,7 +1599,6 @@
     return data;
   }
 
-  /* ---------------- Boot ---------------- */
   (async () => {
     setTheme(localStorage.getItem(THEME_KEY) || "dark");
 
