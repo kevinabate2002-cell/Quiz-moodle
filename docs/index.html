@@ -66,7 +66,6 @@
 
     .wrap{ max-width: var(--maxw); margin: 0 auto; }
 
-    /* Topbar */
     header{
       position: sticky; top: 12px; z-index: 50;
       display:flex; align-items:center; justify-content:space-between;
@@ -138,7 +137,6 @@
     .pill.bad{ border-color: color-mix(in srgb, var(--bad) 40%, var(--stroke2)); }
     .pill.warn{ border-color: color-mix(in srgb, var(--warn) 40%, var(--stroke2)); }
 
-    /* Layout */
     .grid{
       margin-top: 14px;
       display:grid;
@@ -160,7 +158,6 @@
     }
     .pad{ padding: 16px; }
 
-    /* Main */
     .meta{
       display:flex; gap:8px; flex-wrap:wrap; align-items:center;
       color: var(--muted);
@@ -241,7 +238,6 @@
     .sep{ height:1px; background: var(--stroke2); margin: 14px 0; }
     .feedback{ color: var(--muted); font-size: 13px; min-height: 18px; }
 
-    /* Sidebar */
     .sideHead{
       padding: 14px 16px;
       border-bottom: 1px solid var(--stroke2);
@@ -291,7 +287,14 @@
       padding: 10px 12px;
       background: color-mix(in srgb, var(--surface2) 92%, transparent);
     }
-    .stat b{ display:block; font-size: 12px; color: var(--muted2); font-weight: 750; letter-spacing:.2px; text-transform: uppercase; }
+    .stat b{
+      display:block;
+      font-size: 12px;
+      color: var(--muted2);
+      font-weight: 750;
+      letter-spacing:.2px;
+      text-transform: uppercase;
+    }
     .stat div{ margin-top: 5px; font-size: 15px; }
 
     .nums{
@@ -326,7 +329,6 @@
       font-size: 12.5px;
     }
 
-    /* Dialogs */
     dialog{
       width: min(880px, 94vw);
       border: 1px solid var(--stroke);
@@ -353,6 +355,7 @@
       background: color-mix(in srgb, var(--surface2) 92%, transparent);
       display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
     }
+
     .section{
       border: 1px solid var(--stroke2);
       border-radius: 14px;
@@ -382,7 +385,6 @@
     }
     .hint{ color: var(--muted2); font-size: 12.5px; margin-top: 8px; }
 
-    /* Report list */
     .list{
       display:flex; flex-direction:column; gap:8px;
       margin-top: 10px;
@@ -400,7 +402,6 @@
     .item small{ color: var(--muted); }
     .item button{ padding: 8px 10px; }
 
-    /* Toast */
     .toast{
       position: fixed; right: 18px; bottom: 18px;
       border-radius: 14px;
@@ -454,7 +455,6 @@
   </header>
 
   <div class="grid">
-    <!-- MAIN -->
     <main class="card" aria-label="Domanda">
       <div class="pad">
         <div class="meta" id="meta"></div>
@@ -497,7 +497,6 @@
       </div>
     </main>
 
-    <!-- SIDEBAR -->
     <aside class="card" aria-label="Navigazione">
       <div class="sideHead">
         <strong>Navigazione</strong>
@@ -601,7 +600,7 @@
       </div>
 
       <div class="hint">
-        Default richiesto: corretta=1, sbagliata=0, non risposta=0.<br/>
+        Default: corretta=1, sbagliata=0, non risposta=0.<br/>
         Se attivi “punti per singola domanda”, puoi cambiare i punti direttamente in ogni domanda.
       </div>
     </div>
@@ -669,10 +668,10 @@
     },
 
     order: [],
-    map: {},          // id -> { question, options:[{label,text,isCorrect}], correctIndex }
-    answers: {},      // id -> optionIndex
-    flagged: {},      // id -> true
-    points: {},       // id -> points for correct answer (if perQuestionPoints)
+    map: {},
+    answers: {},
+    flagged: {},
+    points: {},
     idx: 0,
 
     graded: false,
@@ -702,6 +701,11 @@
     return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
 
+  // ✅ MODIFICA: rimuove prefisso A)/B)/C)/D) (o A. / A: / A - ecc.) dal testo opzione
+  function stripChoicePrefix(s){
+    return String(s).replace(/^\s*[A-D]\s*[\)\.\-:]\s*/i, "");
+  }
+
   function shuffle(arr){
     for (let i = arr.length - 1; i > 0; i--){
       const j = Math.floor(Math.random() * (i + 1));
@@ -723,15 +727,11 @@
       if(!raw) return false;
       const s = JSON.parse(raw);
       if(!s || !s.order || !s.map) return false;
-
-      // migrazione versione
       if(s.version !== APP_VERSION) return false;
 
       state = s;
-      // normalizza
       if(!state.settings?.scoring) state.settings.scoring = { correct: 1, wrong: 0, blank: 0 };
       if(typeof state.settings.perQuestionPoints !== "boolean") state.settings.perQuestionPoints = true;
-
       return true;
     }catch(e){ return false; }
   }
@@ -776,7 +776,6 @@
 
     const map = {};
     for(const q of src){
-      // BD: corretta nel sorgente = A
       let opts = [
         { text: q.options.A, isCorrect: true },
         { text: q.options.B, isCorrect: false },
@@ -785,9 +784,14 @@
       ];
       if(state.settings.shuffleO) shuffle(opts);
 
-      const mapped = opts.map((o,i) => ({ label: LABELS[i], text: o.text, isCorrect: o.isCorrect }));
-      const correctIndex = mapped.findIndex(o => o.isCorrect);
+      // ✅ MODIFICA: pulisco il testo opzione dal prefisso A)/B)/...
+      const mapped = opts.map((o,i) => ({
+        label: LABELS[i],
+        text: stripChoicePrefix(o.text),
+        isCorrect: o.isCorrect
+      }));
 
+      const correctIndex = mapped.findIndex(o => o.isCorrect);
       map[q.id] = { question: q.question, options: mapped, correctIndex };
     }
 
@@ -806,7 +810,6 @@
 
     ensurePointsForIds(ids);
 
-    // Modalità esame forza no feedback
     if(state.settings.examMode){
       state.settings.instant = false;
       state.settings.showCorrectOnWrong = false;
@@ -855,7 +858,6 @@
   }
 
   function scoreForUI(){
-    // In modalità esame: non mostrare punteggio finché non correggi (anti-spoiler)
     if(state.settings.examMode && !state.graded){
       return { hidden: true, score: 0, max: 0, ok: 0, bad: 0, blank: 0 };
     }
@@ -923,7 +925,7 @@
       const q = state.map[id];
       const chosen = state.answers[id];
       if(chosen !== undefined && chosen === q.correctIndex) correct.push(id);
-      else wrong.push(id); // include non risposte
+      else wrong.push(id);
     }
 
     state.graded = true;
@@ -948,7 +950,6 @@
     const s = scoreForUI();
 
     $("navPill").textContent = `${ans}/${total}`;
-
     $("modePill").style.display = state.settings.examMode ? "" : "none";
 
     if(s.hidden){
@@ -992,12 +993,10 @@
     pills.push(hasAns ? `<span class="pill">Risposta data</span>` : `<span class="pill">Non risposta</span>`);
     if(flagged) pills.push(`<span class="pill warn">🚩 Segnata</span>`);
     pills.push(`<span class="pill">ID: ${id}</span>`);
-
     if(state.settings.examMode) pills.push(`<span class="pill">Modalità esame</span>`);
 
     $("meta").innerHTML = pills.join(" ");
 
-    // punti domanda box
     $("pointsBox").style.display = state.settings.perQuestionPoints ? "" : "none";
     if(state.settings.perQuestionPoints){
       $("pointsInput").value = String(getPointsFor(id));
@@ -1036,12 +1035,12 @@
       badge.textContent = o.label;
 
       const text = document.createElement("div");
-      text.innerHTML = `<b style="color:var(--muted2);font-weight:750;margin-right:6px;">${o.label})</b> ${escapeHtml(o.text)}`;
+      // ✅ MODIFICA: qui non metto più "A) ..." nel testo (badge già basta)
+      text.textContent = o.text;
 
       function choose(){
         state.answers[id] = i;
 
-        // se cambi dopo correzione, annulla stato "graded" (coerente)
         state.graded = false;
         state.wrongIds = [];
         state.correctIds = [];
@@ -1108,7 +1107,6 @@
       return;
     }
 
-    // Modalità esame: nessun feedback
     if(state.settings.examMode) return;
     if(!state.settings.instant) return;
     if(chosen === undefined) return;
@@ -1216,7 +1214,6 @@
     const list = $("wrongList");
     list.innerHTML = "";
 
-    // lista solo sbagliate + non risposte
     const wrongIds = [];
     state.order.forEach((id, idx) => {
       const q = state.map[id];
@@ -1284,15 +1281,7 @@
       }
 
       const question = (q.question || "").replaceAll('"','""');
-      rows.push([
-        idx+1,
-        id,
-        `"${question}"`,
-        chosen,
-        correct,
-        pCorrect,
-        awarded
-      ].join(","));
+      rows.push([ idx+1, id, `"${question}"`, chosen, correct, pCorrect, awarded ].join(","));
     });
 
     rows.push("");
@@ -1377,7 +1366,6 @@
   });
 
   $("newBtn").addEventListener("click", () => buildQuizFromSource());
-
   $("gradeBtn").addEventListener("click", () => gradeAll(true));
 
   $("reportBtn").addEventListener("click", () => {
@@ -1467,7 +1455,6 @@
     applySettings();
   });
 
-  // Preset
   $("presetPractice").addEventListener("click", () => {
     state.settings.examMode = false;
     state.settings.useTimer = false;
@@ -1546,18 +1533,15 @@
     const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : "";
     if(tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
 
-    // nav
     if(e.key === "ArrowLeft"){ $("prevBtn").click(); }
     if(e.key === "ArrowRight"){ $("nextBtn").click(); }
     if(e.key === "Enter"){ $("nextBtn").click(); }
 
-    // actions
     if(e.key === "f" || e.key === "F"){ $("flagBtn").click(); }
     if(e.key === "g" || e.key === "G"){ $("gradeBtn").click(); }
     if(e.key === "n" || e.key === "N"){ $("newBtn").click(); }
     if(e.key === "s" || e.key === "S"){ $("settingsBtn").click(); }
 
-    // answer A/B/C/D
     const k = e.key.toUpperCase();
     if(["A","B","C","D"].includes(k)){
       const idx = ["A","B","C","D"].indexOf(k);
@@ -1568,6 +1552,8 @@
       }
     }
   });
+
+  $("exportBtn").addEventListener("click", exportCSV);
 
   /* ---------------- Load questions.json ---------------- */
   async function loadQuestions(){
@@ -1595,7 +1581,6 @@
     updateTimerUI();
 
     if(!hasSaved){
-      // default impeccabile: 1/0/0 + punti per domanda ON
       state.version = APP_VERSION;
       state.settings.scoring = { correct: 1, wrong: 0, blank: 0 };
       state.settings.perQuestionPoints = true;
