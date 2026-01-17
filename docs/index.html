@@ -3,152 +3,870 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Quiz esercitazione</title>
+  <title>Moodle SCM – Tecniche Investigative</title>
+  <meta name="description" content="Quiz Tecniche Investigative: domande random, opzioni rimescolate, feedback immediato, flag, ricerca, timer, salvataggio." />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 20px; line-height: 1.35; }
-    .top { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    button { padding:10px 14px; border:1px solid #ddd; border-radius:10px; background:#fff; cursor:pointer; }
-    button:hover { background:#f6f6f6; }
-    .pill { padding:6px 10px; border:1px solid #ddd; border-radius:999px; }
-    .q { border:1px solid #e6e6e6; border-radius:14px; padding:14px; margin:12px 0; }
-    .q h3 { margin:0 0 10px; font-size:16px; }
-    .opt { display:block; padding:8px 10px; border:1px solid #eee; border-radius:12px; margin:6px 0; cursor:pointer; }
-    .opt input { margin-right:10px; }
-    .correct { border-color: #bfe6c6; background: #f2fbf4; }
-    .wrong { border-color: #f2b8b5; background: #fff3f3; }
-    .muted { color:#666; font-size: 13px; }
-    .sticky { position:sticky; top:10px; background:rgba(255,255,255,.92); backdrop-filter: blur(8px); padding:10px; border:1px solid #eee; border-radius:14px; margin-bottom:12px; }
+    :root{
+      --bg:#ffffff; --fg:#111; --muted:#6b7280;
+      --card:#ffffff; --soft:#f5f6f8; --border:#e6e8ee;
+      --shadow: 0 10px 30px rgba(0,0,0,.07);
+      --radius: 18px; --radius2: 14px;
+      --accent:#111;
+      --okbg:#f2fbf4; --okbd:#bfe6c6;
+      --badbg:#fff3f3; --badbd:#f2b8b5;
+      --warnbg:#fff8e6; --warnbd:#f4d483;
+      --maxw: 1180px;
+    }
+    [data-theme="dark"]{
+      --bg:#0b0c10; --fg:#f3f4f6; --muted:#9aa3b2;
+      --card:#10131a; --soft:#141827; --border:#232a3a;
+      --shadow: 0 16px 42px rgba(0,0,0,.35);
+      --accent:#f3f4f6;
+      --okbg:#102317; --okbd:#2c7a47;
+      --badbg:#2a1414; --badbd:#a44646;
+      --warnbg:#2a2314; --warnbd:#9b8437;
+    }
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0; padding:16px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg); color: var(--fg);
+      line-height: 1.35;
+    }
+    .wrap{ max-width: var(--maxw); margin: 0 auto; }
+
+    /* Topbar */
+    .topbar{
+      position: sticky; top: 10px; z-index: 50;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .left, .right{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .dot{ width:10px; height:10px; border-radius:999px; background: var(--accent); opacity: .7; }
+    .brand b{ font-size: 14px; }
+    .brand span{ color: var(--muted); font-size: 13px; }
+
+    button, input{
+      font: inherit;
+      color: var(--fg);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 12px;
+    }
+    button{ cursor:pointer; }
+    button:hover{ background: var(--soft); }
+    button:disabled{ opacity: .55; cursor:not-allowed; }
+
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .progress{
+      height: 10px;
+      width: 240px; max-width: 55vw;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      overflow: hidden;
+    }
+    .progress > div{
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      opacity: .85;
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 14px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .side{ order: 2; }
+    }
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    /* Main */
+    .subtitle{ color: var(--muted); font-size: 13px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .qtitle{ margin: 10px 0 10px; font-size: 18px; }
+    .opts{ display:flex; flex-direction:column; gap: 10px; margin-top: 8px; }
+
+    .opt{
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 12px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      cursor:pointer;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+    }
+    .opt:hover{ background: var(--soft); }
+    .opt input{ margin-top: 3px; }
+    .opt.correct{ border-color: var(--okbd); background: var(--okbg); }
+    .opt.wrong{ border-color: var(--badbd); background: var(--badbg); }
+    .opt.warn{ border-color: var(--warnbd); background: var(--warnbg); }
+
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .sep{ height:1px; background: var(--border); margin: 12px 0; }
+    .muted{ color: var(--muted); font-size: 13px; }
+
+    .toggle{
+      display:flex; gap:10px; align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    /* Side */
+    .side .head{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .search{
+      width: 100%;
+      border-radius: 14px;
+      padding: 11px 12px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+    }
+    .filters{
+      display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px;
+    }
+    .chip{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      cursor:pointer;
+      user-select:none;
+      font-size: 13px;
+    }
+    .chip.on{ background: var(--soft); color: var(--fg); border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+
+    .nums{
+      margin-top: 10px;
+      display:grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 8px;
+    }
+    .num{
+      padding: 10px 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      text-align:center;
+      cursor:pointer;
+      user-select:none;
+      font-size: 13px;
+    }
+    .num:hover{ background: var(--soft); }
+    .num.cur{ outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent); }
+    .num.ans{ border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+    .num.flag{ background: color-mix(in srgb, var(--soft) 65%, transparent); }
+    .num.bad{ border-color: var(--badbd); }
+    .num.ok{ border-color: var(--okbd); }
+
+    dialog{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0;
+      width: min(760px, 92vw);
+      background: var(--card);
+      color: var(--fg);
+      box-shadow: var(--shadow);
+    }
+    dialog::backdrop{ background: rgba(0,0,0,.35); }
+    .dlgHead{ padding: 14px; border-bottom: 1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+    .dlgBody{ padding: 14px; }
+    .dlgFoot{ padding: 14px; border-top: 1px solid var(--border); display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap; }
+    .formRow{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin: 10px 0; }
+    .formRow label{ display:flex; gap:10px; align-items:center; }
+    input[type="checkbox"]{ width:18px; height:18px; }
+    input[type="number"]{ width: 130px; border-radius: 12px; padding: 10px 12px; border: 1px solid var(--border); }
+
+    .toast{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 10px 12px;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: .2s ease;
+      pointer-events:none;
+      z-index: 999;
+    }
+    .toast.show{ opacity: 1; transform: translateY(0); }
   </style>
 </head>
+
 <body>
-  <div class="sticky top">
-    <button id="new">Nuovo quiz (random)</button>
-    <button id="grade">Correggi</button>
-    <span class="pill" id="status">Caricamento...</span>
-    <span class="muted">Le opzioni vengono rimescolate: la corretta non è sempre “A”.</span>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="left">
+      <div class="brand" title="Quiz">
+        <div class="dot"></div>
+        <div>
+          <b>Moodle SCM</b><br/>
+          <span id="smallStatus">Tecniche Investigative</span>
+        </div>
+      </div>
+
+      <button id="newBtn" title="Nuovo quiz (N)">Nuovo</button>
+      <button id="gradeBtn" title="Correggi (G)">Correggi</button>
+      <button id="reviewBtn" title="Vai alla prima sbagliata" style="display:none;">Rivedi errori</button>
+      <button id="settingsBtn" title="Impostazioni (S)">Impostazioni</button>
+      <span class="pill" id="scorePill">—</span>
+    </div>
+
+    <div class="right">
+      <div class="progress" aria-label="Progresso"><div id="bar"></div></div>
+      <span class="pill" id="timerPill" style="display:none;">⏱️ <span id="timerTxt">00:00</span></span>
+      <button id="themeBtn" title="Tema">🌙</button>
+    </div>
   </div>
 
-  <div id="quiz"></div>
+  <div class="grid">
+    <main class="card">
+      <div class="subtitle" id="subtitle"></div>
+      <h2 class="qtitle" id="qtitle"></h2>
 
-  <script>
-    let QUESTIONS = [];
-    let RENDERED = []; // {id, correctIndex, options:[{label,text,isCorrect}], chosenIndex}
+      <div class="opts" id="opts"></div>
 
-    function shuffle(arr){
-      for (let i = arr.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
+      <div class="sep"></div>
 
-    function esc(s){
-      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-    }
+      <div class="row">
+        <div class="actions">
+          <button id="prevBtn" title="Prev (←)">← Prev</button>
+          <button id="nextBtn" title="Next (→)">Next →</button>
 
-    async function load(){
-      const res = await fetch('./questions.json', { cache: 'no-store' });
-      QUESTIONS = await res.json();
-    }
+          <button id="flagBtn" title="Segna/Unsegna (F)">🚩 Segna</button>
+          <button id="jumpUnansweredBtn" title="Vai alla prima non risposta" style="display:none;">Vai a non risposte</button>
+        </div>
 
-    function render(){
-      const quizEl = document.getElementById('quiz');
-      quizEl.innerHTML = '';
-      RENDERED = [];
-
-      const qs = shuffle([...QUESTIONS]); // domande random
-
-      qs.forEach((q, idx) => {
-        // nel tuo file la corretta è sempre la A: quindi options.A è corretta
-        const opts = [
-          { key:'A', text:q.options.A, isCorrect:true },
-          { key:'B', text:q.options.B, isCorrect:false },
-          { key:'C', text:q.options.C, isCorrect:false },
-          { key:'D', text:q.options.D, isCorrect:false },
-        ];
-
-        shuffle(opts); // opzioni random
-        const correctIndex = opts.findIndex(o => o.isCorrect);
-
-        const labels = ['A','B','C','D'];
-        const mapped = opts.map((o, i) => ({ label: labels[i], text: o.text, isCorrect: o.isCorrect }));
-
-        const card = document.createElement('div');
-        card.className = 'q';
-        card.dataset.qid = q.id;
-
-        card.innerHTML = `
-          <h3>${idx+1}. ${esc(q.question)}</h3>
-          <div class="opts">
-            ${mapped.map((o, i) => `
-              <label class="opt" data-idx="${i}">
-                <input type="radio" name="q_${q.id}" value="${i}">
-                <strong>${o.label})</strong> ${esc(o.text)}
-              </label>
-            `).join('')}
+        <div class="actions">
+          <div class="toggle" title="Mostra subito giusta/sbagliata">
+            <label style="display:flex;gap:10px;align-items:center;cursor:pointer;">
+              <input type="checkbox" id="instantChk" checked />
+              Feedback subito
+            </label>
           </div>
-          <div class="muted" style="margin-top:8px;"></div>
-        `;
+          <button id="resetBtn" title="Cancella salvataggio">Reset</button>
+        </div>
+      </div>
 
-        // store
-        RENDERED.push({ id:q.id, correctIndex, options:mapped, chosenIndex:null });
+      <div class="sep"></div>
+      <div class="muted" id="feedback"></div>
+    </main>
 
-        // handlers
-        card.querySelectorAll('input[type="radio"]').forEach(inp => {
-          inp.addEventListener('change', (e) => {
-            const chosen = Number(e.target.value);
-            const r = RENDERED.find(x => x.id === q.id);
-            r.chosenIndex = chosen;
-          });
-        });
+    <aside class="card side">
+      <div class="head">
+        <strong>Navigazione</strong>
+        <span class="pill" id="navPill">—</span>
+      </div>
 
-        quizEl.appendChild(card);
-      });
+      <div style="margin-top:10px;">
+        <input id="searchBox" class="search" type="search" placeholder="Cerca testo nella domanda..." />
+        <div class="filters">
+          <div class="chip on" id="chipAll">Tutte</div>
+          <div class="chip" id="chipUnanswered">Non risposte</div>
+          <div class="chip" id="chipFlagged">Segnate 🚩</div>
+          <div class="chip" id="chipWrong">Sbagliate</div>
+        </div>
+      </div>
 
-      document.getElementById('status').textContent = `Domande: ${QUESTIONS.length}`;
+      <div class="nums" id="nums"></div>
+
+      <div class="sep"></div>
+      <div class="muted">Le risposte sono salvate sul dispositivo (riprendi da dove eri).</div>
+    </aside>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <div class="dlgHead">
+    <strong>Impostazioni</strong>
+    <button id="closeDlg">Chiudi</button>
+  </div>
+
+  <div class="dlgBody">
+    <div class="formRow">
+      <label><input type="checkbox" id="shuffleQ" checked /> Domande random</label>
+      <label><input type="checkbox" id="shuffleO" checked /> Opzioni random</label>
+    </div>
+
+    <div class="formRow">
+      <label>Numero domande:
+        <input type="number" id="limitN" min="1" step="1" placeholder="tutte" />
+      </label>
+
+      <label><input type="checkbox" id="useTimer" /> Timer</label>
+
+      <label>Minuti:
+        <input type="number" id="timerMin" min="1" step="1" value="30" />
+      </label>
+    </div>
+  </div>
+
+  <div class="dlgFoot">
+    <button id="applyBtn">Applica e ricomincia</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast">Salvato</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const STORAGE_KEY = "quiz_state_tecniche_v1";
+
+  let SOURCE = [];
+  let state = {
+    settings: { shuffleQ: true, shuffleO: true, limitN: null, useTimer: false, timerMin: 30 },
+    order: [],
+    map: {},
+    answers: {},
+    flagged: {},
+    idx: 0,
+    graded: false,
+    wrongIds: [],
+    filter: "all",
+    search: "",
+    instant: true,  // feedback immediato di default
+    timer: { startTs: null, running: false }
+  };
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+  function shuffle(arr){
+    for (let i = arr.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function toast(msg){
+    const t = $("toast");
+    t.textContent = msg || "Salvato";
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 850);
+  }
+
+  function save(silent=false){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      if(!silent) toast("Salvato");
+    }catch(e){}
+  }
+  function loadSaved(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return false;
+      const s = JSON.parse(raw);
+      if(!s || !s.order || !s.map) return false;
+      state = s;
+      return true;
+    }catch(e){ return false; }
+  }
+  function resetSaved(){
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  function currentId(){ return state.order[state.idx]; }
+  function answeredCount(){ return Object.keys(state.answers || {}).length; }
+  function totalCount(){ return (state.order || []).length; }
+
+  function buildQuizFromSource(){
+    let src = [...SOURCE].sort((a,b)=>a.id-b.id);
+    const n = state.settings.limitN;
+    if (Number.isFinite(n) && n > 0) src = src.slice(0, n);
+
+    let ids = src.map(q => q.id);
+    if (state.settings.shuffleQ) shuffle(ids);
+
+    const labels = ["A","B","C","D"];
+    const map = {};
+
+    for(const q of src){
+      // Nel tuo Word la corretta è A: qui resta corretta anche dopo shuffle opzioni
+      let opts = [
+        { text: q.options.A, isCorrect: true },
+        { text: q.options.B, isCorrect: false },
+        { text: q.options.C, isCorrect: false },
+        { text: q.options.D, isCorrect: false },
+      ];
+      if (state.settings.shuffleO) shuffle(opts);
+
+      const mapped = opts.map((o,i) => ({ label: labels[i], text: o.text, isCorrect: o.isCorrect }));
+      const correctIndex = mapped.findIndex(o => o.isCorrect);
+
+      map[q.id] = { question: q.question, options: mapped, correctIndex };
     }
 
-    function grade(){
-      let correct = 0;
+    state.order = ids;
+    state.map = map;
+    state.answers = {};
+    state.flagged = {};
+    state.idx = 0;
+    state.graded = false;
+    state.wrongIds = [];
+    state.filter = "all";
+    state.search = "";
+    state.instant = true;
+    state.timer = { startTs: null, running: false };
 
-      RENDERED.forEach(r => {
-        const card = document.querySelector(`.q[data-qid="${r.id}"]`);
-        const optLabels = card.querySelectorAll('.opt');
+    save(true);
+    updateTimerUI();
+    startTimerIfNeeded(true);
+    renderAll();
+  }
 
-        // reset styles
-        optLabels.forEach(l => l.classList.remove('correct','wrong'));
+  // Timer
+  let timerHandle = null;
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function updateTimerUI(){
+    $("timerPill").style.display = state.settings.useTimer ? "" : "none";
+  }
+  function stopTimer(){ if(timerHandle) clearInterval(timerHandle); timerHandle = null; }
+  function startTimerIfNeeded(restart=false){
+    stopTimer();
+    if(!state.settings.useTimer){
+      state.timer = { startTs: null, running: false };
+      $("timerTxt").textContent = "00:00";
+      save(true);
+      return;
+    }
+    if(restart || !state.timer || !state.timer.running || !state.timer.startTs){
+      state.timer = { startTs: Date.now(), running: true };
+      save(true);
+    }
+    tickTimer();
+    timerHandle = setInterval(tickTimer, 1000);
+  }
+  function tickTimer(){
+    if(!state.settings.useTimer) return;
+    if(!state.timer || !state.timer.running || !state.timer.startTs) return;
 
-        // mark correct
-        if (r.correctIndex >= 0) optLabels[r.correctIndex].classList.add('correct');
+    const mins = Number(state.settings.timerMin || 30);
+    const limitMs = mins * 60 * 1000;
+    const elapsed = Date.now() - state.timer.startTs;
+    const left = Math.max(0, limitMs - elapsed);
 
-        // mark wrong chosen
-        if (r.chosenIndex != null && r.chosenIndex !== r.correctIndex) {
-          optLabels[r.chosenIndex].classList.add('wrong');
-        }
+    const mm = Math.floor(left / 60000);
+    const ss = Math.floor((left % 60000) / 1000);
+    $("timerTxt").textContent = `${pad2(mm)}:${pad2(ss)}`;
 
-        if (r.chosenIndex === r.correctIndex) correct++;
-        const info = card.querySelector('.muted');
-        info.textContent = (r.chosenIndex == null)
-          ? 'Non hai risposto.'
-          : (r.chosenIndex === r.correctIndex ? '✅ Corretta' : '❌ Sbagliata');
+    if(left === 0){
+      state.timer.running = false;
+      save(true);
+      gradeAll(true);
+      stopTimer();
+      alert("Tempo scaduto: quiz corretto.");
+    }
+  }
+
+  // Grading
+  function gradeAll(silent=false){
+    const wrong = [];
+    for(const id of state.order){
+      const q = state.map[id];
+      const chosen = state.answers[id];
+      if(chosen === undefined || chosen !== q.correctIndex) wrong.push(id);
+    }
+    state.graded = true;
+    state.wrongIds = wrong;
+    save(silent);
+
+    $("reviewBtn").style.display = wrong.length ? "" : "none";
+    renderQuestion();
+    renderSide();
+    updateTop();
+    updateJumpButtons();
+    renderFeedbackSummary();
+  }
+  function renderFeedbackSummary(){
+    const total = totalCount();
+    const wrong = (state.wrongIds || []).length;
+    const correct = total - wrong;
+    const unanswered = state.order.filter(id => state.answers[id] === undefined).length;
+    $("feedback").textContent = `Risultato: ${correct}/${total}. Errori: ${wrong}. Non risposte: ${unanswered}.`;
+  }
+
+  // UI
+  function updateTop(){
+    const total = totalCount();
+    const ans = answeredCount();
+    const wrong = (state.wrongIds || []).length;
+    const correct = total ? (total - wrong) : 0;
+
+    const pct = total ? Math.round((ans/total)*100) : 0;
+    $("bar").style.width = pct + "%";
+
+    $("navPill").textContent = `${ans}/${total}`;
+    $("smallStatus").textContent = state.graded ? `Punteggio: ${correct}/${total}` : `Tecniche Investigative • Risposte: ${ans}/${total}`;
+    $("scorePill").textContent = state.graded ? `✅ ${correct}/${total}` : `⏳ ${ans}/${total}`;
+  }
+
+  function updateJumpButtons(){
+    const unanswered = state.order.some(id => state.answers[id] === undefined);
+    $("jumpUnansweredBtn").style.display = unanswered ? "" : "none";
+  }
+
+  function renderQuestion(){
+    const id = currentId();
+    const q = state.map[id];
+    const total = totalCount();
+
+    $("subtitle").innerHTML = `
+      <span class="pill">Domanda ${state.idx+1} / ${total}</span>
+      ${state.flagged[id] ? '<span class="pill">🚩 Segnata</span>' : ''}
+      ${state.answers[id] !== undefined ? '<span class="pill">Risposta data</span>' : '<span class="pill">Non risposta</span>'}
+    `;
+
+    $("qtitle").textContent = q.question;
+
+    const chosen = state.answers[id];
+    const optsEl = $("opts");
+    optsEl.innerHTML = "";
+
+    q.options.forEach((o, i) => {
+      const lab = document.createElement("label");
+      lab.className = "opt";
+
+      const inp = document.createElement("input");
+      inp.type = "radio";
+      inp.name = "q_" + id;
+      inp.value = String(i);
+      inp.checked = (chosen === i);
+
+      inp.addEventListener("change", () => {
+        state.answers[id] = i;
+        state.graded = false;
+        state.wrongIds = [];
+        $("reviewBtn").style.display = "none";
+
+        save(true);
+        updateTop();
+        updateJumpButtons();
+        renderSide();
+        if(state.instant) markCurrentInstant();
+        else $("feedback").textContent = "";
       });
 
-      document.getElementById('status').textContent = `Punteggio: ${correct}/${RENDERED.length}`;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const text = document.createElement("div");
+      text.innerHTML = `<strong>${o.label})</strong> ${escapeHtml(o.text)}`;
+
+      lab.appendChild(inp);
+      lab.appendChild(text);
+      optsEl.appendChild(lab);
+    });
+
+    $("prevBtn").disabled = state.idx === 0;
+    $("nextBtn").disabled = state.idx === total - 1;
+
+    $("flagBtn").textContent = state.flagged[id] ? "🚩 Segnata" : "🚩 Segna";
+
+    if(state.graded) markCurrentGraded();
+    if(state.instant && state.answers[id] !== undefined) markCurrentInstant();
+  }
+
+  function markCurrentGraded(){
+    const id = currentId();
+    const q = state.map[id];
+    const chosen = state.answers[id];
+    const labels = Array.from(document.querySelectorAll("#opts .opt"));
+
+    labels.forEach((el, idx) => {
+      el.classList.remove("correct","wrong","warn");
+      if(idx === q.correctIndex) el.classList.add("correct");
+      if(chosen !== undefined && chosen !== q.correctIndex && idx === chosen) el.classList.add("wrong");
+      if(chosen === undefined && idx === q.correctIndex) el.classList.add("warn");
+    });
+  }
+
+  function markCurrentInstant(){
+    const id = currentId();
+    const q = state.map[id];
+    const chosen = state.answers[id];
+    const labels = Array.from(document.querySelectorAll("#opts .opt"));
+
+    labels.forEach(el => el.classList.remove("correct","wrong","warn"));
+    if(chosen === undefined) return;
+
+    if(chosen === q.correctIndex){
+      labels[chosen].classList.add("correct");
+      $("feedback").textContent = "✅ Corretta";
+    } else {
+      labels[chosen].classList.add("wrong");
+      labels[q.correctIndex].classList.add("correct");
+      $("feedback").textContent = "❌ Sbagliata (mostro anche la corretta)";
     }
+  }
 
-    document.getElementById('new').addEventListener('click', render);
-    document.getElementById('grade').addEventListener('click', grade);
+  function passesFilter(id){
+    const q = state.map[id];
+    const chosen = state.answers[id];
+    const flagged = !!state.flagged[id];
+    const wrong = state.graded && chosen !== undefined && chosen !== q.correctIndex;
 
-    (async () => {
-      try {
-        await load();
-        render();
-      } catch (e) {
-        document.getElementById('status').textContent = 'Errore: non trovo questions.json';
-        console.error(e);
+    if(state.search){
+      const hay = (q.question || "").toLowerCase();
+      if(!hay.includes(state.search.toLowerCase())) return false;
+    }
+    if(state.filter === "all") return true;
+    if(state.filter === "unanswered") return chosen === undefined;
+    if(state.filter === "flagged") return flagged;
+    if(state.filter === "wrong") return state.graded && wrong;
+    return true;
+  }
+
+  function renderSide(){
+    const nums = $("nums");
+    nums.innerHTML = "";
+
+    state.order.forEach((id, i) => {
+      if(!passesFilter(id)) return;
+
+      const q = state.map[id];
+      const chosen = state.answers[id];
+
+      const d = document.createElement("div");
+      d.className = "num";
+      d.textContent = String(i+1);
+
+      if(i === state.idx) d.classList.add("cur");
+      if(chosen !== undefined) d.classList.add("ans");
+      if(state.flagged[id]) d.classList.add("flag");
+
+      if(state.graded && chosen !== undefined){
+        if(chosen === q.correctIndex) d.classList.add("ok");
+        else d.classList.add("bad");
       }
-    })();
-  </script>
+
+      d.title = `Vai alla domanda ${i+1}`;
+      d.addEventListener("click", () => {
+        state.idx = i;
+        save(true);
+        renderAll();
+      });
+
+      nums.appendChild(d);
+    });
+  }
+
+  function renderAll(){
+    $("searchBox").value = state.search || "";
+    $("instantChk").checked = !!state.instant;
+
+    $("chipAll").classList.toggle("on", state.filter === "all");
+    $("chipUnanswered").classList.toggle("on", state.filter === "unanswered");
+    $("chipFlagged").classList.toggle("on", state.filter === "flagged");
+    $("chipWrong").classList.toggle("on", state.filter === "wrong");
+
+    renderQuestion();
+    renderSide();
+    updateTop();
+    updateJumpButtons();
+    if(state.graded) renderFeedbackSummary();
+  }
+
+  // Events
+  function setFilter(f){
+    state.filter = f;
+    save(true);
+    renderSide();
+  }
+
+  $("chipAll").addEventListener("click", () => setFilter("all"));
+  $("chipUnanswered").addEventListener("click", () => setFilter("unanswered"));
+  $("chipFlagged").addEventListener("click", () => setFilter("flagged"));
+  $("chipWrong").addEventListener("click", () => {
+    if(!state.graded){
+      alert("Prima premi “Correggi” per vedere le sbagliate.");
+      return;
+    }
+    setFilter("wrong");
+  });
+
+  $("searchBox").addEventListener("input", (e) => {
+    state.search = e.target.value.trim();
+    save(true);
+    renderSide();
+  });
+
+  $("prevBtn").addEventListener("click", () => {
+    if(state.idx > 0){ state.idx--; save(true); renderAll(); }
+  });
+  $("nextBtn").addEventListener("click", () => {
+    if(state.idx < totalCount() - 1){ state.idx++; save(true); renderAll(); }
+  });
+
+  $("flagBtn").addEventListener("click", () => {
+    const id = currentId();
+    state.flagged[id] = !state.flagged[id];
+    save(true);
+    renderAll();
+  });
+
+  $("instantChk").addEventListener("change", (e) => {
+    state.instant = !!e.target.checked;
+    save(true);
+    if(state.instant) markCurrentInstant();
+    else if(state.graded) markCurrentGraded();
+    else $("feedback").textContent = "";
+  });
+
+  $("newBtn").addEventListener("click", () => buildQuizFromSource());
+  $("gradeBtn").addEventListener("click", () => { gradeAll(true); toast("Corretto"); });
+
+  $("reviewBtn").addEventListener("click", () => {
+    if(!state.graded || !(state.wrongIds || []).length) return;
+    const firstWrong = state.wrongIds[0];
+    const i = state.order.indexOf(firstWrong);
+    if(i >= 0){ state.idx = i; save(true); renderAll(); }
+  });
+
+  $("jumpUnansweredBtn").addEventListener("click", () => {
+    const i = state.order.findIndex(id => state.answers[id] === undefined);
+    if(i >= 0){ state.idx = i; save(true); renderAll(); }
+    else alert("Hai risposto a tutte.");
+  });
+
+  $("resetBtn").addEventListener("click", () => {
+    if(confirm("Vuoi cancellare il salvataggio e ricominciare?")){
+      resetSaved();
+      location.reload();
+    }
+  });
+
+  // Settings dialog
+  const dlg = $("dlg");
+  $("settingsBtn").addEventListener("click", () => {
+    $("shuffleQ").checked = !!state.settings.shuffleQ;
+    $("shuffleO").checked = !!state.settings.shuffleO;
+    $("limitN").value = state.settings.limitN ?? "";
+    $("useTimer").checked = !!state.settings.useTimer;
+    $("timerMin").value = state.settings.timerMin ?? 30;
+    dlg.showModal();
+  });
+  $("closeDlg").addEventListener("click", () => dlg.close());
+  $("applyBtn").addEventListener("click", () => {
+    state.settings.shuffleQ = $("shuffleQ").checked;
+    state.settings.shuffleO = $("shuffleO").checked;
+
+    const lim = $("limitN").value.trim();
+    state.settings.limitN = lim ? Math.max(1, parseInt(lim,10)) : null;
+
+    state.settings.useTimer = $("useTimer").checked;
+    state.settings.timerMin = Math.max(1, parseInt($("timerMin").value || "30", 10));
+
+    dlg.close();
+    updateTimerUI();
+    buildQuizFromSource();
+  });
+
+  // Theme
+  function setTheme(t){
+    document.documentElement.setAttribute("data-theme", t);
+    localStorage.setItem("quiz_theme", t);
+    $("themeBtn").textContent = (t === "dark") ? "☀️" : "🌙";
+  }
+  $("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme") || "light";
+    setTheme(cur === "dark" ? "light" : "dark");
+  });
+
+  // Shortcuts
+  document.addEventListener("keydown", (e) => {
+    if(e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+
+    if(e.key === "ArrowLeft") $("prevBtn").click();
+    if(e.key === "ArrowRight") $("nextBtn").click();
+    if(e.key === "f" || e.key === "F") $("flagBtn").click();
+    if(e.key === "g" || e.key === "G") $("gradeBtn").click();
+    if(e.key === "n" || e.key === "N") $("newBtn").click();
+    if(e.key === "s" || e.key === "S") $("settingsBtn").click();
+  });
+
+  // Load questions.json
+  async function loadQuestions(){
+    const res = await fetch("./questions.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("Impossibile caricare questions.json");
+    const data = await res.json();
+    if(!Array.isArray(data) || !data.length) throw new Error("questions.json vuoto o non valido");
+    return data;
+  }
+
+  (async () => {
+    const theme = localStorage.getItem("quiz_theme") || "light";
+    setTheme(theme);
+
+    try{
+      SOURCE = await loadQuestions();
+    }catch(err){
+      $("smallStatus").textContent = "Errore caricamento domande";
+      $("scorePill").textContent = "❌";
+      $("feedback").textContent =
+        "Non riesco a leggere ./questions.json. Controlla che sia in docs/ insieme a index.html e ricarica la pagina.";
+      console.error(err);
+      return;
+    }
+
+    const hasSaved = loadSaved();
+    updateTimerUI();
+
+    // Forza feedback immediato anche se avevi un salvataggio vecchio
+    state.instant = true;
+    save(true);
+
+    if(!hasSaved || !state.order || !state.order.length || !state.map){
+      buildQuizFromSource();
+    } else {
+      startTimerIfNeeded(false);
+      renderAll();
+    }
+
+    updateTop();
+    updateJumpButtons();
+  })();
+})();
+</script>
 </body>
 </html>
