@@ -158,6 +158,9 @@
     .pad{ padding: 16px; }
 
     /* MAIN LEFT */
+    #mainCard .pad{ display:flex; flex-direction:column; gap: 0; }
+    .mainContent{ min-height: 0; }
+
     .qTitle{
       margin: 0 0 12px;
       font-size: 18px;
@@ -197,18 +200,21 @@
     .sep{ height:1px; background: var(--stroke2); margin: 14px 0; }
     .feedback{ color: var(--muted); font-size: 13px; min-height: 18px; }
 
-    .mainNav{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top: 14px;
+    /* ✅ Prev/Next fissi in basso */
+    .mainNavBar{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 16px 16px;
+      border-top: 1px solid var(--stroke2);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(12px);
     }
-    .mainNav button{ padding: 11px 14px; }
+    .mainNavBar button{ padding: 11px 14px; }
 
     /* RIGHT PANEL */
-    .sideSticky{
-      position: sticky;
-      top: 86px;
-    }
-
+    .sideSticky{ position: sticky; top: 86px; }
     .sideHead{
       padding: 14px 16px;
       border-bottom: 1px solid var(--stroke2);
@@ -429,6 +435,66 @@
     }
     .toast.show{ opacity: 1; transform: translateY(0); }
 
+    /* ✅ Desktop: sidebar scroll interna + main con scroll interno e barra fissa */
+    @media (min-width: 1041px){
+      #mainCard{
+        position: sticky;
+        top: 86px;
+        height: calc(100vh - 110px);
+        display:flex;
+        flex-direction:column;
+      }
+      #mainCard .pad{
+        height: 100%;
+        padding: 16px;
+        display:flex;
+        flex-direction:column;
+      }
+      #mainContent{
+        flex: 1 1 auto;
+        overflow: auto;
+        padding-right: 6px;
+        min-height: 0;
+      }
+      #mainNavBar{
+        flex: 0 0 auto;
+        margin: 0 -16px -16px;
+      }
+
+      .sideSticky{
+        height: calc(100vh - 110px);
+      }
+      .sideSticky .card{
+        height: 100%;
+        display:flex;
+        flex-direction:column;
+      }
+      .sideBody{
+        flex: 1 1 auto;
+        overflow: auto;
+        min-height: 0;
+      }
+    }
+
+    /* ✅ Mobile: Prev/Next sticky “tipo app” */
+    @media (max-width: 1040px){
+      .mainNavBar{
+        position: sticky;
+        bottom: 12px;
+        margin: 0;
+        border: 1px solid var(--stroke2);
+        border-radius: 999px;
+        box-shadow: var(--shadow2);
+        padding: 10px;
+      }
+      .mainNavBar button{
+        flex: 1 1 auto;
+      }
+      .mainNavBar{
+        justify-content: stretch;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; animation:none !important; }
     }
@@ -438,7 +504,6 @@
 <body>
 <div class="wrap">
 
-  <!-- Header solo brand (controlli tutti a destra) -->
   <header>
     <div class="brand" aria-label="Titolo">
       <div class="logo" aria-hidden="true"></div>
@@ -450,23 +515,26 @@
   </header>
 
   <div class="grid">
-    <!-- LEFT: SOLO domanda + opzioni + Prev/Next -->
-    <main class="card" aria-label="Domanda">
+    <!-- LEFT -->
+    <main id="mainCard" class="card" aria-label="Domanda">
       <div class="pad">
-        <h2 class="qTitle" id="qTitle"></h2>
-        <div class="opts" id="opts"></div>
+        <div id="mainContent" class="mainContent">
+          <h2 class="qTitle" id="qTitle"></h2>
+          <div class="opts" id="opts"></div>
 
-        <div class="sep"></div>
-        <div class="feedback" id="feedback"></div>
+          <div class="sep"></div>
+          <div class="feedback" id="feedback"></div>
+        </div>
 
-        <div class="mainNav">
+        <!-- Prev/Next fissi -->
+        <div id="mainNavBar" class="mainNavBar">
           <button id="prevBtn" title="Prev (←)">← Prev</button>
           <button id="nextBtn" title="Next (→)">Next →</button>
         </div>
       </div>
     </main>
 
-    <!-- RIGHT: TUTTO IL RESTO -->
+    <!-- RIGHT -->
     <aside class="sideSticky">
       <div class="card" aria-label="Pannello">
         <div class="sideHead">
@@ -476,7 +544,7 @@
 
         <div class="sideBody">
 
-          <!-- STATUS/PILLS -->
+          <!-- STATUS -->
           <div class="section">
             <div class="sectionTitle">
               <b>Stato</b>
@@ -489,13 +557,19 @@
             <div class="meta" id="meta"></div>
           </div>
 
-          <!-- ACTION BUTTONS -->
+          <!-- ACTIONS -->
           <div class="section">
             <div class="sectionTitle">
               <b>Azioni</b>
               <div class="row">
                 <button id="themeBtn" title="Tema">🌙</button>
               </div>
+            </div>
+
+            <!-- ✅ Vai a domanda # -->
+            <div class="row" style="margin-bottom:10px;">
+              <input id="jumpInput" type="number" min="1" step="1" placeholder="Vai a #…" style="flex:1;border-radius:14px;padding:11px 12px;" />
+              <button id="jumpBtn" class="primary">Vai</button>
             </div>
 
             <div class="btnGrid">
@@ -546,7 +620,7 @@
             </div>
           </div>
 
-          <!-- SEARCH + FILTERS -->
+          <!-- SEARCH + FILTERS + GRID -->
           <div class="section">
             <div class="sectionTitle">
               <b>Navigazione</b>
@@ -691,7 +765,7 @@
 (() => {
   const $ = (id) => document.getElementById(id);
 
-  const APP_VERSION = "ti_quiz_impeccabile_v2_rightpanel";
+  const APP_VERSION = "ti_quiz_impeccabile_v3_scroll_jump_fixednav";
   const STORAGE_KEY = "ti_quiz_state_impeccabile";
   const THEME_KEY = "ti_theme_impeccabile";
   const LABELS = ["A","B","C","D"];
@@ -773,10 +847,7 @@
       if(!raw) return false;
       const s = JSON.parse(raw);
       if(!s || !s.order || !s.map) return false;
-
-      // se cambi layout/versione: riparti pulito per evitare stati strani
-      if(s.version !== APP_VERSION) return false;
-
+      if(s.version !== APP_VERSION) return false; // versione nuova = riparti pulito
       state = s;
       if(!state.settings?.scoring) state.settings.scoring = { correct: 1, wrong: 0, blank: 0 };
       if(typeof state.settings.perQuestionPoints !== "boolean") state.settings.perQuestionPoints = true;
@@ -992,6 +1063,12 @@
 
     $("navPill").textContent = `${ans}/${total}`;
     $("modePill").style.display = state.settings.examMode ? "" : "none";
+
+    // aggiorna max input jump
+    const ji = $("jumpInput");
+    if(ji){
+      ji.max = String(total);
+    }
 
     if(s.hidden){
       $("scorePill").textContent = "Punteggio: —";
@@ -1348,6 +1425,22 @@
     renderSide();
   }
 
+  function jumpToNumber(){
+    const raw = ($("jumpInput").value || "").trim();
+    const n = parseInt(raw, 10);
+    const total = totalCount();
+    if(!Number.isFinite(n) || n < 1 || n > total){
+      alert(`Inserisci un numero tra 1 e ${total}.`);
+      return;
+    }
+    state.idx = n - 1;
+    save(true);
+    renderAll();
+    // scrolla contenuto domanda in alto (desktop: scroll interno)
+    const mc = $("mainContent");
+    if(mc) mc.scrollTop = 0;
+  }
+
   $("chipAll").addEventListener("click", () => setFilter("all"));
   $("chipUnanswered").addEventListener("click", () => setFilter("unanswered"));
   $("chipFlagged").addEventListener("click", () => setFilter("flagged"));
@@ -1401,6 +1494,11 @@
     save(true);
     updateHeader();
     toast("Punti domanda aggiornati");
+  });
+
+  $("jumpBtn").addEventListener("click", jumpToNumber);
+  $("jumpInput").addEventListener("keydown", (e) => {
+    if(e.key === "Enter") jumpToNumber();
   });
 
   $("newBtn").addEventListener("click", () => buildQuizFromSource());
