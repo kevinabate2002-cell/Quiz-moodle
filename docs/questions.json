@@ -1,0 +1,1682 @@
+[
+  {
+    "id": 1,
+    "question": "Perché è richiesto l’ausilio di uno psicologo durante l’acquisizione di sommarie informazioni da minori?",
+    "options": {
+      "A": "Per prevenire traumi psicologici e garantire modalità adeguate di ascolto",
+      "B": "Per ridurre il coinvolgimento diretto del Pubblico Ministero",
+      "C": "Per accertare la veridicità delle dichiarazioni rese",
+      "D": "Per validare giuridicamente l’atto di assunzione delle dichiarazioni"
+    }
+  },
+  {
+    "id": 2,
+    "question": "Qual è una differenza tra il diritto di astensione e l’obbligo di risposta nelle sommarie informazioni?",
+    "options": {
+      "A": "Il diritto di astensione si applica a determinate categorie di persone",
+      "B": "L’obbligo di risposta elimina la verbalizzazione",
+      "C": "L’obbligo di risposta vale solo nei procedimenti civili",
+      "D": "Il diritto di astensione richiede sempre la presenza del difensore"
+    }
+  },
+  {
+    "id": 3,
+    "question": "Nelle intercettazioni di appartenenti alle agenzie di sicurezza, la Presidenza del Consiglio dei Ministri ha:",
+    "options": {
+      "A": "60 giorni",
+      "B": "20 giorni",
+      "C": "30 giorni",
+      "D": "40 giorni"
+    }
+  },
+  {
+    "id": 4,
+    "question": "Quanto può durare un’intercettazione autorizzata per un reato comune prima che sia necessaria una proroga?",
+    "options": {
+      "A": "15 giorni",
+      "B": "30 giorni",
+      "C": "40 giorni",
+      "D": "60 giorni"
+    }
+  },
+  {
+    "id": 5,
+    "question": "Il Narcotest è un kit:",
+    "options": {
+      "A": "Utilizzabile per l’analisi speditiva di alcune sostanze stupefacenti",
+      "B": "Utilizzabile per l’analisi definitiva di alcune sostanze stupefacenti",
+      "C": "Utilizzabile per l’analisi speditiva di tutte le sostanze stupefacenti",
+      "D": "In dotazione esclusiva ai Reparti Speciali"
+    }
+  },
+  {
+    "id": 6,
+    "question": "I congiunti di presunte vittime di reati:",
+    "options": {
+      "A": "Possono essere sottoposti a intercettazione",
+      "B": "Non possono mai essere sottoposti a intercettazione",
+      "C": "Possono essere sottoposti a intercettazione ma le conversazioni non sono trascrivibili",
+      "D": "Possono essere sottoposti a intercettazione solo con procedura d’urgenza"
+    }
+  },
+  {
+    "id": 7,
+    "question": "Il prossimo congiunto di una vittima di reato ai sensi dell’art. 199 c.p.p.:",
+    "options": {
+      "A": "Ha facoltà di astenersi dal deporre",
+      "B": "Ha l’obbligo di deporre",
+      "C": "Non può essere escusso",
+      "D": "Deve essere sentito obbligatoriamente con il difensore"
+    }
+  },
+  {
+    "id": 8,
+    "question": "Qualora l’individuazione debba essere espletata da più persone:",
+    "options": {
+      "A": "Le operazioni devono essere ripetute singolarmente",
+      "B": "Le operazioni possono essere eseguite contestualmente",
+      "C": "Le operazioni non devono essere ripetute singolarmente",
+      "D": "Possono essere eseguite contestualmente previa autorizzazione del P.M."
+    }
+  },
+  {
+    "id": 9,
+    "question": "Quale passaggio deve precedere la confisca delle sostanze sequestrate?",
+    "options": {
+      "A": "La conclusione dei termini per la richiesta di revisione delle analisi e l’eventuale rigetto dell’opposizione",
+      "B": "L’approvazione del Pubblico Ministero",
+      "C": "La distruzione immediata delle sostanze",
+      "D": "La comunicazione del risultato delle analisi alla Prefettura"
+    }
+  },
+  {
+    "id": 10,
+    "question": "Qual è la principale differenza tra droghe leggere e droghe pesanti secondo la classificazione italiana originaria?",
+    "options": {
+      "A": "Le droghe leggere comportavano sanzioni minori rispetto a quelle pesanti",
+      "B": "Le droghe leggere non alterano le capacità motorie",
+      "C": "Le droghe leggere sono sempre stimolanti",
+      "D": "Le droghe pesanti erano legali per scopi terapeutici"
+    }
+  },
+  {
+    "id": 11,
+    "question": "L’ispezione ed il controllo dei mezzi di trasporto, dei bagagli e degli effetti personali ai sensi dell’art. 103 DPR 309/1990 possono essere eseguiti:",
+    "options": {
+      "A": "Quando vi sono fondati motivi per ritenere che possano essere rinvenute sostanze stupefacenti",
+      "B": "Quando vi sono sufficienti motivi",
+      "C": "Solo dopo il rinvenimento di sostanze stupefacenti a seguito di perquisizione personale",
+      "D": "Quando vi sono fondati indizi di colpevolezza"
+    }
+  },
+  {
+    "id": 12,
+    "question": "Chi procede al confronto:",
+    "options": {
+      "A": "Richiama preliminarmente alle parti quanto precedentemente sostenuto",
+      "B": "Non deve richiamare quanto precedentemente sostenuto",
+      "C": "Deve astenersi se tra le parti vi è la persona indagata",
+      "D": "Può procedere solo in presenza del difensore"
+    }
+  },
+  {
+    "id": 13,
+    "question": "Quale fra le successive enunciazioni raffigura correttamente un consumatore secondo la classificazione italiana?",
+    "options": {
+      "A": "Soggetto che consuma occasionalmente mantenendo il controllo",
+      "B": "Soggetto che consuma quotidianamente",
+      "C": "Soggetto che assume dosi regolari",
+      "D": "Soggetto con dipendenza cronica"
+    }
+  },
+  {
+    "id": 14,
+    "question": "Nei casi di urgenza il pubblico ministero può disporre l’intercettazione ambientale mediante captatore informatico (trojan):",
+    "options": {
+      "A": "Anche per gravi delitti contro la P.A.",
+      "B": "Mai per delitti contro la P.A.",
+      "C": "Solo per delitti contro la P.A.",
+      "D": "Solo per reati comuni"
+    }
+  },
+  {
+    "id": 15,
+    "question": "Qual era lo scopo del concetto di modica quantità introdotto dalla legge n. 685 del 1975?",
+    "options": {
+      "A": "Distinguere l’uso personale dall’attività di spaccio",
+      "B": "Liberalizzare il consumo",
+      "C": "Depenalizzare integralmente",
+      "D": "Introdurre solo sanzioni amministrative"
+    }
+  },
+  {
+    "id": 16,
+    "question": "Qual è l’obbligo relativo al deposito del verbale delle sommarie informazioni?",
+    "options": {
+      "A": "Deve essere depositato entro tre giorni dalla redazione",
+      "B": "Deve essere depositato entro quarantotto ore",
+      "C": "Può essere depositato alla fine delle indagini",
+      "D": "Deve essere depositato previa autorizzazione del difensore"
+    }
+  },
+  {
+    "id": 17,
+    "question": "Qual è la differenza tra dipendenza fisica e dipendenza psichica?",
+    "options": {
+      "A": "La dipendenza fisica comporta sintomi di astinenza, quella psichica un bisogno emotivo",
+      "B": "Sono concetti coincidenti",
+      "C": "La dipendenza psichica non comporta alcun disagio",
+      "D": "La dipendenza fisica riguarda solo le droghe pesanti"
+    }
+  },
+  {
+    "id": 18,
+    "question": "Nel procedere ad individuazione di suoni o rumori:",
+    "options": {
+      "A": "Il soggetto viene invitato a fornire una descrizione dettagliata di quanto udito",
+      "B": "Non è necessaria alcuna descrizione preventiva",
+      "C": "L’individuazione avviene solo in presenza del pubblico ministero",
+      "D": "L’atto non deve essere verbalizzato"
+    }
+  },
+  {
+    "id": 19,
+    "question": "Qual è la finalità dell’individuazione fotografica?",
+    "options": {
+      "A": "Consentire il riconoscimento senza la presenza fisica del soggetto",
+      "B": "Costituire prova definitiva",
+      "C": "Sostituire il confronto tra persone",
+      "D": "Essere utilizzata solo nella fase dibattimentale"
+    }
+  },
+  {
+    "id": 20,
+    "question": "L’individuazione di persone o cose è disciplinata:",
+    "options": {
+      "A": "Dagli articoli 361 e seguenti del codice di procedura penale",
+      "B": "Dal codice civile",
+      "C": "Da circolari interne della polizia giudiziaria",
+      "D": "Dal regolamento di servizio dell’Arma"
+    }
+  },
+  {
+    "id": 21,
+    "question": "Quale autorità dispone l’intercettazione nei procedimenti penali ordinari?",
+    "options": {
+      "A": "Il giudice per le indagini preliminari, su richiesta del Pubblico Ministero",
+      "B": "Il Pubblico Ministero",
+      "C": "La polizia giudiziaria",
+      "D": "Il tribunale in composizione collegiale"
+    }
+  },
+  {
+    "id": 22,
+    "question": "In tema di intercettazioni, cosa si intende per “procedimento d’urgenza”?",
+    "options": {
+      "A": "Un procedimento in cui dal ritardo può derivare grave pregiudizio alle indagini",
+      "B": "Un procedimento previsto solo per i reati associativi",
+      "C": "Un procedimento deciso discrezionalmente dalla polizia giudiziaria",
+      "D": "Un procedimento sempre privo di autorizzazione giudiziaria"
+    }
+  },
+  {
+    "id": 23,
+    "question": "Quale tra i seguenti soggetti può avvalersi del diritto di astensione dal deporre?",
+    "options": {
+      "A": "Il prossimo congiunto dell’imputato o dell’indagato",
+      "B": "Qualsiasi testimone",
+      "C": "L’indagato per il medesimo fatto",
+      "D": "Il difensore"
+    }
+  },
+  {
+    "id": 24,
+    "question": "Le operazioni di intercettazione devono essere documentate:",
+    "options": {
+      "A": "Mediante verbale e registrazione integrale delle comunicazioni",
+      "B": "Con semplice annotazione di polizia giudiziaria",
+      "C": "Senza redazione di verbale",
+      "D": "Con una sintesi delle conversazioni"
+    }
+  },
+  {
+    "id": 25,
+    "question": "In quali casi le intercettazioni possono essere prorogate?",
+    "options": {
+      "A": "In presenza di esigenze investigative, con decreto motivato del giudice",
+      "B": "Automaticamente alla scadenza",
+      "C": "Su decisione della polizia giudiziaria",
+      "D": "Senza necessità di motivazione"
+    }
+  },
+  {
+    "id": 26,
+    "question": "Che cosa si intende per confronto tra persone già esaminate?",
+    "options": {
+      "A": "Un atto volto a chiarire divergenze o contraddizioni tra dichiarazioni rese",
+      "B": "Un atto finalizzato ad accertare la colpevolezza",
+      "C": "Un atto sostitutivo dell’interrogatorio",
+      "D": "Una prova definitiva nel procedimento"
+    }
+  },
+  {
+    "id": 27,
+    "question": "Quando può essere effettuata l’individuazione di cose?",
+    "options": {
+      "A": "Quando è utile al riconoscimento di oggetti pertinenti al reato",
+      "B": "Sempre, indipendentemente dal procedimento",
+      "C": "Solo dopo il sequestro definitivo",
+      "D": "Solo nella fase dibattimentale"
+    }
+  },
+  {
+    "id": 28,
+    "question": "In quale fase del procedimento penale si collocano normalmente le sommarie informazioni?",
+    "options": {
+      "A": "Nella fase delle indagini preliminari",
+      "B": "Nella fase dibattimentale",
+      "C": "Nella fase esecutiva",
+      "D": "Nella fase cautelare"
+    }
+  },
+  {
+    "id": 29,
+    "question": "Quale tra le seguenti attività NON rientra nelle tecniche investigative tradizionali?",
+    "options": {
+      "A": "L’utilizzo del captatore informatico (trojan)",
+      "B": "L’osservazione",
+      "C": "Il pedinamento",
+      "D": "L’individuazione"
+    }
+  },
+  {
+    "id": 30,
+    "question": "L’intercettazione di comunicazioni informatiche può riguardare:",
+    "options": {
+      "A": "Flussi di comunicazioni informatiche e telematiche",
+      "B": "Solo comunicazioni telefoniche",
+      "C": "Solo comunicazioni già archiviate",
+      "D": "Solo comunicazioni tra presenti"
+    }
+  },
+  {
+    "id": 31,
+    "question": "Quale tra le seguenti affermazioni descrive correttamente l’individuazione di persona?",
+    "options": {
+      "A": "La persona da individuare viene posta tra più soggetti con caratteristiche simili",
+      "B": "La persona viene mostrata singolarmente",
+      "C": "La persona viene indicata dall’operatore",
+      "D": "L’individuazione avviene senza descrizione preventiva"
+    }
+  },
+  {
+    "id": 32,
+    "question": "Qual è la differenza principale tra perquisizione e ispezione?",
+    "options": {
+      "A": "La perquisizione è finalizzata alla ricerca, l’ispezione all’accertamento dello stato dei luoghi o delle cose",
+      "B": "Sono atti identici",
+      "C": "L’ispezione è più invasiva",
+      "D": "La perquisizione riguarda solo le persone"
+    }
+  },
+  {
+    "id": 33,
+    "question": "Quando è possibile procedere all’ascolto di persona informata sui fatti senza avviso al difensore?",
+    "options": {
+      "A": "Quando non è indagata e non emergono indizi a suo carico",
+      "B": "Sempre",
+      "C": "Mai",
+      "D": "Solo in presenza del pubblico ministero"
+    }
+  },
+  {
+    "id": 34,
+    "question": "Qual è la funzione del verbale nelle attività di polizia giudiziaria?",
+    "options": {
+      "A": "Documentare fedelmente l’attività compiuta",
+      "B": "Riassumere le attività svolte",
+      "C": "Fornire valutazioni personali",
+      "D": "Sostituire la prova"
+    }
+  },
+  {
+    "id": 35,
+    "question": "Le sommarie informazioni rese da un indagato:",
+    "options": {
+      "A": "Non sono utilizzabili se assunte senza le garanzie difensive previste dalla legge",
+      "B": "Sono sempre utilizzabili come prova",
+      "C": "Costituiscono prova piena",
+      "D": "Sono sempre inutilizzabili"
+    }
+  },
+  {
+    "id": 36,
+    "question": "Quale tra i seguenti soggetti non può essere sentito come persona informata sui fatti?",
+    "options": {
+      "A": "Chi è indagato per il medesimo fatto",
+      "B": "Il testimone",
+      "C": "Il prossimo congiunto",
+      "D": "Il minore (con le cautele di legge)"
+    }
+  },
+  {
+    "id": 37,
+    "question": "In materia di stupefacenti, cosa distingue lo spacciatore dal consumatore?",
+    "options": {
+      "A": "La destinazione della sostanza a terzi",
+      "B": "Il tipo di sostanza",
+      "C": "Il luogo del possesso",
+      "D": "La quantità in senso assoluto"
+    }
+  },
+  {
+    "id": 38,
+    "question": "Qual è la finalità del sequestro di sostanza stupefacente?",
+    "options": {
+      "A": "Impedire la circolazione della sostanza e assicurare la prova",
+      "B": "Punire l’autore del reato",
+      "C": "Consentire l’uso terapeutico",
+      "D": "Procedere alla distruzione immediata"
+    }
+  },
+  {
+    "id": 39,
+    "question": "Quando può essere disposta la distruzione delle sostanze stupefacenti sequestrate?",
+    "options": {
+      "A": "Dopo l’espletamento delle analisi e nel rispetto delle garanzie di legge",
+      "B": "Immediatamente dopo il sequestro",
+      "C": "Prima delle analisi",
+      "D": "Senza alcuna autorizzazione"
+    }
+  },
+  {
+    "id": 40,
+    "question": "In quali casi il pubblico ministero può disporre intercettazioni senza preventiva autorizzazione del giudice?",
+    "options": {
+      "A": "Nei casi di urgenza, quando dal ritardo può derivare grave pregiudizio alle indagini, con successiva convalida del GIP",
+      "B": "Sempre, se lo ritiene utile alle indagini",
+      "C": "Solo su richiesta della polizia giudiziaria",
+      "D": "Mai, perché serve sempre l’autorizzazione preventiva"
+    }
+  },
+  {
+    "id": 41,
+    "question": "Qual è il ruolo del GIP nelle intercettazioni?",
+    "options": {
+      "A": "Autorizza (e proroga) le intercettazioni e ne controlla la legittimità",
+      "B": "Esegue materialmente le operazioni di ascolto",
+      "C": "Trascrive personalmente le conversazioni intercettate",
+      "D": "Decide la condanna dell’indagato sulla base delle intercettazioni"
+    }
+  },
+  {
+    "id": 42,
+    "question": "Quali sono i presupposti per procedere a intercettazioni telefoniche?",
+    "options": {
+      "A": "Gravi indizi di reato e indispensabilità ai fini delle indagini",
+      "B": "Semplici sospetti e utilità generica",
+      "C": "Denuncia anonima e pericolo di fuga",
+      "D": "Richiesta della persona offesa"
+    }
+  },
+  {
+    "id": 43,
+    "question": "Quando è consentita l’intercettazione di comunicazioni tra presenti (ambientale)?",
+    "options": {
+      "A": "Quando vi è fondato motivo di ritenere che nel luogo si svolga attività criminosa",
+      "B": "Sempre, anche senza presupposti specifici",
+      "C": "Solo nei luoghi pubblici e mai in luoghi chiusi",
+      "D": "Solo se l’indagato è presente con certezza"
+    }
+  },
+  {
+    "id": 44,
+    "question": "Qual è la funzione della trascrizione delle intercettazioni?",
+    "options": {
+      "A": "Rendere utilizzabile il contenuto delle conversazioni nel procedimento",
+      "B": "Sostituire la registrazione audio, che viene eliminata",
+      "C": "Consentire la pubblicazione integrale delle conversazioni",
+      "D": "Evitare la conservazione dei supporti originali"
+    }
+  },
+  {
+    "id": 45,
+    "question": "In quali casi le conversazioni intercettate non sono utilizzabili?",
+    "options": {
+      "A": "Quando sono state acquisite in violazione delle disposizioni di legge",
+      "B": "Quando sono troppo brevi",
+      "C": "Quando riguardano persone non indagate",
+      "D": "Quando sono state trascritte solo in parte"
+    }
+  },
+  {
+    "id": 46,
+    "question": "Quale tra le seguenti attività rientra nelle tecniche investigative atipiche?",
+    "options": {
+      "A": "L’utilizzo del captatore informatico (trojan)",
+      "B": "L’osservazione",
+      "C": "Il pedinamento",
+      "D": "Il controllo del territorio"
+    }
+  },
+  {
+    "id": 47,
+    "question": "Quando la polizia giudiziaria procede all’acquisizione di sommarie informazioni?",
+    "options": {
+      "A": "Durante le indagini preliminari, nel rispetto delle garanzie previste dalla legge",
+      "B": "Solo nella fase dibattimentale",
+      "C": "Solo su ordine scritto del giudice",
+      "D": "Senza obbligo di verbalizzazione"
+    }
+  },
+  {
+    "id": 48,
+    "question": "Qual è la funzione dell’individuazione di cose nel procedimento penale?",
+    "options": {
+      "A": "Consentire il riconoscimento di oggetti pertinenti al reato",
+      "B": "Disporre la confisca automatica",
+      "C": "Distruggere gli oggetti rinvenuti",
+      "D": "Applicare sanzioni amministrative"
+    }
+  },
+  {
+    "id": 49,
+    "question": "Quale autorità è competente a disporre l’analisi di laboratorio sulle sostanze stupefacenti sequestrate?",
+    "options": {
+      "A": "Il Pubblico Ministero",
+      "B": "Il Prefetto",
+      "C": "Il Sindaco",
+      "D": "Il Giudice di pace"
+    }
+  },
+  {
+    "id": 50,
+    "question": "Quale tra le seguenti NON è una finalità delle analisi sulle sostanze stupefacenti?",
+    "options": {
+      "A": "Stabilire la responsabilità penale del soggetto",
+      "B": "Identificare la natura della sostanza",
+      "C": "Accertare il principio attivo",
+      "D": "Classificare la sostanza ai fini di legge"
+    }
+  },
+  {
+    "id": 51,
+    "question": "Quando è possibile procedere al sequestro amministrativo di sostanza stupefacente?",
+    "options": {
+      "A": "Quando la sostanza è destinata ad uso personale",
+      "B": "Solo quando vi è spaccio accertato",
+      "C": "Solo su ordine del giudice",
+      "D": "Solo se la sostanza è eroina o cocaina"
+    }
+  },
+  {
+    "id": 52,
+    "question": "Qual è la funzione del verbale di sequestro?",
+    "options": {
+      "A": "Documentare le modalità e l’oggetto del sequestro",
+      "B": "Stabilire automaticamente la colpevolezza",
+      "C": "Sostituire l’analisi di laboratorio",
+      "D": "Disporre la confisca immediata"
+    }
+  },
+  {
+    "id": 53,
+    "question": "In quali casi la polizia giudiziaria può procedere a controlli e ispezioni ai sensi dell’art. 103 DPR 309/1990?",
+    "options": {
+      "A": "In presenza di fondati motivi",
+      "B": "Solo con mandato del giudice",
+      "C": "Solo nei confronti di persone già condannate",
+      "D": "Solo se è già stata trovata sostanza stupefacente"
+    }
+  },
+  {
+    "id": 54,
+    "question": "Quale tra le seguenti affermazioni è corretta in tema di uso personale di sostanze stupefacenti?",
+    "options": {
+      "A": "Va valutato considerando modalità, circostanze e quantità",
+      "B": "Dipende esclusivamente dal peso in grammi",
+      "C": "Non è mai sanzionato",
+      "D": "È sempre reato"
+    }
+  },
+  {
+    "id": 55,
+    "question": "Qual è la differenza tra sequestro probatorio e sequestro amministrativo in materia di stupefacenti?",
+    "options": {
+      "A": "Il sequestro probatorio ha finalità penali, quello amministrativo riguarda l’uso personale",
+      "B": "Sono identici e producono gli stessi effetti",
+      "C": "Entrambi sono disposti sempre dal Prefetto",
+      "D": "Il sequestro amministrativo si fa solo per reati associativi"
+    }
+  },
+  {
+    "id": 56,
+    "question": "In quali casi il sequestro di sostanza stupefacente è obbligatorio?",
+    "options": {
+      "A": "Quando la sostanza costituisce corpo del reato",
+      "B": "Solo quando la quantità supera una soglia fissa",
+      "C": "Solo su richiesta della persona offesa",
+      "D": "Solo dopo la condanna"
+    }
+  },
+  {
+    "id": 57,
+    "question": "Quale tra le seguenti è una funzione della polizia giudiziaria nell’attività investigativa?",
+    "options": {
+      "A": "Ricercare e assicurare le fonti di prova",
+      "B": "Pronunciare la condanna",
+      "C": "Disporre l’archiviazione",
+      "D": "Emettere sentenze"
+    }
+  },
+  {
+    "id": 58,
+    "question": "L’individuazione di persona può essere effettuata:",
+    "options": {
+      "A": "Dal vivo o mediante fotografie, a seconda delle circostanze",
+      "B": "Solo dal vivo",
+      "C": "Solo mediante fotografie",
+      "D": "Solo nella fase dibattimentale"
+    }
+  },
+  {
+    "id": 59,
+    "question": "Quale tra le seguenti affermazioni descrive correttamente l’individuazione dal vivo?",
+    "options": {
+      "A": "Il soggetto da individuare è posto tra più persone con caratteristiche simili",
+      "B": "Il soggetto viene mostrato singolarmente",
+      "C": "Il soggetto viene indicato dall’operatore",
+      "D": "L’individuazione avviene senza descrizione preventiva"
+    }
+  },
+  {
+    "id": 60,
+    "question": "In quali casi è necessaria la ripetizione delle operazioni di individuazione?",
+    "options": {
+      "A": "Quando l’individuazione deve essere effettuata da più persone",
+      "B": "Mai, perché basta una sola volta",
+      "C": "Solo se lo chiede l’indagato",
+      "D": "Solo nella fase dibattimentale"
+    }
+  },
+  {
+    "id": 61,
+    "question": "Qual è la funzione dell’avviso dei diritti alla persona sentita come testimone/persona informata sui fatti?",
+    "options": {
+      "A": "Garantire la conoscenza e la tutela dei diritti previsti dalla legge",
+      "B": "Obbligare sempre a rispondere",
+      "C": "Rendere nullo l’atto in automatico",
+      "D": "Sostituire la verbalizzazione"
+    }
+  },
+  {
+    "id": 62,
+    "question": "Quale tra i seguenti soggetti ha l’obbligo di riferire la verità nelle sommarie informazioni (salvo facoltà di astensione previste)?",
+    "options": {
+      "A": "La persona informata sui fatti (testimone)",
+      "B": "L’indagato",
+      "C": "Il difensore",
+      "D": "Il consulente tecnico di parte"
+    }
+  },
+  {
+    "id": 63,
+    "question": "In quali casi la persona informata sui fatti può rifiutarsi di rispondere?",
+    "options": {
+      "A": "Nei casi di diritto di astensione previsti dalla legge",
+      "B": "Sempre, a sua scelta",
+      "C": "Mai, perché è sempre obbligata",
+      "D": "Solo su autorizzazione del Pubblico Ministero"
+    }
+  },
+  {
+    "id": 64,
+    "question": "Qual è la finalità dell’art. 199 c.p.p.?",
+    "options": {
+      "A": "Tutelare i prossimi congiunti con la facoltà di astensione dal deporre",
+      "B": "Obbligare i prossimi congiunti a testimoniare",
+      "C": "Disciplinare le intercettazioni telefoniche",
+      "D": "Regolare la perquisizione domiciliare"
+    }
+  },
+  {
+    "id": 65,
+    "question": "Quando il prossimo congiunto è obbligato a deporre?",
+    "options": {
+      "A": "Mai, perché può avvalersi della facoltà di astensione prevista dalla legge",
+      "B": "Sempre, se convocato",
+      "C": "Solo nei procedimenti per reati gravi",
+      "D": "Solo su ordine del Pubblico Ministero"
+    }
+  },
+  {
+    "id": 66,
+    "question": "Qual è la differenza tra sommarie informazioni testimoniali e interrogatorio?",
+    "options": {
+      "A": "Le sommarie informazioni sono atto informativo; l’interrogatorio è atto con garanzie difensive per l’indagato",
+      "B": "Sono la stessa cosa",
+      "C": "L’interrogatorio riguarda solo i testimoni",
+      "D": "Le sommarie informazioni sostituiscono la sentenza"
+    }
+  },
+  {
+    "id": 67,
+    "question": "In quale fase del procedimento penale si colloca prevalentemente l’attività investigativa della polizia giudiziaria?",
+    "options": {
+      "A": "Nella fase delle indagini preliminari",
+      "B": "Nella fase dibattimentale",
+      "C": "Nella fase esecutiva",
+      "D": "Solo nella fase di cassazione"
+    }
+  },
+  {
+    "id": 68,
+    "question": "L’individuazione di persona deve essere preceduta:",
+    "options": {
+      "A": "Dalla descrizione preventiva del soggetto da individuare",
+      "B": "Dalla visione obbligatoria di una sola fotografia",
+      "C": "Dall’indicazione dell’operatore",
+      "D": "Da una dichiarazione scritta del PM"
+    }
+  },
+  {
+    "id": 69,
+    "question": "Quale tra le seguenti affermazioni è corretta in tema di confronto tra persone?",
+    "options": {
+      "A": "Serve a chiarire divergenze tra dichiarazioni già rese",
+      "B": "Serve a sostituire l’interrogatorio",
+      "C": "Costituisce prova definitiva di colpevolezza",
+      "D": "Si fa solo se lo chiede l’indagato"
+    }
+  },
+  {
+    "id": 70,
+    "question": "In luogo di privata dimora, l’intercettazione tra presenti richiede particolari condizioni perché:",
+    "options": {
+      "A": "È necessario tutelare la libertà domiciliare garantita dall’art. 14 Cost.",
+      "B": "È vietata in ogni caso",
+      "C": "È sempre libera perché non serve autorizzazione",
+      "D": "Si può fare solo con consenso del proprietario dell’abitazione"
+    }
+  },
+  {
+    "id": 71,
+    "question": "In materia di stupefacenti, cosa si intende per “dipendenza cronica”?",
+    "options": {
+      "A": "Uso abituale con compromissione fisica e psichica",
+      "B": "Uso occasionale",
+      "C": "Sperimentazione episodica senza conseguenze",
+      "D": "Consumo controllato e terapeutico"
+    }
+  },
+  {
+    "id": 72,
+    "question": "Qual è lo scopo principale dell’analisi di laboratorio sulle sostanze stupefacenti sequestrate?",
+    "options": {
+      "A": "Accertare natura e principio attivo ai fini della classificazione di legge",
+      "B": "Determinare automaticamente la pena",
+      "C": "Sostituire la necessità di sequestro",
+      "D": "Verificare la personalità dell’indagato"
+    }
+  },
+  {
+    "id": 73,
+    "question": "Quale tra le seguenti affermazioni è corretta sul sequestro amministrativo per uso personale?",
+    "options": {
+      "A": "È funzionale alla procedura amministrativa (segnalazione/prefettura) e non alla prova penale",
+      "B": "È identico al sequestro probatorio",
+      "C": "Si applica solo ai reati associativi",
+      "D": "Comporta sempre l’arresto"
+    }
+  },
+  {
+    "id": 74,
+    "question": "Qual è la funzione dell’individuazione (in generale) nel procedimento penale?",
+    "options": {
+      "A": "Consentire il riconoscimento di persone/cose rilevanti per il fatto",
+      "B": "Sostituire l’esame testimoniale",
+      "C": "Evitare la verbalizzazione",
+      "D": "Rendere superflua ogni altra prova"
+    }
+  },
+  {
+    "id": 75,
+    "question": "Qual è la regola corretta sull’inutilizzabilità delle intercettazioni?",
+    "options": {
+      "A": "Se acquisite illegittimamente, sono inutilizzabili",
+      "B": "Sono sempre utilizzabili, anche se illegittime",
+      "C": "Sono inutilizzabili solo se riguardano terzi",
+      "D": "Sono inutilizzabili solo se durano meno di 1 minuto"
+    }
+  },
+  {
+    "id": 76,
+    "question": "Quando si può parlare di “urgenza” ai fini dell’intercettazione disposta dal PM?",
+    "options": {
+      "A": "Quando dal ritardo può derivare grave pregiudizio alle indagini",
+      "B": "Quando il reato è mediatico",
+      "C": "Quando lo chiede la persona offesa",
+      "D": "Quando non si riesce a notificare un atto"
+    }
+  },
+  {
+    "id": 77,
+    "question": "Qual è la funzione della registrazione nelle intercettazioni?",
+    "options": {
+      "A": "Conservare integralmente il contenuto captato, garantendo fedeltà e verificabilità",
+      "B": "Sostituire il decreto del giudice",
+      "C": "Evitare qualsiasi forma di controllo",
+      "D": "Consentire la pubblicazione automatica delle conversazioni"
+    }
+  },
+  {
+    "id": 78,
+    "question": "Quale tra le seguenti è una conseguenza tipica della facoltà di astensione (art. 199 c.p.p.)?",
+    "options": {
+      "A": "Il prossimo congiunto può rifiutare di deporre senza sanzioni",
+      "B": "Il prossimo congiunto è obbligato a testimoniare",
+      "C": "Il prossimo congiunto deve sempre deporre ma può mentire",
+      "D": "Il prossimo congiunto può deporre solo con autorizzazione del PM"
+    }
+  },
+  {
+    "id": 79,
+    "question": "Quale affermazione descrive correttamente il rapporto tra intercettazioni e prova?",
+    "options": {
+      "A": "Le intercettazioni sono un mezzo di ricerca della prova e servono a reperire elementi utilizzabili nel procedimento",
+      "B": "Le intercettazioni sono sempre una prova piena e definitiva",
+      "C": "Le intercettazioni sostituiscono la testimonianza",
+      "D": "Le intercettazioni non possono mai essere usate in giudizio"
+    }
+  },
+  {
+    "id": 80,
+    "question": "Qual è la funzione primaria delle intercettazioni NON preventive nel processo penale?",
+    "options": {
+      "A": "Acquisire mezzi di prova per accertare la responsabilità penale degli indagati",
+      "B": "Prevenire reati prima che vengano commessi.",
+      "C": "Documentare tutte le comunicazioni tra persone sospettate di reati.",
+      "D": "Sorvegliare i comportamenti dei cittadini per motivi di pubblica sicurezza."
+    }
+  },
+  {
+    "id": 81,
+    "question": "Se la persona sottoposta alle indagini, sentita ai sensi dell'art. 350 commi da 1 a 4 c.p.p., rilascia dichiarazioni false sulla propria identità:",
+    "options": {
+      "A": "Commette reato",
+      "B": "Non ha alcuna conseguenza perché non è tenuto a dire la verità",
+      "C": "Le eventuali dichiarazioni sono nulle",
+      "D": "Dovrà essere sottoposto a rilievi fotosegnaletici"
+    }
+  },
+  {
+    "id": 82,
+    "question": "Quale affermazione sulla Tabella II del DPR 309/90 in materia di sostanze stupefacenti è CORRETTA?",
+    "options": {
+      "A": "Include sostanze stupefacenti con proprietà terapeutiche ma anche significativo potenziale di abuso.",
+      "B": "Include esclusivamente sostanze stupefacenti prive di qualsiasi utilizzo terapeutico riconosciuto.",
+      "C": "Elenca sostanze stupefacenti non sottoposte a controllo nelle convenzioni internazionali.",
+      "D": "Contiene unicamente preparazioni galeniche di stupefacenti ad uso veterinario."
+    }
+  },
+  {
+    "id": 83,
+    "question": "Gli avvisi ex art. 64 c.p.p. devono essere dati:",
+    "options": {
+      "A": "Prima di iniziare l'escussione sul merito, dopo l'identificazione dell'indagato",
+      "B": "All'inizio dell'atto, prima ancora dell'identificazione della persona",
+      "C": "In qualsiasi momento purché prima della firma del verbale",
+      "D": "Solo se l'indagato non è assistito da difensore di fiducia"
+    }
+  },
+  {
+    "id": 84,
+    "question": "Quale delle seguenti affermazioni sui diritti dell'indagato durante l'assunzione di sommarie informazioni è quella GIUSTA?",
+    "options": {
+      "A": "Ha diritto di non rispondere alle domande di merito, ma deve fornire le proprie generalità",
+      "B": "Il rifiuto di rispondere comporta l'annullamento dell'atto",
+      "C": "È obbligato a rispondere a tutte le domande poste dalla polizia giudiziaria",
+      "D": "Può rifiutarsi di rispondere solo in presenza del difensore"
+    }
+  },
+  {
+    "id": 85,
+    "question": "Quando si procede a intercettazioni di comunicazioni telematiche, il pubblico ministero:",
+    "options": {
+      "A": "Può disporre che le operazioni siano compiute anche mediante impianti appartenenti a privati",
+      "B": "Deve esclusivamente disporre che l'ascolto sia effettuato solo con impianti di proprietà della procura",
+      "C": "Deve sempre disporre che le operazioni siano compiute mediante impianti appartenenti a privati",
+      "D": "Può disporre che siano trascritti dati personali sensibili non rilevanti"
+    }
+  },
+  {
+    "id": 86,
+    "question": "L'eventuale segnalazione di terze persone (genitori, parenti od altri) circa l'assunzione di droga da parte di un soggetto:",
+    "options": {
+      "A": "Non può essere ritenuta notizia di illecito amministrativo",
+      "B": "Può essere ritenuta notizia di illecito amministrativo",
+      "C": "Può essere utilizzata solo per la segnalazione in Prefettura ed all'ASL",
+      "D": "Può essere considerata notizia di reato"
+    }
+  },
+  {
+    "id": 87,
+    "question": "Come sono classificate le sostanze stupefacenti:",
+    "options": {
+      "A": "In quattro tabelle oltre alla tabella dei medicinali",
+      "B": "Sostanze pericolose e medicinali",
+      "C": "Unica tabella che comprende tutte le droghe",
+      "D": "Sostanze vietate e sostanze consentite"
+    }
+  },
+  {
+    "id": 88,
+    "question": "Il registro riservato dove sono annotati i decreti che dispongono, autorizzano e prorogano le intercettazioni (art. 267, c. 5) è gestito dal:",
+    "options": {
+      "A": "Procuratore della Repubblica",
+      "B": "Giudice che autorizza le operazioni",
+      "C": "Responsabile di polizia giudiziaria nella provincia di competenza",
+      "D": "Giudice per l'udienza preliminare"
+    }
+  },
+  {
+    "id": 89,
+    "question": "Quale metodo è espressamente vietato per acquisire dichiarazioni dall'indagato ai sensi dell'art. 64 C.P.P.?",
+    "options": {
+      "A": "Utilizzo di tecniche che alterano la libertà di autodeterminazione",
+      "B": "Interrogatorio condotto in assenza di notifica formale",
+      "C": "Questionari scritti o risposte a scelta multipla",
+      "D": "Registrazione audiovisiva senza trascrizione contestuale"
+    }
+  },
+  {
+    "id": 90,
+    "question": "Quale delle seguenti è una sanzione amministrativa prevista per il possesso di droga per uso personale?",
+    "options": {
+      "A": "Sospensione della patente di guida.",
+      "B": "Espulsione dal territorio nazionale.",
+      "C": "Imposizione di un controllo settimanale in caserma",
+      "D": "Revoca immediata della residenza."
+    }
+  },
+  {
+    "id": 91,
+    "question": "Quale limite è imposto all'utilizzabilità delle dichiarazioni spontanee dalla persona sottoposta alle indagini (art. 350 c. 7 c.p.p.)?",
+    "options": {
+      "A": "Possono essere usate solo per contestazioni in fase dibattimentale",
+      "B": "Possono contenere informazioni che riguardano esclusivamente il proprio coinvolgimento nel reato",
+      "C": "Possono essere utilizzate solo in fase dibattimentale e non durante le indagini preliminari",
+      "D": "Possono contenere informazioni che riguardano esclusivamente il coinvolgimento di terzi nel reato"
+    }
+  },
+  {
+    "id": 92,
+    "question": "Quale delle seguenti affermazioni riguardo l'assunzione di sommarie informazioni dall'indagato è SBAGLIATA?",
+    "options": {
+      "A": "Le dichiarazioni rese in assenza del difensore sono sempre utilizzabili in dibattimento",
+      "B": "Le sommarie informazioni possono essere assunte solo in fase di indagini preliminari",
+      "C": "La presenza del difensore è obbligatoria per la validità dell'atto",
+      "D": "L'indagato ha diritto di non rispondere alle domande sul merito del reato"
+    }
+  },
+  {
+    "id": 93,
+    "question": "Le intercettazioni sono:",
+    "options": {
+      "A": "Mezzi di ricerca della prova",
+      "B": "Atti investigativi impropri",
+      "C": "Equiparabili alla testimonianza",
+      "D": "Mezzi di prova"
+    }
+  },
+  {
+    "id": 94,
+    "question": "Nel documentare lo svolgimento di un confronto, l'impiego di strumenti di ripresa audiovisiva e/o fonografica:",
+    "options": {
+      "A": "È sempre ammesso",
+      "B": "È ammesso solamente nel caso in cui si proceda per i delitti più gravi",
+      "C": "Non è mai ammesso",
+      "D": "È ammesso solo quando all'atto partecipa un difensore"
+    }
+  },
+  {
+    "id": 95,
+    "question": "In caso di acquisizione di notizie circostanziate su un traffico di sostanze stupefacenti da parte di personale di una Stazione Carabinieri, si procederà:",
+    "options": {
+      "A": "Ad informare preventivamente i superiori gerarchici al fine di definire le modalità di approccio investigativo",
+      "B": "Svolgere direttamente attività sotto copertura al fine di acquisire ulteriori informazioni",
+      "C": "Informare direttamente la D.C.S.A.",
+      "D": "Richiedere l'intervento di reparti centrali specializzati o della DIA"
+    }
+  },
+  {
+    "id": 96,
+    "question": "I gravi delitti del pubblico ufficiale, ai fini dell'autorizzazione per le intercettazioni necessitano di:",
+    "options": {
+      "A": "Gravi indizi di reato",
+      "B": "Sufficienti indizi di colpevolezza",
+      "C": "Sufficienti indizi di reato",
+      "D": "Gravi indizi di colpevolezza"
+    }
+  },
+  {
+    "id": 97,
+    "question": "Qual è una differenza fondamentale tra la cessione e la vendita di sostanze stupefacenti?",
+    "options": {
+      "A": "La cessione può avvenire anche a titolo gratuito, mentre la vendita presuppone un corrispettivo.",
+      "B": "La vendita è legale se avviene in contesti privati.",
+      "C": "La cessione richiede sempre una forma di pagamento.",
+      "D": "La cessione è sempre considerata un illecito amministrativo."
+    }
+  },
+  {
+    "id": 98,
+    "question": "Nel cd 'brogliaccio' delle intercettazioni, le conversazioni sono:",
+    "options": {
+      "A": "Trascritte sommariamente solo se attinenti alle indagini",
+      "B": "Trascritte solo integralmente",
+      "C": "Trascritte anche se non rilevanti",
+      "D": "Trascritte sommariamente solo se irrilevanti"
+    }
+  },
+  {
+    "id": 99,
+    "question": "Quale tra queste affermazioni è quella GIUSTA sulla Tabella III delle sostanze stupefacenti?",
+    "options": {
+      "A": "Include i barbiturici.",
+      "B": "Comprende esclusivamente le sostanze naturali.",
+      "C": "È riservata alle benzodiazepine.",
+      "D": "Riguarda farmaci con uso veterinario."
+    }
+  },
+  {
+    "id": 100,
+    "question": "Cosa deve specificare il verbale quando l'indagato rilascia dichiarazioni spontanee?",
+    "options": {
+      "A": "Che sono state rese senza sollecitazioni né domande",
+      "B": "Che sono state documentate con mezzi audiovisivi",
+      "C": "Che l'indagato ha rinunciato formalmente al diritto di non rispondere",
+      "D": "Che l'indagato era assistito dal difensore"
+    }
+  },
+  {
+    "id": 101,
+    "question": "I requisiti per l'utilizzo dei risultati delle intercettazioni in procedimenti diversi da quelli nei quali sono stati disposti, sono:",
+    "options": {
+      "A": "Indispensabilità e rilevanza",
+      "B": "Necessità e rilevanza",
+      "C": "Indispensabilità e urgenza",
+      "D": "Necessità e urgenza"
+    }
+  },
+  {
+    "id": 102,
+    "question": "Quale delle seguenti affermazioni sulle dichiarazioni di un minore vittima di reati è quella GIUSTA?",
+    "options": {
+      "A": "Devono essere documentate con mezzi audiovisivi per garantirne l'integrità",
+      "B": "Non possono essere utilizzate in fase dibattimentale",
+      "C": "Richiedono la presenza obbligatoria di un difensore",
+      "D": "Devono essere verbalizzate in forma riassuntiva senza ulteriori garanzie"
+    }
+  },
+  {
+    "id": 103,
+    "question": "Per procedere correttamente ad una individuazione è necessario che:",
+    "options": {
+      "A": "Chi procede all'individuazione si trovi a valutare le cose senza subire influenze di alcun genere",
+      "B": "Chi procede all'individuazione venga incalzato a valutare le cose, onde evitare un favoreggiamento dell'indagato",
+      "C": "Chi procede all'individuazione venga moderatamente aiutato a valutare le cose",
+      "D": "Colui che si sottopone all'individuazione si trovi in stato di arresto"
+    }
+  },
+  {
+    "id": 104,
+    "question": "La distruzione delle sostanze stupefacenti sequestrate amministrativamente deve avvenire:",
+    "options": {
+      "A": "Per incenerimento",
+      "B": "Per discioglimento in apposite soluzioni chimiche",
+      "C": "Per smaltimento farmaceutico",
+      "D": "Per discioglimento in apposite soluzioni alcooliche"
+    }
+  },
+  {
+    "id": 105,
+    "question": "Qual è l'effetto principale delle misure di privacy introdotte dalla normativa del 2023?",
+    "options": {
+      "A": "Limitare la trascrizione di contenuti irrilevanti, migliorando la tutela dei soggetti non coinvolti.",
+      "B": "Eliminare la necessità di archiviazione separata per dati irrilevanti.",
+      "C": "Ridurre il numero di intercettazioni autorizzate per le indagini preliminari.",
+      "D": "Consentire agli indagati un accesso immediato alle trascrizioni complete."
+    }
+  },
+  {
+    "id": 106,
+    "question": "Perché l'intercettazione di comunicazioni tra presenti richiede particolari condizioni nei luoghi di privata dimora?",
+    "options": {
+      "A": "Per tutelare la libertà domiciliare garantita dall'art. 14 della Costituzione.",
+      "B": "Per rispettare le norme UE sul trattamento dei dati personali.",
+      "C": "Per assicurare che le intercettazioni siano sempre disposte in contesti pubblici.",
+      "D": "Per evitare che le intercettazioni violino il diritto alla riservatezza."
+    }
+  },
+  {
+    "id": 107,
+    "question": "Le modalità di assunzione delle informazioni rese dall'indagato rispetto all'interrogatorio delegato dal P.M.:",
+    "options": {
+      "A": "Non prevedono l'obbligo di elencare le fonti di prova",
+      "B": "Non differiscono",
+      "C": "Non prevedono l'obbligo di identificazione",
+      "D": "Non prevedono l'obbligo di dare gli avvisi di cui all'art. 64 c.p.p."
+    }
+  },
+  {
+    "id": 108,
+    "question": "La definizione di intercettazione si rinviene:",
+    "options": {
+      "A": "In una sentenza della Cassazione \"Torcasio",
+      "B": "In una sentenza della Corte costituzionale",
+      "C": "Nelle norme attuative del codice di procedura penale",
+      "D": "Nel codice di rito"
+    }
+  },
+  {
+    "id": 109,
+    "question": "Attività illecite penalmente punite dall'art. 74 del D.P.R. 309/90.",
+    "options": {
+      "A": "Associazione finalizzata al traffico illecito di sostanze stupefacenti",
+      "B": "Uso personale di sostanze stupefacenti",
+      "C": "Detenzione per uso personale",
+      "D": "Guida in stato di alterazione"
+    }
+  },
+  {
+    "id": 110,
+    "question": "Quale funzione svolge il Sistema Nazionale di Allerta Precoce per le Nuove Sostanze Psicoattive?",
+    "options": {
+      "A": "Monitorare e segnalare tempestivamente la comparsa di nuove sostanze psicoattive sul mercato italiano.",
+      "B": "Coordinare operativamente le attività di PG sul territorio per contrasto alle NPS.",
+      "C": "Gestire direttamente programmi terapeutici di recupero.",
+      "D": "Autorizzare preventivamente la commercializzazione di nuove sostanze."
+    }
+  },
+  {
+    "id": 111,
+    "question": "Il confronto è un atto:",
+    "options": {
+      "A": "Che va documentato attraverso la redazione di un verbale",
+      "B": "Che va documentato attraverso la redazione di un'annotazione",
+      "C": "Di cui è consentita la documentazione solamente sul luogo e nell'immediatezza del fatto",
+      "D": "Di cui è vietata la documentazione"
+    }
+  },
+  {
+    "id": 112,
+    "question": "In relazione all'assunzione di sommarie informazioni dall'indagato, il difensore d'ufficio:",
+    "options": {
+      "A": "Può essere sostituito solo per giustificato motivo",
+      "B": "Deve essere sostituito nel caso in cui la sua condotta non sia consona",
+      "C": "Può essere sostituito per qualunque motivo",
+      "D": "Può essere sostituito su disposizione del P.M."
+    }
+  },
+  {
+    "id": 113,
+    "question": "Nel verbale di sommarie informazioni devono essere obbligatoriamente indicate:",
+    "options": {
+      "A": "Le persone presenti e la qualifica rivestita da ciascuno",
+      "B": "Solo l'indagato e l'ufficiale di polizia giudiziaria operante",
+      "C": "Solo l'indagato escusso e il suo difensore presente",
+      "D": "Solo l'indagato, l'ufficiale di PG operante e l'eventuale interprete"
+    }
+  },
+  {
+    "id": 114,
+    "question": "Cosa sono i precursori:",
+    "options": {
+      "A": "Preparati chimici legali che possono essere impiegati anche nella fabbricazione di sostanze stupefacenti",
+      "B": "Sostanze coloranti",
+      "C": "Farmaci vietati",
+      "D": "Sostanze stupefacenti illegali"
+    }
+  },
+  {
+    "id": 115,
+    "question": "Qual è una differenza tra proroga ed estensione di un'autorizzazione di intercettazione?",
+    "options": {
+      "A": "La proroga riguarda il prolungamento temporale, l'estensione include nuovi obiettivi o ambiti",
+      "B": "L'estensione si applica solo ai reati gravi, mentre la proroga no.",
+      "C": "L'estensione è valida solo per comunicazioni telefoniche.",
+      "D": "La proroga richiede una nuova autorizzazione, l'estensione no."
+    }
+  },
+  {
+    "id": 116,
+    "question": "Nei confronti di persona sottoposta alla misura di prevenzione della sorveglianza speciale:",
+    "options": {
+      "A": "È possibile procedere ad intercettazione per verificare che non continui a porre in essere attività o comportamenti analoghi a quelli che hanno dato luogo all'applicazione della misura",
+      "B": "È possibile procedere ad intercettazione solo in presenza di gravi indizi di reato",
+      "C": "È possibile procedere ad intercettazione solo in caso di pericolo di fuga",
+      "D": "È preclusa la possibilità di procedere ad intercettazione"
+    }
+  },
+  {
+    "id": 117,
+    "question": "La definizione di intercettazione si rinviene:",
+    "options": {
+      "A": "in una sentenza della Cassazione “Torcasio”",
+      "B": "in una sentenza della Corte Costituzionale",
+      "C": "nelle norme attuative del codice di procedura penale",
+      "D": "nel codice di rito"
+    }
+  },
+  {
+    "id": 118,
+    "question": "Perché l’intercettazione di comunicazioni tra presenti richiede particolari condizioni nei luoghi di privata dimora?",
+    "options": {
+      "A": "Per tutelare la libertà domiciliare garantita dall’art. 14 della Costituzione.",
+      "B": "Per rispettare le norme dell’Unione Europea sul trattamento dei dati personali.",
+      "C": "Per assicurare che le intercettazioni siano sempre disposte in contesti pubblici.",
+      "D": "Per evitare che le intercettazioni violino il diritto alla riservatezza delle comunicazioni."
+    }
+  },
+  {
+    "id": 119,
+    "question": "Le modalità di assunzione delle informazioni rese dall’indagato rispetto all’interrogatorio delegato dal P.M.:",
+    "options": {
+      "A": "non differiscono",
+      "B": "non prevedono l’obbligo di elencare le fonti di prova",
+      "C": "non prevedono l’obbligo di identificazione",
+      "D": "non prevedono l’obbligo di dare gli avvisi di cui all’art. 64 c.p.p."
+    }
+  },
+  {
+    "id": 120,
+    "question": "Il confronto è un atto:",
+    "options": {
+      "A": "che va documentato attraverso la redazione di un verbale",
+      "B": "che va documentato attraverso la redazione di un’annotazione",
+      "C": "di cui è consentita la documentazione solamente sul luogo e nell’immediatezza del fatto",
+      "D": "di cui è vietata la documentazione"
+    }
+  },
+  {
+    "id": 121,
+    "question": "Qual è la funzione primaria delle intercettazioni NON preventive nel processo penale?",
+    "options": {
+      "A": "Acquisire mezzi di prova per accertare la responsabilità penale degli indagati.",
+      "B": "Prevenire reati prima che vengano commessi.",
+      "C": "Sorvegliare i comportamenti dei cittadini per motivi di pubblica sicurezza.",
+      "D": "Documentare tutte le comunicazioni tra persone sospettate di reati."
+    }
+  },
+  {
+    "id": 122,
+    "question": "Quale funzione svolge il Sistema Nazionale di Allerta Precoce per le Nuove Sostanze Psicoattive?",
+    "options": {
+      "A": "Monitorare e segnalare tempestivamente la comparsa di nuove sostanze psicoattive sul mercato italiano.",
+      "B": "Coordinare operativamente le attività di polizia giudiziaria sul territorio per contrasto alle NPS.",
+      "C": "Gestire direttamente i programmi terapeutici di recupero per tossicodipendenti da nuove sostanze.",
+      "D": "Autorizzare preventivamente la commercializzazione di nuove sostanze farmaceutiche psicoattive."
+    }
+  },
+  {
+    "id": 123,
+    "question": "Qual è una differenza tra proroga ed estensione di un’autorizzazione di intercettazione?",
+    "options": {
+      "A": "La proroga riguarda il prolungamento temporale, l’estensione include nuovi obiettivi o ambiti.",
+      "B": "L’estensione si applica solo ai reati gravi, mentre la proroga no.",
+      "C": "L’estensione è valida solo per comunicazioni telefoniche.",
+      "D": "La proroga richiede una nuova autorizzazione, l’estensione no."
+    }
+  },
+  {
+    "id": 124,
+    "question": "La documentazione delle operazioni svolte per le intercettazioni preventive, al termine delle attività è riassunta e depositata presso l’ufficio del Procuratore che ha autorizzato che, trascorsi 10 giorni dal deposito, ne disporrà:",
+    "options": {
+      "A": "la distruzione",
+      "B": "l’acquisizione al fascicolo processuale",
+      "C": "la trasmissione al GIP",
+      "D": "la conservazione agli atti d’ufficio"
+    }
+  },
+  {
+    "id": 125,
+    "question": "In relazione all’assunzione di sommarie informazioni dall’indagato, il difensore d’ufficio:",
+    "options": {
+      "A": "può essere sostituito solo per giustificato motivo",
+      "B": "deve essere sostituito nel caso in cui la sua condotta non sia consona",
+      "C": "può essere sostituito per qualunque motivo",
+      "D": "può essere sostituito su disposizione del P.M."
+    }
+  },
+  {
+    "id": 126,
+    "question": "Quando la polizia giudiziaria redige il verbale delle sommarie informazioni, quale obbligo formale deve rispettare?",
+    "options": {
+      "A": "Verbalizzare sia le domande che le risposte, senza omissioni",
+      "B": "Riassumere le risposte solo se confermate dall’indagato",
+      "C": "Trascrivere solo le domande rilevanti per l’indagine",
+      "D": "Omettere le domande poste dal difensore"
+    }
+  },
+  {
+    "id": 127,
+    "question": "Nel verbale di sommarie informazioni devono essere obbligatoriamente indicate:",
+    "options": {
+      "A": "Le persone presenti e la qualifica rivestita da ciascuno",
+      "B": "Solo l’indagato e l’ufficiale di polizia giudiziaria operante",
+      "C": "Solo l’indagato escusso e il suo difensore presente",
+      "D": "Solo l’indagato, l’ufficiale di polizia giudiziaria operante e l’eventuale interprete"
+    }
+  },
+  {
+    "id": 128,
+    "question": "Per procedere correttamente ad una individuazione è necessario che:",
+    "options": {
+      "A": "chi procede all’individuazione si trovi a valutare le cose senza subire influenze di alcun genere",
+      "B": "chi procede all’individuazione venga moderatamente aiutato a valutare le cose",
+      "C": "colui che si sottopone all’individuazione si trovi in stato di arresto, allo scopo di ottenere un’indicazione maggiormente attendibile",
+      "D": "chi procede all’individuazione venga incalzato a valutare le cose, onde evitare un favoreggiamento dell’indagato"
+    }
+  },
+  {
+    "id": 129,
+    "question": "Cosa sono i precursori:",
+    "options": {
+      "A": "preparati chimici legali che possono essere impiegati anche nella fabbricazione di sostanze stupefacenti",
+      "B": "sostanze coloranti.",
+      "C": "farmaci vietati",
+      "D": "sostanze stupefacenti illegali"
+    }
+  },
+  {
+    "id": 130,
+    "question": "Quale tra queste affermazioni è quella GIUSTA sulla perquisizione per stupefacenti?",
+    "options": {
+      "A": "Può essere eseguita dall’ufficiale di p.g..",
+      "B": "Non può mai essere eseguita senza una notizia di reato.",
+      "C": "Richiede sempre la presenza del sospettato durante l’operazione.",
+      "D": "È limitata al controllo di oggetti personali visibili."
+    }
+  },
+  {
+    "id": 131,
+    "question": "Perché la polizia giudiziaria deve mantenere un atteggiamento neutrale durante l’escussione?",
+    "options": {
+      "A": "Per evitare influenze sulle dichiarazioni e garantire l’imparzialità dell’atto.",
+      "B": "Per rispettare il diritto dell’indagato alla riservatezza.",
+      "C": "Per velocizzare la verbalizzazione delle informazioni raccolte.",
+      "D": "Per consentire al difensore di guidare l’indagato nelle risposte."
+    }
+  },
+  {
+    "id": 132,
+    "question": "Quale funzione chiave svolgono i software spia nelle intercettazioni di comunicazioni cifrate?",
+    "options": {
+      "A": "Permettono di catturare la voce dell’utilizzatore prima della cifratura e dopo la decifratura.",
+      "B": "Decifrare automaticamente tutte le comunicazioni crittografate.",
+      "C": "Bloccare le comunicazioni prima che possano essere trasmesse.",
+      "D": "Rilevare solo attività telematiche non protette."
+    }
+  },
+  {
+    "id": 133,
+    "question": "Nei confronti di persona sottoposta alla misura di prevenzione della sorveglianza speciale:",
+    "options": {
+      "A": "è possibile procedere ad intercettazione per verificare che non continui a porre in essere attività o comportamenti analoghi a quelli che hanno dato luogo all’applicazione della misura",
+      "B": "è possibile procedere ad intercettazione solo in presenza di gravi indizi di reato",
+      "C": "è possibile procedere ad intercettazione solo in caso di pericolo di fuga",
+      "D": "è preclusa la possibilità di procedere ad intercettazione"
+    }
+  },
+  {
+    "id": 134,
+    "question": "Nel procedere ad individuazione di suoni o rumori:",
+    "options": {
+      "A": "il soggetto chiamato all’individuazione viene invitato a fornire una descrizione quanto più dettagliata di quanto udito",
+      "B": "non è consentito che il soggetto chiamato all’individuazione fornisca una descrizione di quanto udito per evitare di influenzarlo",
+      "C": "il soggetto chiamato all’individuazione deve fornire una descrizione dettagliata di quanto udito solo se all’atto presenzia il pubblico ministero",
+      "D": "non è necessario che il soggetto chiamato all’individuazione fornisca una descrizione quanto più dettagliata di quanto udito"
+    }
+  },
+  {
+    "id": 135,
+    "question": "Attività illecite penalmente punite dall’art. 74 del D.P.R. 309/90.",
+    "options": {
+      "A": "Tale fattispecie si realizza quando tre o più persone si associano allo scopo di commettere più delitti tra quelli previsti dall’art. 73 D.P.R. 309/90, avvalendosi di una struttura organizzativa che può prevedere l’esistenza di esperti chimici, ossia soggetti in possesso di conoscenze nel settore della droga e dei cc.dd. precursori), corrieri (con attività di copertura che giustificano viaggi, conoscenza delle zone di produzione), grossisti, dettaglianti e spacciatori.",
+      "B": "Tale fattispecie si realizza quando più di tre persone si associano allo scopo di commettere più delitti tra cui quelli previsti dall’art. 73 C.P., avvalendosi di una struttura, quale un immobile, un qualsiasi ambiente o autoveicolo, adibito o comunque utilizzato quale luogo di convegno abituale di persone che ivi si danno all’uso di stupefacenti, sotto la supervisione di esperti chimici onde verificare le proprie conoscenze nel settore della droga e dei cc.dd. precursori.",
+      "C": "Tale fattispecie si realizza quando tre o più persone si associano allo scopo di commettere più delitti sotto l’azione di sostanze stupefacenti (articolo 93 Codice Penale), avvalendosi di una struttura organizzativa che può prevedere l’esistenza di esperti in possesso di conoscenze nel settore dei prodotti aromatizzanti di origine vegetale e dei cc.dd. prodromi), corrieri (con attività di copertura che giustificano viaggi, conoscenza delle zone di produzione), grossisti, dettaglianti e spazzatori.",
+      "D": "Tale fattispecie si realizza quando non più di tre persone concorrono nel commettere più delitti, purché sotto l’azione di sostanze stupefacenti, tra quelli previsti dall’art. 73 D.P.R. 309/90, in un’infrastruttura utilizzata quale luogo di convegno abituale di esperti chimici, ossia soggetti in possesso di conoscenze nel settore della droga e dei cc.dd. promotori), con corrieri (con attività di copertura che giustificano viaggi, conoscenza delle zone di produzione), grossisti e dettaglianti,"
+    }
+  },
+  {
+    "id": 136,
+    "question": "In quale caso il captatore informatico non può essere utilizzato?",
+    "options": {
+      "A": "Per intercettare comunicazioni tra difensori ed assistiti senza autorizzazione specifica.",
+      "B": "Per localizzare un soggetto tramite GPS.",
+      "C": "Per acquisire immagini tramite la fotocamera del dispositivo.",
+      "D": "Per intercettare dati provenienti da un dispositivo mobile."
+    }
+  },
+  {
+    "id": 137,
+    "question": "Quale delle seguenti affermazioni sui diritti dell’indagato durante l’assunzione di sommarie informazioni è quella GIUSTA?",
+    "options": {
+      "A": "Ha diritto di non rispondere alle domande di merito, ma deve fornire le proprie generalità",
+      "B": "Il rifiuto di rispondere comporta l’annullamento dell’atto",
+      "C": "Può rifiutarsi di rispondere solo in presenza del difensore",
+      "D": "È obbligato a rispondere a tutte le domande poste dalla polizia giudiziaria"
+    }
+  },
+  {
+    "id": 138,
+    "question": "La persona informata sui fatti, escussa dal PM",
+    "options": {
+      "A": "ha l’obbligo di riferire secondo verità ed in caso di dichiarazioni mendaci o reticenti incorre nel reato di false dichiarazioni al Pubblico Ministero",
+      "B": "ha l’obbligo di riferire secondo verità ed in caso di dichiarazioni mendaci o reticenti incorre solo nel reato di favoreggiamento personale",
+      "C": "deve essere escussa alla presenza del difensore",
+      "D": "rientrando nel diritto alla difesa non ha l’obbligo di riferire secondo verità"
+    }
+  },
+  {
+    "id": 139,
+    "question": "In quale contesto l’abbandono di siringhe costituisce un illecito amministrativo?",
+    "options": {
+      "A": "Quando avviene in luoghi pubblici o aperti al pubblico, mettendo a rischio l’incolumità altrui.",
+      "B": "Quando è segnalato da un testimone oculare.",
+      "C": "Quando non è possibile individuare l’autore del gesto.",
+      "D": "Quando riguarda siringhe utilizzate in contesti privati."
+    }
+  },
+  {
+    "id": 140,
+    "question": "Quale delle seguenti affermazioni sulla registrazione audiovisiva del minore abusato è SBAGLIATA?",
+    "options": {
+      "A": "La sua assenza può comportare la nullità dell’atto",
+      "B": "Può essere omessa per indisponibilità degli apparati di videoregistrazione",
+      "C": "Deve essere conservata come parte integrante del fascicolo",
+      "D": "È obbligatoria"
+    }
+  },
+  {
+    "id": 141,
+    "question": "La perquisizione effettuata d’iniziativa ai sensi dell’art. 103 c. 3 D.P.R. 309/1990 con esito negativo:",
+    "options": {
+      "A": "trasmissione al PM entro le 48 ore per la convalida",
+      "B": "trasmissione al GIP entro le 48 ore per la convalida",
+      "C": "il verbale va redatto solo in caso di rinvenimento di sostanza stupefacente",
+      "D": "trasmissione al Prefetto entro le 48 ore per la convalida"
+    }
+  },
+  {
+    "id": 142,
+    "question": "Quale tra le seguenti è un’affermazione SBAGLIATA sulle intercettazioni nel contrasto al narcotraffico?",
+    "options": {
+      "A": "Le intercettazioni richiedono il consenso dell’indagato per essere utilizzate.",
+      "B": "Le intercettazioni telematiche possono essere eseguite con software avanzati.",
+      "C": "La messaggistica VoIP è sempre più utilizzata dai trafficanti per sfuggire al controllo.",
+      "D": "I software di sorveglianza possono essere installati anche da remoto."
+    }
+  },
+  {
+    "id": 143,
+    "question": "Quale tra queste affermazioni è quella GIUSTA per un tossicodipendente che segue un programma terapeutico?",
+    "options": {
+      "A": "Può ottenere misure alternative alla detenzione se il programma è in corso.",
+      "B": "Deve completare il programma prima della sentenza.",
+      "C": "Non può mai essere sottoposto a custodia cautelare.",
+      "D": "Può evitare tutte le forme di sanzione penale."
+    }
+  },
+  {
+    "id": 144,
+    "question": "L’intercettazione di parlamentari può essere:",
+    "options": {
+      "A": "diretta, indiretta, casuale",
+      "B": "indiretta, casuale, nulla",
+      "C": "casuale, diretta, occasionale",
+      "D": "diretta, nulla, inutilizzabile"
+    }
+  },
+  {
+    "id": 145,
+    "question": "Qual è la modalità utilizzata per rilevare smart drugs nei negozi fisici e online?",
+    "options": {
+      "A": "L’analisi chimica tramite campioni effettuati dai NAS e autorità competenti.",
+      "B": "Analisi di tessuti animali usati per monitorare le spedizioni.",
+      "C": "Il macchiato apposito realizzato su autorizzazione preventiva.",
+      "D": "Il monitoraggio specifico realizzato attraverso GPS."
+    }
+  },
+  {
+    "id": 146,
+    "question": "Qual è un metodo utilizzato per rilevare smart drugs nei negozi fisici o online?",
+    "options": {
+      "A": "L’analisi chimica tramite sequestri effettuati dai NAS e autorità competenti.",
+      "B": "L’uso di strumenti telematici avanzati per monitorare le vendite.",
+      "C": "Il monitoraggio dei social media senza autorizzazione preventiva.",
+      "D": "Il rilevamento automatico attraverso sistemi GPS."
+    }
+  },
+  {
+    "id": 147,
+    "question": "Qualora il confronto coinvolga solo persone informate sui fatti la presenza del difensore:",
+    "options": {
+      "A": "è ammessa",
+      "B": "è obbligatoria ma solo in relazione ai delitti più gravi",
+      "C": "non è ammessa",
+      "D": "è disposta dal Pubblico Ministero"
+    }
+  },
+  {
+    "id": 148,
+    "question": "In caso di acquisizione di notizie circostanziate su un traffico di sostanze stupefacenti da parte di personale di una Stazione Carabinieri, si procederà:",
+    "options": {
+      "A": "ad informare preventivamente i superiori gerarchici al fine di definire le modalità di approccio investigativo",
+      "B": "a richiedere l’intervento di reparti centrali specializzati o della DIA",
+      "C": "a svolgere direttamente attività sotto copertura al fine di acquisire ulteriori informazioni",
+      "D": "informare direttamente la D.C.S.A."
+    }
+  },
+  {
+    "id": 149,
+    "question": "L’intercettazione di parlamentari può essere:",
+    "options": {
+      "A": "diretta, indiretta, casuale",
+      "B": "casuale, diretta, occasionale",
+      "C": "diretta, nulla, inutilizzabile",
+      "D": "indiretta, casuale, nulla"
+    }
+  },
+  {
+    "id": 150,
+    "question": "Il pedinamento mediante apparecchiatura G.P.S.:",
+    "options": {
+      "A": "necessita di autorizzazione concessa dal pubblico ministero",
+      "B": "può essere eseguito solo se è stato emesso decreto motivato dal GIP",
+      "C": "non necessita di alcuna autorizzazione da parte dell’Autorità Giudiziaria",
+      "D": "non può essere eseguito in nessun caso essendo una palese violazione della privacy"
+    }
+  },
+  {
+    "id": 151,
+    "question": "L'acquisizione di informazioni dall'indagato sul luogo o nell’immediatezza del fatto (art. 350 c.5 c.p.p.) è subordinata a due indispensabili condizioni:",
+    "options": {
+      "A": "Le informazioni devono essere assunte sul luogo o nell’immediatezza del fatto o, comunque, nell’immediatezza del fatto anche se in luogo diverso quando ciò è imposto dalla necessità di evitare un imminente pericolo per la libertà, l’integrità fisica o la vita di una persona, oppure dalla necessità di compiere attività indispensabili al fine di evitare una grave compromissione delle indagini.",
+      "B": "Le informazioni possono essere assunte nell’immediatezza, purché necessariamente sul luogo del reato quando ciò è imposto dalla necessità di verificare la possibilità di utilizzare tali dichiarazioni per le decisioni in merito all’esercizio dell’azione penale.",
+      "C": "Le informazioni assunte ai sensi del comma 5 devono essere verbalizzate nell’immediatezza del fatto anche se in luogo diverso, ai sensi del comma 6, quando ciò è necessario per evitare un grave pericolo per compiere attività ritenute consigliate per evitare un possibile rallentamento delle indagini.",
+      "D": "Le informazioni devono essere assunte sul luogo ma non necessariamente nell’immediatezza del fatto quando ciò è consigliato dalla necessità di evitare un pur remoto pericolo per la libertà, l’integrità fisica o la vita di una persona, oppure dalla necessità di compiere attività opzionali nel contesto delle indagini."
+    }
+  },
+  {
+    "id": 152,
+    "question": "La documentazione delle operazioni svolte per le intercettazioni preventive, al termine delle attività, è riassunta e depositata presso l’ufficio del Procuratore che ha autorizzato che, trascorsi 10 giorni dal deposito, ne disporrà:",
+    "options": {
+      "A": "la distruzione",
+      "B": "la conservazione agli atti d’ufficio",
+      "C": "la trasmissione al GIP",
+      "D": "l’acquisizione al fascicolo processuale"
+    }
+  },
+  {
+    "id": 153,
+    "question": "Qual è la funzione primaria delle intercettazioni NON preventive nel processo penale?",
+    "options": {
+      "A": "Acquisire mezzi di prova per accertare la responsabilità penale degli indagati.",
+      "B": "Documentare tutte le comunicazioni tra persone sospettate di reati.",
+      "C": "Prevenire reati prima che vengano commessi.",
+      "D": "Sorvegliare i comportamenti dei cittadini per motivi di pubblica sicurezza."
+    }
+  },
+  {
+    "id": 154,
+    "question": "La Direzione Centrale per i Servizi Antidroga:",
+    "options": {
+      "A": "è l’ufficio interforze presso il Ministero dell’Interno attraverso cui viene assicurata la direzione unitaria ed il coordinamento dei servizi di Polizia per la prevenzione e repressione del traffico di sostanze stupefacenti e psicotrope.",
+      "B": "è l’ufficio attraverso cui il Comandante Generale dell’Arma dei Carabinieri garantisce le attività di coordinamento dei servizi di Polizia per la prevenzione e repressione del traffico di sostanze stupefacenti e psicotrope.",
+      "C": "è l’ufficio incardinato nella Direzione Nazionale Antimafia ed Antiterrorismo, deputato alla lotta al traffico delle sostanze stupefacenti e psicotrope.",
+      "D": "è l’ufficio attraverso cui il Comandante Generale della Guardia di Finanza coordina l’attività preventiva e repressiva dell’intero Corpo."
+    }
+  },
+  {
+    "id": 155,
+    "question": "Quale tra le seguenti è un’affermazione SBAGLIATA sull’assuefazione?",
+    "options": {
+      "A": "Porta sempre alla comparsa di dipendenza psichica.",
+      "B": "Richiede l’assunzione ripetuta a intervalli regolari.",
+      "C": "Può svilupparsi senza una dipendenza fisica significativa.",
+      "D": "L’organismo si adatta alla presenza della sostanza."
+    }
+  },
+  {
+    "id": 156,
+    "question": "L’individuazione consiste nel:",
+    "options": {
+      "A": "riconoscere tutto ciò che può essere percepito a livello sensoriale",
+      "B": "acquisire le generalità di una persona",
+      "C": "individuare solo un oggetto",
+      "D": "individuare la vittima di un reato"
+    }
+  },
+  {
+    "id": 157,
+    "question": "Secondo il DPR 309/90, per l’associazione finalizzata al traffico di lieve entità:",
+    "options": {
+      "A": "si applicano, secondo l’art. 74 c.6 dpr 309/90, le disposizioni previste dall’art. 416 c.1 e 2 cp.",
+      "B": "si contesta il 73 con le aggravanti specifiche dell’art 80 dpr 309/90.",
+      "C": "si contesta l’ipotesi associativa prevista dall’art. 74 c.1 del dpr 309/90.",
+      "D": "non è prevista alcuna fattispecie specifica e si perseguono le singole condotte di ogni partecipante."
+    }
+  },
+  {
+    "id": 158,
+    "question": "La perquisizione effettuata d’iniziativa ai sensi dell’art. 103 c.3 D.P.R. 309/1990 con esito negativo:",
+    "options": {
+      "A": "trasmissione al PM entro le 48 ore per la convalida",
+      "B": "il verbale va redatto solo in caso di rinvenimento di sostanza stupefacente",
+      "C": "trasmissione al GIP entro le 48 ore per la convalida",
+      "D": "trasmissione al Prefetto entro le 48 ore per la convalida"
+    }
+  },
+  {
+    "id": 159,
+    "question": "Quale delle seguenti affermazioni sui diritti dell’indagato è SBAGLIATA?",
+    "options": {
+      "A": "Il rifiuto di rispondere rende l’atto nullo",
+      "B": "La presenza del difensore tutela l’indagato da eventuali pressioni indebite",
+      "C": "L’indagato è tenuto a fornire informazioni sulla propria identità",
+      "D": "L’indagato ha il diritto di non rispondere alle domande di merito"
+    }
+  },
+  {
+    "id": 160,
+    "question": "Quale delle seguenti è una misura prevista per chi viene trovato in possesso di droghe per uso personale?",
+    "options": {
+      "A": "Sospensione della patente di guida",
+      "B": "Divieto di possedere un veicolo per 5 anni",
+      "C": "Sanzione monetaria fissa",
+      "D": "Revoca permanente della patente di guida"
+    }
+  },
+  {
+    "id": 161,
+    "question": "Un indagato non è stato avvisato della sua facoltà di non rispondere prima di rendere dichiarazioni. Qual è la validità legale delle informazioni raccolte?",
+    "options": {
+      "A": "Le dichiarazioni sono inutilizzabili e l’atto è nullo.",
+      "B": "Possono essere sanate mediante un ulteriore avviso durante il dibattimento.",
+      "C": "Sono valide se il difensore non solleva eccezioni in udienza.",
+      "D": "Possono essere utilizzate solo per la valutazione interna delle indagini."
+    }
+  },
+  {
+    "id": 162,
+    "question": "Nell’intercettazione diretta di parlamentari:",
+    "options": {
+      "A": "necessita la preventiva autorizzazione della camera di appartenenza",
+      "B": "necessita la preventiva autorizzazione del Ministro della Giustizia",
+      "C": "non serve la preventiva autorizzazione della camera di appartenenza",
+      "D": "serve la preventiva autorizzazione della camera di appartenenza, solo se le conversazioni sono rilevanti"
+    }
+  },
+  {
+    "id": 163,
+    "question": "Cosa avviene se un’intercettazione disposta d’urgenza dal pubblico ministero non viene convalidata entro il termine stabilito?",
+    "options": {
+      "A": "Le registrazioni effettuate non possono essere utilizzate.",
+      "B": "Il giudice può prorogare il termine con motivazione adeguata.",
+      "C": "I risultati possono essere utilizzati solo per reati gravi.",
+      "D": "Le operazioni possono continuare, ma devono essere notificate alle parti."
+    }
+  },
+  {
+    "id": 164,
+    "question": "Se un minore rende dichiarazioni nell’ambito di un procedimento per reati di abuso, quali requisiti di documentazione sono richiesti?",
+    "options": {
+      "A": "La riproduzione audiovisiva integrale, a pena di nullità",
+      "B": "La presenza del difensore dell’indagato come garanzia",
+      "C": "La verbalizzazione riassuntiva approvata dal P.M.",
+      "D": "L’esecuzione dell’atto esclusivamente in ambiente giudiziario protetto"
+    }
+  },
+  {
+    "id": 165,
+    "question": "ROLE PLAY: Deve escutere una persona vulnerabile maggiorenne vittima di atti persecutori (stalking). L’atto deve essere documentato:",
+    "options": {
+      "A": "Con riproduzione audiovisiva integrale quando si procede per delitti previsti dall’art. 351 co. 1-ter c.p.p.",
+      "B": "Con registrazione facoltativa solo su specifica richiesta della persona offesa",
+      "C": "Solo con tradizionale verbalizzazione scritta senza necessità di registrazione",
+      "D": "Con qualsiasi modalità ritenuta opportuna dall’operante caso per caso"
+    }
+  },
+  {
+    "id": 166,
+    "question": "Qual è una delle principali difficoltà nell’identificazione di soggetti intercettati?",
+    "options": {
+      "A": "L’uso frequente di schede telefoniche intestate a soggetti terzi",
+      "B": "L’impossibilità di verificare la paternità delle conversazioni tramite perizie foniche",
+      "C": "L’incapacità di incrociare dati con altri riscontri investigativi",
+      "D": "La mancanza di strumenti per identificare PIN e nickname"
+    }
+  },
+  {
+    "id": 167,
+    "question": "Quale delle seguenti NON rientra tra le forme di intercettazione previste dal codice di procedura penale?",
+    "options": {
+      "A": "Le intercettazioni di comunicazioni scritte private inviate per posta.",
+      "B": "Le intercettazioni telematiche.",
+      "C": "Le intercettazioni ambientali.",
+      "D": "Le intercettazioni telefoniche."
+    }
+  },
+  {
+    "id": 168,
+    "question": "La persona informata sui fatti, escussa dalla Polizia Giudiziaria su delega del PM:",
+    "options": {
+      "A": "ha l’obbligo di riferire secondo verità ed in caso di dichiarazioni mendaci o reticenti potrebbe incorrere nel reato di favoreggiamento personale",
+      "B": "rientrando nel diritto alla difesa non ha l’obbligo di riferire secondo verità",
+      "C": "deve essere escussa alla presenza del difensore",
+      "D": "ha l’obbligo di riferire secondo verità ed in caso di dichiarazioni mendaci o reticenti può incorrere nel reato di false dichiarazioni al Pubblico Ministero"
+    }
+  }
+]
