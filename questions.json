@@ -1,0 +1,332 @@
+[
+  {
+    "id": 1,
+    "question": "Qual è il significato del “principio di tassatività” della norma penale?",
+    "options": [
+      "Le norme penali devono essere formulate dal legislatore in maniera chiara e determinata, in modo che il cittadino possa distinguere facilmente ciò che è lecito da ciò che è vietato",
+      "La legge penale si applica a tutti i cittadini, ma non agli stranieri presenti sul territorio dello Stato",
+      "Nessuno può essere punito per un reato commesso prima che la relativa legge penale entrasse in vigore",
+      "La responsabilità penale è personale, quindi nessuno può essere punito per un fatto commesso da un’altra persona"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 2,
+    "question": "Cosa stabilisce il principio di irretroattività in materia penale (art. 25 Cost.)?",
+    "options": [
+      "Nessuno può essere punito se non in forza di una legge che sia entrata in vigore prima del fatto commesso",
+      "La legge penale si applica a tutti i fatti, inclusi quelli passati, qualora lo richieda la sicurezza pubblica",
+      "La legge penale può essere applicata retroattivamente se introduce reati più gravi",
+      "La legge si applica per analogia ai casi precedenti non disciplinati"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 3,
+    "question": "Quando si configura la forma di colpevolezza definita dolo eventuale?",
+    "options": [
+      "Quando l’agente prevede la concreta possibilità del verificarsi di un evento lesivo e ne accetta il rischio",
+      "Quando l’evento si verifica per esclusiva negligenza o imperizia dell’agente",
+      "Quando l’agente prevede l’evento ma è assolutamente certo di poterlo evitare",
+      "Quando l’agente prevede la concreta possibilità del verificarsi di un evento lesivo e non ne accetta il rischio"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 4,
+    "question": "Nello stato di necessità (art. 54 c.p.), a differenza della legittima difesa, l’azione difensiva:",
+    "options": [
+      "Ricade su un terzo estraneo, cioè una persona che non è responsabile della situazione di pericolo",
+      "È diretta contro il responsabile esclusivo dell’aggressione",
+      "Ricade su un terzo estraneo, cioè una persona che è responsabile della situazione di pericolo",
+      "Può avvenire anche se il pericolo è stato volontariamente causato dall’agente"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 5,
+    "question": "Se una perquisizione ha esito negativo, cosa può fare la persona nei cui confronti è stata eseguita?",
+    "options": [
+      "La riforma Cartabia ha introdotto l’istituto dell’opposizione alla perquisizione cosiddetta negativa",
+      "La riforma Cartabia ha introdotto l’istituto del ricorso di primo grado alla perquisizione cosiddetta negativa",
+      "La riforma Cartabia ha introdotto l’istituto del ricorso da effettuarsi entro 15 giorni nei confronti dell’amministrazione che ha eseguito la perquisizione",
+      "Dipende, a seconda dei casi, si può querelare direttamente l’operatore di polizia che vi ha proceduto"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 6,
+    "question": "Quali sono i principi fondamentali per la valutazione della prova nel sistema accusatorio misto?",
+    "options": [
+      "I principi fondamentali sono: oralità, immediatezza, principio del contraddittorio",
+      "I principi fondamentali sono: oralità, velocità, principio del contraddittorio",
+      "I principi fondamentali sono: separazione delle fasi, separazione delle funzioni e pubblicità",
+      "I principi fondamentali sono: tipicità, tassatività e immediatezza"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 7,
+    "question": "Qual è una differenza procedurale e sostanziale fondamentale tra il mezzo di prova della “testimonianza” e quello dell’“esame delle parti”?",
+    "options": [
+      "Il testimone ha l’obbligo penalmente sanzionato di presentarsi al giudice e di dire la verità, mentre l’imputato, quando si offre all’esame, non ha l’obbligo di presentarsi né di dire la verità",
+      "Entrambi i soggetti hanno l’obbligo giuridico di dire la verità, ma solo il testimone presta giuramento formale prima di deporre",
+      "L’esame delle parti si può svolgere esclusivamente durante le indagini preliminari in regime di segretezza, mentre la testimonianza è ammessa unicamente nella fase del dibattimento pubblico",
+      "Il testimone può avvalersi del diritto al silenzio per proteggere i propri interessi economici, mentre l’imputato è obbligato a rispondere a tutte le domande poste dal Pubblico Ministero"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 8,
+    "question": "La Polizia Giudiziaria può procedere di propria iniziativa a perquisizione personale o locale (art. 352 c.p.p.):",
+    "options": [
+      "Nella flagranza del reato o nel caso di evasione, quando vi è fondato motivo di ritenere che siano occultate cose o tracce che possono essere disperse",
+      "Nella flagranza del reato o nel caso di evasione, solo quando il PM non abbia ancora assunto la direzione delle indagini",
+      "Nella flagranza del reato o nel caso di evasione, quando le circostanze di luogo e di tempo non appaiano giustificabili",
+      "In qualunque momento durante le indagini preliminari, con o senza urgenza"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 9,
+    "question": "Ai fini della disciplina della procedura penale, quale delle seguenti situazioni non costituisce un’intercettazione in senso stretto, risultando invece acquisizione di una prova documentale?",
+    "options": [
+      "La registrazione fonografica occultamente eseguita da uno degli interlocutori che era legittimamente ammesso ad assistere e partecipare a quella stessa conversazione",
+      "La captazione occultata di un colloquio ambientale all’interno di una vettura, effettuata tramite una microspia posizionata dalla Polizia Giudiziaria all’insaputa dei passeggeri",
+      "L’acquisizione in tempo reale, tramite captatore informatico (trojan), del flusso di comunicazioni telematiche scambiate tra i computer di due soggetti indagati",
+      "L’ascolto e la registrazione di una telefonata tra due sospettati, effettuati in centrale operativa da un soggetto del tutto estraneo al colloquio"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 10,
+    "question": "Come si distinguono la corruzione propria (art. 319 c.p.) e la corruzione impropria (art. 318 c.p.)?",
+    "options": [
+      "La prima riguarda atti contrari ai doveri d’ufficio, la seconda attiene all’esercizio generale delle funzioni e dei poteri",
+      "La prima, essendo propria, è commessa dal pubblico ufficiale, mentre la seconda da un privato cittadino",
+      "La prima avviene prima del compimento dell’atto, la seconda sempre dopo",
+      "La prima riguarda dazioni di denaro, la seconda solo promesse verbali"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 11,
+    "question": "Tizio, ispettore sanitario, durante un controllo suggerisce in modo velato al ristoratore Caio che con 300 euro potrebbe “chiudere un occhio” sulle irregolarità. Caio, suggestionato, paga. Che reato si configura per Tizio?",
+    "options": [
+      "Induzione indebita",
+      "Concussione",
+      "Truffa",
+      "Peculato, dato che Tizio riceve una somma di denaro per ragioni legate al suo ufficio"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 12,
+    "question": "Quando la rapina si definisce propria?",
+    "options": [
+      "Quando il soggetto pone in essere la violenza o la minaccia per realizzare la sottrazione e l’impossessamento della cosa",
+      "Quando la violenza o la minaccia interviene successivamente alla sottrazione, al solo fine di assicurarsi il possesso o l’impunità",
+      "Quando è effettuata esclusivamente tramite minaccia, a prescindere dal momento in cui questa avviene",
+      "Quando è effettuata esclusivamente tramite violenza armata, a prescindere dal momento in cui questa viene posta in essere"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 13,
+    "question": "Tizio, approfittando del noto stato di deficienza psichica del suo vicino Caio, lo convince facilmente a firmare un documento con cui gli regala la sua preziosa automobile. Quale reato ha commesso Tizio?",
+    "options": [
+      "Circonvenzione d’incapace, poiché Tizio ha abusato della vulnerabilità psichica di Caio per indurlo a compiere un atto a lui dannoso e trarne profitto",
+      "Truffa, poiché Tizio ha utilizzato un raggiro per ingannare Caio",
+      "Furto, perché Tizio si è di fatto impossessato della cosa mobile altrui",
+      "Estorsione, perché Tizio ha costretto Caio a compiere un atto patrimoniale"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 14,
+    "question": "Qual è la differenza sostanziale tra il reato di simulazione di reato e calunnia?",
+    "options": [
+      "Nella simulazione l’accusa non è rivolta a una persona specifica; nella calunnia si incolpa una persona determinata sapendola innocente",
+      "La simulazione crea solo false tracce fisiche, mentre la calunnia richiede sempre un’accusa formale scritta",
+      "Entrambi i reati puniscono la falsa attribuzione di un illecito a una persona specifica",
+      "La simulazione di reato può essere commessa solo da un pubblico ufficiale, mentre la calunnia è un reato comune che può essere commesso da chiunque"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 15,
+    "question": "Riguardo alla “falsa testimonianza” (art. 372 c.p.), in cosa consiste il “vero soggettivo”?",
+    "options": [
+      "Nella difformità tra quanto il teste depone e ciò che egli effettivamente conosce sui fatti in ordine ai quali è interrogato",
+      "Nel fatto che il teste può tacere la verità se questa lo danneggia moralmente",
+      "Nella coincidenza esatta tra le affermazioni del testimone e la verità assoluta dei fatti accaduti",
+      "Nella discrezionalità del giudice nel valutare la testimonianza"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 16,
+    "question": "Quante tipologie di usura possiamo distinguere?",
+    "options": [
+      "Usura concreta, presunta e mediazione usuraria",
+      "Usura propria ed usura impropria",
+      "Usura concreta e presunta",
+      "Usura concreta, presunta e soggezione usuraria"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 17,
+    "question": "Quale elemento accomuna i reati di ricettazione (art. 648 c.p.) e riciclaggio (art. 648-bis c.p.)?",
+    "options": [
+      "La provenienza da denaro o cose da un reato presupposto e il fatto che il soggetto attivo abbia agito “fuori dai casi di concorso” in tale reato presupposto",
+      "Entrambi i delitti richiedono che il soggetto attivo abbia materialmente e consapevolmente partecipato al reato da cui provengono i beni",
+      "Entrambi i reati richiedono che il denaro o le cose provengano da contravvenzioni e mai da delitti",
+      "Entrambi i reati puniscono esclusivamente condotte di tipo colposo e richiedono che il soggetto agisca nell’esercizio di un’attività professionale"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 18,
+    "question": "Quale delle seguenti condotte integra l’ipotesi di omicidio preterintenzionale (art. 584 c.p.)?",
+    "options": [
+      "Cagionare, senza volerlo, la morte di un uomo attraverso atti diretti a percuoterlo o a procurargli una lesione personale",
+      "Provocare la morte di un consenziente",
+      "Cagionare la morte di un uomo per colpa, violando norme sulla sicurezza del lavoro",
+      "Uccidere una persona con dolo eventuale durante una rapina"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 19,
+    "question": "Secondo la giurisprudenza, quali sono i due indicatori fondamentali che fungono da discrimine tra il reato di tentato omicidio e quello di lesioni personali?",
+    "options": [
+      "L’astratta idoneità degli atti a determinare l’evento morte, valutata al momento del fatto, e l’intenzione dell’agente (animus necandi), desumibile da elementi oggettivi del caso concreto",
+      "La presenza accertata di un movente specifico e la mancata desistenza volontaria dell’agente, in assenza dei quali si procede sempre e solo per lesioni personali",
+      "Il fatto che l’agente abbia utilizzato un’arma da fuoco piuttosto che le sole mani nude",
+      "L’esclusiva valutazione clinica delle ferite e della durata della malattia che ne è derivata"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 20,
+    "question": "Affinché si possa configurare il reato di rissa, quante persone vi devono partecipare?",
+    "options": [
+      "La contesa violenta deve avvenire tra tre o più persone",
+      "La contesa violenta deve avvenire tra due o più persone",
+      "Non è previsto un numero definito, si integra quando vi sono violenza o minaccia",
+      "La contesa violenta deve avvenire tra quattro o più persone"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 21,
+    "question": "Secondo l’art. 595 c.p., affinché sia configurabile il delitto di diffamazione, quali sono i tre requisiti fondamentali della condotta che devono sussistere contemporaneamente?",
+    "options": [
+      "L’assenza dell’offeso, l’offesa all’altrui reputazione e la comunicazione dell’addebito a più persone (almeno due)",
+      "La presenza dell’offeso, l’offesa al suo onore e decoro, e la comunicazione della frase denigratoria a una sola persona",
+      "L’assenza dell’offeso, l’offesa all’altrui reputazione e l’incolpazione diretta di un fatto costituente reato",
+      "L’offesa all’altrui reputazione, la redazione obbligatoria dell’offesa in forma scritta o a mezzo stampa, e la comunicazione a più persone"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 22,
+    "question": "Qual è la differenza principale tra la condotta di “istigazione a commettere reati” e quella di “apologia di delitti” ai sensi dell’art. 414 c.p.?",
+    "options": [
+      "L’istigazione è un incitamento diretto a commettere reati, mentre l’apologia è l’espressione pubblica di un giudizio positivo su un delitto",
+      "L’istigazione riguarda esclusivamente l’incitamento alla commissione di contravvenzioni, mentre l’apologia si riferisce unicamente ai delitti",
+      "Nell’istigazione l’incitamento avviene per effetto di riflessioni interiori, mentre nell’apologia l’incitamento avviene mediante costrizione o minaccia diretta",
+      "L’istigazione è punibile solo se il reato viene commesso, mentre l’apologia si perfeziona anche in forma privata"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 23,
+    "question": "Qual è la principale differenza strutturale e offensiva tra il reato di rifiuto di atti d’ufficio (art. 328, comma 1, c.p.) e l’omissione di atti d’ufficio (art. 328, comma 2, c.p.)?",
+    "options": [
+      "Il rifiuto riguarda atti urgenti e indifferibili ed è monoffensivo; l’omissione consegue a una richiesta scritta del privato ed è plurioffensiva",
+      "Il rifiuto richiede la disobbedienza a un ordine gerarchico; l’omissione consegue a una richiesta avanzata esclusivamente da un altro ente pubblico",
+      "Entrambi sono plurioffensivi, ma il rifiuto richiede un diniego scritto e l’omissione matura dopo 60 giorni di silenzio",
+      "La riunione occasionale di almeno tre persone, la disponibilità di armi e il fine di commettere in concorso una serie indeterminata di contravvenzioni"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 24,
+    "question": "Nel delitto di “falsità materiale commessa dal pubblico ufficiale in atti pubblici” (art. 476 c.p.), qual è la differenza logico-strutturale tra la condotta di “contraffazione” e quella di “alterazione”?",
+    "options": [
+      "La contraffazione è la creazione di un atto falso prima inesistente, mentre l’alterazione è la modifica successiva di un documento originariamente vero e già formato",
+      "La contraffazione consiste nel distruggere fisicamente un documento, mentre l’alterazione consiste nel nasconderlo",
+      "La contraffazione riguarda esclusivamente i file informatici, mentre l’alterazione riguarda solo i documenti cartacei",
+      "La contraffazione può essere punita solo con una multa, mentre l’alterazione prevede l’ergastolo"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 25,
+    "question": "Quando un’associazione per delinquere è di tipo mafioso?",
+    "options": [
+      "Quando coloro che ne fanno parte si avvalgono della forza di intimidazione del vincolo associativo e della condizione di assoggettamento e di omertà che ne deriva",
+      "Quando coloro che ne fanno parte si avvalgono delle armi e di un uso sistematico della violenza e della sopraffazione per assoggettare la popolazione",
+      "Quando non è possibile identificare con certezza tutti gli appartenenti all’associazione e questa presenta il carattere incostituzionale della segretezza",
+      "Quando coloro che ne fanno parte si avvalgono della forza di intimidazione, delle armi e delle minacce e della condizione di pericolo per la pubblica incolumità che ne deriva"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 26,
+    "question": "Secondo il Codice Penale (art. 712), quando si configura la contravvenzione di “acquisto di cose di sospetta provenienza” (il cosiddetto incauto acquisto)?",
+    "options": [
+      "Quando si acquista o riceve una cosa senza verificarne la provenienza, malgrado evidenti condizioni oggettive di sospetto",
+      "Solo se si concorda l’acquisto con il ladro prima ancora del furto",
+      "Esclusivamente per l’acquisto di armi da fuoco o veicoli a motore rubati",
+      "Quando l’acquirente compra una cosa sapendo con assoluta certezza che è di provenienza illecita"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 27,
+    "question": "Sulla base dell’art. 37 del c.p.m.p., qual è la differenza tra un “reato esclusivamente militare” e un “reato obiettivamente militare”?",
+    "options": [
+      "Il primo non è previsto dalla legge penale comune; il secondo lo è, ma con l’aggiunta di elementi specializzanti",
+      "Entrambi sono violazioni della legge penale, ma il primo è punito con il Codice penale di guerra, mentre il secondo con il Codice penale di pace",
+      "Il primo può essere commesso unicamente da militari in servizio attivo, mentre il secondo può essere commesso anche da civili",
+      "Il primo tutela interessi puramente legati al servizio e prevede solo sanzioni disciplinari, mentre il secondo è un vero e proprio delitto punito con la reclusione"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 28,
+    "question": "In ambito penale militare, si ha “forza” per conseguire (art. 140 c.p.m.p.) quando il militare o l’estraneo alle FF.AA.:",
+    "options": [
+      "Entra in caserma eludendo la sentinella attraverso comportamenti furtivi o di inganno, in qualsiasi modo forzando una consegna",
+      "Organizza uno sciopero non autorizzato",
+      "Omette di presentarsi in servizio senza un giustificato motivo",
+      "Sottrae armi o munizioni all’amministrazione militare"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 29,
+    "question": "Secondo la legge penale militare, qual è l’elemento essenziale di discrimine tra “rivolta” (art. 174 c.p.m.p.) e “ammutinamento” (art. 175 c.p.m.p.)?",
+    "options": [
+      "La presenza di azione violenta e armata, che caratterizza la rivolta ed è assente nell’ammutinamento",
+      "La rivolta si punisce solo in tempo di guerra, l’ammutinamento solo in tempo di pace",
+      "Nell’ammutinamento i militari si alleano col nemico, nella rivolta no",
+      "L’ammutinamento necessita di 10 militari, la rivolta solo di 2"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": 30,
+    "question": "Affinché operi la speciale condizione di procedibilità della “richiesta del comandante di corpo” (art. 260 c.p.m.p.), occorre di regola che:",
+    "options": [
+      "Il reato militare in questione preveda una pena della reclusione militare non superiore nel massimo a sei mesi",
+      "Il reato deve essere stato commesso all’estero da comandanti di navi o aeromobili militari",
+      "Il reato militare deve comportare l’applicazione automatica della sanzione accessoria della degradazione",
+      "L’autore del reato deve essere obbligatoriamente un soggetto civile estraneo alle Forze Armate che ha commesso il fatto all’interno di un’installazione militare"
+    ],
+    "correctIndex": 0
+  }
+]

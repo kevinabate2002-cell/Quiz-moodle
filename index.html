@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Diritto Penale</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">GitHub Pages Quiz</p>
+        <h1>Quiz Diritto Penale</h1>
+        <p class="subtitle">30 domande a risposta multipla. La risposta corretta salvata nel database è sempre la A.</p>
+      </div>
+
+      <div class="hero-actions">
+        <label class="switch">
+          <input type="checkbox" id="shuffleQuestions" checked />
+          <span>Mescola domande</span>
+        </label>
+        <button id="startBtn" class="primary">Inizia quiz</button>
+      </div>
+    </section>
+
+    <section id="quizPanel" class="card hidden">
+      <div class="topbar">
+        <div class="progress-block">
+          <div class="progress-label">
+            <span id="progressText">Domanda 1 di 30</span>
+            <span id="answeredText">Risposte date: 0/30</span>
+          </div>
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+        <div class="topbar-buttons">
+          <button id="prevBtn" class="secondary">Indietro</button>
+          <button id="nextBtn" class="secondary">Avanti</button>
+        </div>
+      </div>
+
+      <article class="question-card">
+        <p id="questionNumber" class="question-number">Domanda 1</p>
+        <h2 id="questionText" class="question-text"></h2>
+        <div id="optionsContainer" class="options"></div>
+      </article>
+
+      <div class="bottombar">
+        <button id="finishBtn" class="primary">Correggi quiz</button>
+      </div>
+    </section>
+
+    <section id="resultPanel" class="card hidden">
+      <h2>Risultato finale</h2>
+      <p id="scoreText" class="score"></p>
+      <div id="resultSummary" class="result-summary"></div>
+      <div class="result-actions">
+        <button id="restartBtn" class="primary">Ricomincia</button>
+      </div>
+      <div id="reviewContainer" class="review-list"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
